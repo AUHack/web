@@ -1,0 +1,13 @@
+extends /layout.pug
+
+append config
+    - const PAGE_TITLE = "Sponsor"
+
+block custom_css
+    link(href='css/sponsor.css' rel='stylesheet')
+
+block content
+    include /sponsor/navbar.pug
+    include /sponsor/header.pug
+    include /sponsor/teaser.pug
+    include /sponsor/faq.pug

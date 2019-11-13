@@ -1,0 +1,41 @@
+block config
+  include /config.pug
+
+doctype html
+html
+  head
+    include meta.pug
+    // Title
+    if PAGE_TITLE
+      title AUHack #{YEAR} - #{PAGE_TITLE}
+    else
+      title AUHack #{YEAR}
+  body
+    // Main Content
+    block content
+
+    // Footer Section
+    include footer.pug
+    script(src='https://code.jquery.com/jquery-3.2.1.min.js' integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=' crossorigin='anonymous')
+    script.
+      window.jQuery || document.write('<script src="js/jquery-3.2.1.min.js"><\\/script>')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js' integrity='sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb' crossorigin='anonymous')
+    script.
+      window.Tether || document.write('<script src="/js/tether-1.4.0.min.js"><\\/script>')
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js' integrity='sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn' crossorigin='anonymous')
+    script.
+      $.fn.modal || document.write('<script src="/js/bootstrap.min.js"><\\/script>')
+    script(src='js/jquery.waypoints.min.js')
+    script(src='js/default.js')
+    script(src='js/index.js')
+    script(type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/signup-forms/popup/embed.js' data-dojo-config='usePlainJson: true, isDebug: false')
+    script(type='text/javascript').
+      function showMailingPopUp() {
+      require(["mojo/signup-forms/Loader"], function (L) { L.start({ "baseUrl": "mc.us12.list-manage.com", "uuid": "4548bd6155e350fd20b06bd6b", "lid": "a15516ca96" }) });
+      document.cookie = "MCEvilPopupClosed=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+      }
+      $(function () {
+      $(".open-popup").on('click', function () {
+      showMailingPopUp();
+      });
+      });

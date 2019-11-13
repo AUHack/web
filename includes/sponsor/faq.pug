@@ -1,0 +1,109 @@
+mixin title(text)
+    .row: .col-sm-12
+        h3= text
+
+- let index = 0
+mixin entry(question)
+    .card
+        .card-header(role="tab" id=`heading${index}` data-toggle="collapse" data-parent="#accordion"
+        href=`#collapse${index}` aria-expanded="true" aria-controls=`collapse${index}`)= question
+        .collapse(id=`collapse${index}` role="tabpanel" aria-labelledby=`heading${index}`)
+            .card-block
+                block
+    - ++index
+
+section.faq-section#faq-section(class="triangle"): .container
+    .row: .col-sm-12
+        h2 Sponsor FAQ
+        hr
+
+    .row: .col-sm-12: #accordion(role="tablist" aria-multiselectable="true")
+        +entry("What is a hackaton?")
+            p.
+                A hackathon is an event where people within the IT-world, often students, meet and
+                collaborate with each other to develop prototypes or IT-concepts. The purpose of a
+                hackathon is rarely to produce finished products, but rather to create ideas and
+                “hacks”.
+            p.
+                A hackathon has nothing to do with the evil-intended “hacking” where bank systems or
+                other digital solutions are penetrated and exposed. Instead participants hack
+                technology together to develop prototypes of digital solutions.
+            p.
+                A hackathon gathers people from many interdisciplinary groups and let them compete to
+                create the best concept and prototype, typically within 48 hours.
+        +entry("Who participates in AUHack?")
+            p.
+                AUHack is for students from all around the world. Most of the participants are
+                students from Aarhus University who study Computer Science, IT Product Development,
+                Digital Design, Information Studies, or Engineering.
+            p.
+                The students that participate in these hackathons are often ambitious and passionate
+                about both IT and their studies. They clear their schedule for three days to spend
+                an entire weekend, some even refrain from sleeping for two nights in a row, in order
+                to develop the best concepts and prototypes.
+            p.
+                In our experience, it is typically top students that find the time to participate in
+                these events. This will be the fourth year in a row that AUHack is held, and over
+                200 students from 10 nations participated in 2018.
+        +entry("What's in it for me, as a sponsor of AUHack?")
+            p.
+                AUHack is the perfect opportunity for you to spread the word about your organization
+                to some of the brightest IT students in Aarhus and beyond. Depending on which
+                sponsor pack you choose, you have the following options:
+            ul
+                li: p Show your organization logo on all relevant AUHack PR material.
+                li: p.
+                    Tell the participants about your organization through events and workshops held 
+                    exclusively for them.
+                li: p.
+                    A unique opportunity to see students committed to solve problems and recruit
+                    them based on what you see.
+                li: p.
+                    Represent your organization with mentors that help the participants to solve
+                    their problems, creating unique relations between your organization and the
+                    bright students.
+                li: p.
+                    Challenge the participants through design cases or encourage them to use your
+                    technology or an API of your choosing. At the end of the weekend, you decide who
+                    had the best go at your challenge and reward them with prizes of your choosing.
+        +entry("What should I do, if I want to sponsor the event?")
+            ul
+                li: p.
+                    Get in touch with us on our mail
+                    #[a(href=`mailto:sponsor@auhack.org?subject=Sponsor AUHack ${YEAR}`) sponsor@auhack.org],
+                    tell how you want to contribute and which sponsor pack you choose. We are
+                    flexible, so if you want to contribute with anything that is not listed in the
+                    sponsor packs, we’ll be happy to hear from you.
+                li: p.
+                    Should you choose one of the major sponsor packs, we suggest you find one or
+                    more employees from your organization who would want to participate in the
+                    weekend, either to host a workshop or an event, or to mentor the students who
+                    take on your case.
+                li: p Pay the agreed upon fee via a bank transfer.
+        +entry("How are my contribution spent?")
+            p.
+                Your contribution is spent directly on making the event better for the participants.
+                The contributions mainly go into:
+            ul
+                li: p Meals, snacks and drinks for 250 participants Friday to Sunday
+                li: p Goodie bags for the participants
+                li: p Buying prototyping gear which the participants can use throughout the event.
+                li: p Renting rooms and spaces at Aarhus University.
+            p.
+                All organizers are volunteers, and your contribution will not be spent on salary of
+                any kind. The event is non-profit.
+        +entry("I want to sponsor a specific event throughout the weekend. Is this possible?")
+            p.
+                You can choose to be a sponsor on one of the specific events throughout the weekend.
+                This means that the event will be organized in your name, as you will be sponsoring
+                the expenses for this event. Please do contact us if you have any questions about
+                our currently planned events or have an idea for a cool event.
+        +entry("Can I be a sponsor, without providing content to the weekend?")
+            p.
+                If you wish to support the event but do not want to provide content for the weekend,
+                you can be a Silver Sponsor . With the Silver Sponsor pack, we will put your company
+                logo on the website as well as distribute relevant company material (flyers,
+                stickers, etc.) to the participants. Should you wish to contribute with a higher
+                amount than Silver or contribute with tools or other gear, please feel free to
+                contact us at 
+                #[a(href=`mailto:sponsor@auhack.org?subject=Sponsor AUHack ${YEAR}`) sponsor@auhack.org]

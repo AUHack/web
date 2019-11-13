@@ -1,0 +1,89 @@
+mixin title(text)
+    .row: .col-sm-12
+        h3= text
+
+mixin entry(question)
+    .row: .col-sm-12
+        h4= question
+            i(class="fa fa-chevron-down arrow-animate")
+        block
+
+section.triangle#faq-section: .container
+    .row: .col-sm-12
+        h2 FAQ
+        hr
+
+    +title("General")
+    +entry("I cannot code. Can I attend anyway?"): p.
+        Sure, you should definitely attend! Whether you have written lots of code or just have a creative soul,
+        this hackathon needs you! In true hackathon spirit all students are very friendly and willing to
+        help each other out.
+    +entry("Seriously, is it free?!"): p.
+        Yes, we’re not kidding you. Thanks to our sponsors we will provide free food, swag, snacks, drinks and
+        a place for you to sleep at the hackathon. Plus, there will be mentors, workshops and judges only for
+        the sake of YOU.
+    +entry("What can I win?"): p.
+        You have the fantastic opportunity to learn new stuff, try out your skills and make new friends. Isn't
+        that just great? Everyone will be a winner!... Okay, we will also have some awesome prizes.
+    br
+
+    +title("Hacking!")
+    +entry("Can I build on my hack before the event?"): p.
+        No. That's not fair. You can come up with ideas, but not build them. You are of course allowed to use
+        libraries, frameworks and templates for your hacks.
+    +entry("What do people usually build?"): p.
+        AUHack has been home to a wide variety of projects, from amazing hardware projects to the coolest VR
+        Games and the most useful services and apps.
+    +entry("What hardware will be available to hack on?"): p.
+        We always have a wide spectrum of hardware available, provided by our sponsors and happily administered
+        by our knowledgeable wizards. A detailed list will be available as we get closer to the event!
+    br
+
+    +title("Application")
+    +entry("Do I need to have a team?"): p.
+        No. You are more than welcome to make a team before the hackathon, but loads of people come without a
+        team. We will help everyone find a team Friday night. We recommend groups of 4-5 persons, but anything
+        is allowed.
+    +entry("How can I apply?"): p.
+        Sign-ups will start #{SIGN_UP_START_DATE}. Keep an eye out on our social medias and here. TODO
+    +entry("Can I attend?"): p.
+        You might think that a hackathon is for programmers only, but that’s not true. Technology and code is
+        one thing – creative minds, bright insights and strategic eyes are another. So, as long as you are
+        a student above 18 years old, you are more than welcome – no matter what university or study program
+        you attend. Actually, we believe that the more different people we are, the better.
+    +entry("Will you offer travel Reimbursements?"): p.
+        We might be offering a travel grant this year. More information will follow.
+
+    br
+    +title("Logistics")
+    +entry("What do I need to bring?"): p.
+        Laptop, cellphone and chargers aswell as a sleeping bag, pillow, toiletries, clothes and a well-rested
+        and open mind. If you want to hack on hardware, you might need to bring it yourself. What you won't
+        need to bring is a pre-determined team, an idea for a hack, nor food and drinks. Also, there is absolutely
+        no reason to bring bad mood.
+    +entry("When is it?"): p.
+        AUHack will start in the evening of Friday at #{START_TIME} and end Sunday at #{END_TIME}. All work eligible for prizes
+        must be worked on and completed during this period of time and can't be prepared from home. Throughout
+        the hackathon inspiring events, talks and mentoring sessions will be hosted. For a more detailed
+        schedule see below.
+    +entry("Can I sleep at the AUHack venue?"): p.
+        There will be rooms to sleep in. You will have to bring your own bedroll, sleeping bag and
+        pillows though.
+    +entry("How do I get there?"): p.
+        Please take a look at #[a(href="travel.html") auhack.org/travel], where
+        we have written down some options for you. #[br]
+        The address is: #[br]
+        #[a(target="_blank" href="https://goo.gl/maps/UMjBPRkJ5u62") Finlandsgade 21, 8200 Aarhus N]
+    +entry("Will there be parking available?"): p.
+        The streets around the venue should provide suitable parking for all participants. Additionally there
+        is a parking lot near the venue.
+
+    br
+    +title("Help!")
+    +entry("What if this FAQ didn't answer my questions?"): p.
+        Send an email to: #[br]
+        #[a(href="mailto:contact@auhack.org?subject=AUHack: question") contact@auhack.org]
+    +entry("I don't want to hack I want to _______!"): p.
+        If you'd like to be a part of AUHack but don't want to hack, we also need spirited volunteers to help
+        bring the event to life. Shoot us an e-mail at:#[br]
+        #[a(href="mailto:contact@auhack.org?subject=AUHack: question") contact@auhack.org]
