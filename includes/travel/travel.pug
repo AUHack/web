@@ -1,0 +1,96 @@
+section.travel-section#travel-section(class="triangle"): .container
+    .row: .col-sm-12
+        h2(style="text-align: right") How to get to AUHack?
+
+    hr(style="margin: 10px 0")
+
+    .row: .col-sm-12
+        ul.nav(class="nav-pills nav-justified hidden-sm-down" role="tablist")
+            li.nav-item: a.nav-link(href="#location" data-toggle="tab" role="tab")
+                span.fa-stack(class="fa-4x")
+                    i.fa(class="fa-circle fa-stack-2x" style="color: #D65B12")
+                    i.fa(class="fa-map-marker fa-stack-1x" style="color: #FFFFFF")
+                h4 Location
+            li.nav-item: a.nav-link(href="#train" data-toggle="tab" role="tab")
+                span.fa-stack(class="fa-4x")
+                    i.fa(class="fa-circle fa-stack-2x" style="color: #D65B12")
+                    i.fa(class="fa-train fa-stack-1x" style="color: #FFFFFF")
+                h4 Train
+            li.nav-item: a.nav-link(href="#car" data-toggle="tab" role="tab")
+                span.fa-stack(class="fa-4x")
+                    i.fa(class="fa-circle fa-stack-2x" style="color: #D65B12")
+                    i.fa(class="fa-car fa-stack-1x" style="color: #FFFFFF")
+                h4 Car
+            li.nav-item: a.nav-link(href="#plane" data-toggle="tab" role="tab")
+                span.fa-stack(class="fa-4x")
+                    i.fa(class="fa-circle fa-stack-2x" style="color: #D65B12")
+                    i.fa(class="fa-paper-plane fa-stack-1x" style="color: #FFFFFF")
+                h4 Plane
+
+        ul.nav(class="nav-pills nav-justified hidden-md-up" role="tablist")
+            li.nav-item: a.nav-link(href="#location" data-toggle="tab" role="tab")
+                span.fa-stack(class="fa-2x")
+                    i.fa(class="fa-circle fa-stack-2x" style="color: #D65B12")
+                    i.fa(class="fa-map-marker fa-stack-1x" style="color: #FFFFFF")
+                h4 Location
+            li.nav-item: a.nav-link(href="#train" data-toggle="tab" role="tab")
+                span.fa-stack(class="fa-2x")
+                    i.fa(class="fa-circle fa-stack-2x" style="color: #D65B12")
+                    i.fa(class="fa-train fa-stack-1x" style="color: #FFFFFF")
+                h4 Train
+            li.nav-item: a.nav-link(href="#car" data-toggle="tab" role="tab")
+                span.fa-stack(class="fa-2x")
+                    i.fa(class="fa-circle fa-stack-2x" style="color: #D65B12")
+                    i.fa(class="fa-car fa-stack-1x" style="color: #FFFFFF")
+                h4 Car
+            li.nav-item: a.nav-link(href="#plane" data-toggle="tab" role="tab")
+                span.fa-stack(class="fa-2x")
+                    i.fa(class="fa-circle fa-stack-2x" style="color: #D65B12")
+                    i.fa(class="fa-paper-plane fa-stack-1x" style="color: #FFFFFF")
+                h4 Plane
+    
+    hr(style="margin: 10px 0")
+
+    .row: .col-sm-12: .tab-content#tabs
+        .tab-pane#location(role="tabpanel")
+            h4 Location
+            p The address of the venue building is: #[br]Finlandsgade 21, 8200 Aarhus N, Denmark
+            p You will recognize the entrance by AUHack signs outside.
+            img(src="img/AUHack-map.jpg" alt="Entrance and parking to AUHack. Helsingforsgade 12, 8200 Aarhus N")
+        .tab-pane#train(role="tabpanel")
+            h4 Train
+            //- TODO: update train link
+            p. 
+                Take the train to #[i Aarhus Hovedbanegård]. #[br]
+                You can then take a #[a(href="https://maps.app.goo.gl/?link=https://goo.gl/maps/8paNXkFrkUB2?utm_source%3Dapp-invite%26mt%3D8%26pt%3D9008%26utm_medium%3DSIMPLE%26utm_campaign%3Ds2e-ai%26ct%3Ds2e-ai&apn=com.google.android.apps.maps&amv=703000000&isi=585027354&ibi=com.google.Maps&ius=comgooglemapsurl&utm_source=app-invite&mt=8&pt=9008&utm_medium=SIMPLE&utm_campaign=s2e-ai&ct=s2e-ai&invitation_id=493454522602-04fc0b35-537e-4634-9917-f520fb424ae1" target="_blank") bus] or walk to the venue.
+            
+        .tab-pane#car(role="tabpanel")
+            h4 Car
+            p Navigate to Finlandsgade 21, 8200 Aarhus N, Denmark.
+            p.
+                Park your car somewhere, preferable on the roof of
+                #[a(href="https://drive.google.com/open?id=1i-oK1c3tjav_m6Jq1w0YTfg8s_M&usp=sharing" target="_blank") Storcenter Nord].
+        .tab-pane#plane(role="tabpanel")
+            h4 Plane
+            p You have 4 options: Copenhagen, Billund, Tirstrup, Aalborg. Billund and Copenhagen are likely preferred, since they have most connecting flights.
+            p.
+                If you arrive at #[b Copenhagen Airport],
+                then take the train to Aarhus H and then bus 2A to the venue,
+                #[a(href="https://maps.app.goo.gl/?link=https://goo.gl/maps/4o2NwHD3Ui12?utm_source%3Dapp-invite%26mt%3D8%26pt%3D9008%26utm_medium%3DSIMPLE%26utm_campaign%3Ds2e-ai%26ct%3Ds2e-ai&apn=com.google.android.apps.maps&amv=703000000&isi=585027354&ibi=com.google.Maps&ius=comgooglemapsurl&utm_source=app-invite&mt=8&pt=9008&utm_medium=SIMPLE&utm_campaign=s2e-ai&ct=s2e-ai&invitation_id=493454522602-882a6870-6ed0-4301-9bb0-725ef9076656" target="_blank") link].
+            p.
+                If you arrive at #[b Billund Airport],
+                then take the bus 912X til Aarhus then bus 2A to the venue,
+                #[a(href="https://maps.app.goo.gl/?link=https://goo.gl/maps/VXfa64VSK8G2?utm_source%3Dapp-invite%26mt%3D8%26pt%3D9008%26utm_medium%3DSIMPLE%26utm_campaign%3Ds2e-ai%26ct%3Ds2e-ai&apn=com.google.android.apps.maps&amv=703000000&isi=585027354&ibi=com.google.Maps&ius=comgooglemapsurl&utm_source=app-invite&mt=8&pt=9008&utm_medium=SIMPLE&utm_campaign=s2e-ai&ct=s2e-ai&invitation_id=493454522602-5cbebbcc-6576-441d-9df9-e678269b5b87" target="_blank") link].
+
+    hr
+
+    .row: .col-sm-12(class="col-10")
+        #map
+    
+    hr
+
+    .row: .col-sm-12
+        h2 Questions
+        p.
+            If you have any questions regarding travel,
+            then please contact us at #[a(href="mailto:contact@auhack.org?subject=AUHack: question") contact@auhack.org].

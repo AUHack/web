@@ -1,0 +1,38 @@
+extends /layout.pug
+
+append config
+    - const PAGE_TITLE = "Travel"
+
+block custom_css
+    link(href='css/travel.css' rel='stylesheet')
+
+block content
+    include /travel/navbar.pug
+    include /travel/header.pug
+    include /travel/travel.pug
+
+append footer_scripts
+    script.
+        $(document).ready(function(){
+            activeTab('location');
+        });
+
+        function activeTab(tab){
+            //$('.nav-tabs a[href="#' + tab + '"]').click();//.tab('show');
+            $('a[href="#' + tab + '"]').click();
+        };
+
+        function initMap() {
+            var auhack = {lat: 56.171697, lng: 10.189996};
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 16,
+                center: auhack
+            });
+            var marker = new google.maps.Marker({
+                position: auhack,
+                map: map,
+                label: ''
+            });
+
+        }
+    script(async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCwvHkLHxat533UwhgjnOOs1DN7q0dPYyo&callback=initMap")
