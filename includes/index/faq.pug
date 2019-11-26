@@ -44,8 +44,19 @@ section.triangle#faq-section: .container
         No. You are more than welcome to make a team before the hackathon, but loads of people come without a
         team. We will help everyone find a team Friday night. We recommend groups of 4-5 persons, but anything
         is allowed.
-    +entry("How can I apply?"): p.
-        Sign-ups will start #{SIGN_UP_START_DATE}. Keep an eye out on our social medias and here. TODO
+    +entry("How can I apply?")
+        if SIGN_UP_STATE === SIGN_UP_OPENING
+            if SIGN_UP_START_DATE !== null
+                p Sign-ups will start #{SIGN_UP_START_DATE}. Keep an eye out on our social medias and here.
+            else
+                p Sign-ups have not yet been announced. Keep an eye out on our social medias and here.
+        else if SIGN_UP_STATE === SIGN_UP_OPEN
+            p.
+                Sign-ups for this year's AUHack are open!
+                You should sign up as soon as possible if you want to be sure that you'll have a spot.
+                #[a(href=SIGN_UP_LINK) Click here to sign up!]
+        else if SIGN_UP_STATE === SIGN_UP_CLOSED
+            p Sign-ups for this year's AUHack has closed.
     +entry("Can I attend?"): p.
         You might think that a hackathon is for programmers only, but that’s not true. Technology and code is
         one thing – creative minds, bright insights and strategic eyes are another. So, as long as you are
