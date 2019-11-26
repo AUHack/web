@@ -15,3 +15,8 @@ else if SIGN_UP_STATE === SIGN_UP_OPENING
                 h5 Sign-ups for this year's AUHack will open #{SIGN_UP_START_DATE}!
             else
                 h5 Sign-ups are not yet open for this year's AUHack! Stay tuned!
+else if SIGN_UP_STATE === SIGN_UP_CLOSED
+    .triangle#sign-up-section: .row
+        .col-sm-2
+        .col-sm-8(class="text-center")
+            h5 Sign-ups for this year's AUHack has closed.
