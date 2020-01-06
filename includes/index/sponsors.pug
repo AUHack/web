@@ -1,10 +1,37 @@
+mixin sponsor(class_name, name, image_name, url)
+    div(class=class_name): .sponsor-title
+        a(href=url, target="_blank")
+            img(src=("img/sponsors/" + image_name) alt=name)
+
+mixin diamond(name, image_name, url)
+    +sponsor("col-sm-6", name, image_name, url)
+
+mixin platinum(name, image_name, url)
+    +sponsor("col-sm-4", name, image_name, url)
+
+mixin gold(name, image_name, url)
+    +sponsor("col-sm-3", name, image_name, url)
+
+mixin silver(name, image_name, url)
+    +sponsor("col-sm-2", name, image_name, url)
+
 .triangle#sponsors-section: .container
     .row: .col-sm-12
         h2 Sponsors
-        p We have not announced our sponsors yet. Are you interested? Then take a look #[a(href="sponsor.html") here].
+        if SPONSORS_ANNOUNCED
+            p Are you interested in becoming a sponsor? Then take a look #[a(href="sponsor.html") here].
+        else
+            p We have not announced our sponsors yet. Are you interested? Then take a look #[a(href="sponsor.html") here].
     hr
 
-    // TODO
+    if SPONSORS_ANNOUNCED
+        .row
+            +diamond("Grundfos", "grundfos.jpg", "https://www.grundfos.com/")
+            +diamond("LEGO", "lego.jpg", "https://www.lego.com/da-dk")
+        hr
+        .row
+            +gold("RS", "rs.jpg", "https://dk.rs-online.com/web/")
+        hr
     
     .row: .col-sm-12
         h4 New sponsor?
