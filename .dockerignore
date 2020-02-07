@@ -1,0 +1,7 @@
+*
+!package.json
+!yarn.lock
+!static
+!pages
+!includes
+!nginx.conf
