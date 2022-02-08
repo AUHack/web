@@ -1,5 +1,5 @@
 mixin sponsor(class_name, name, image_name, url)
-    div(class=class_name): .sponsor-title
+    div(class=class_name, style="margin:auto"): .sponsor-title
         a(href=url, target="_blank")
             img(src=("img/sponsors/" + image_name) alt=name)
 
