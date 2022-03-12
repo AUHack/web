@@ -1,0 +1,18 @@
+nav.navbar(class="navbar-toggleable-sm navbar-light bg-faded fixed-top" role="navigation" id="nav-wrap")
+    button.navbar-toggler(class="navbar-toggler-right" type="button" data-toggle="collapse"
+        data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
+        aria-label="Toggle navigation")
+        span.navbar-toggler-icon
+
+    .container
+        a.navbar-brand(href="index.html")
+            img.hidden-sm-down(src="img/AUHack_logo.png" alt="AUHack logo")
+            span.hidden-md-up AUHack #{YEAR}
+
+        .collapse(class="navbar-collapse" id="navbarCollapse")
+            ul(class="navbar-nav mr-auto")
+                li.nav-item
+                    a(class="smoothscroll nav-link", href="#info-section") Info
+            ul(class="navbar-nav navbar-right")
+                li.nav-item
+                    a(class="nav-link" href="index.html") Front page
