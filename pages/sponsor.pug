@@ -1,13 +1,13 @@
-extends ../includes/layout.pug
+extends /layout.pug
 
 append config
     - const PAGE_TITLE = "Sponsor"
 
 block custom_css
-    link(href='../web/static/css/sponsor.css' rel='stylesheet')
+    link(href='css/sponsor.css' rel='stylesheet')
 
 block content
-    include ../includes/sponsor/navbar.pug
-    include ../includes/sponsor/header.pug
-    include ../includes/sponsor/teaser.pug
-    include ../includes/sponsor/faq.pug
+    include /sponsor/navbar.pug
+    include /sponsor/header.pug
+    include /sponsor/teaser.pug
+    include /sponsor/faq.pug
