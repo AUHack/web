@@ -1,7 +1,7 @@
 mixin sponsor(class_name, name, image_name, url)
     div(class=class_name, style="margin:auto"): .sponsor-title
         a(href=url, target="_blank")
-            img(src=("img/sponsors/" + image_name) alt=name)
+            img(src=("../web/static/img/sponsors/" + image_name) alt=name)
 
 mixin diamond(name, image_name, url)
     +sponsor("col-sm-6", name, image_name, url)
@@ -19,7 +19,7 @@ mixin silver(name, image_name, url)
     .row: .col-sm-12
         h2 Sponsors
         if SPONSORS_ANNOUNCED
-            p Are you interested in becoming a sponsor? Then take a look #[a(href="sponsor.html") here].
+            p Are you interested in becoming a sponsor? Then take a look #[a(href="../web/sponsor.html") here].
         else
             p We have not announced our sponsors yet. Are you interested? Then take a look #[a(href="sponsor.html") here].
     hr

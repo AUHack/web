@@ -1,5 +1,5 @@
 block config
-  include /config.pug
+  include ../includes/config.pug
 
 doctype html
 html
@@ -25,9 +25,9 @@ html
     script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js' integrity='sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn' crossorigin='anonymous')
     script.
       $.fn.modal || document.write('<script src="/js/bootstrap.min.js"><\\/script>')
-    script(src='js/jquery.waypoints.min.js')
-    script(src='js/default.js')
-    script(src='js/index.js')
+    script(src='../web/static/js/jquery.waypoints.min.js')
+    script(src='../web/static/js/default.js')
+    script(src='../web/static/js/index.js')
     script(type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/signup-forms/popup/embed.js' data-dojo-config='usePlainJson: true, isDebug: false')
     script(type='text/javascript').
       function showMailingPopUp() {

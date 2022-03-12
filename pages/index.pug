@@ -1,13 +1,13 @@
-extends /layout.pug
+extends ../includes/layout.pug
 
 block custom_css
-    link(href='css/index.css' rel='stylesheet')
+    link(href='../web/static/css/index.css' rel='stylesheet')
 
 block content
-    include /index/navbar.pug
-    include /index/header.pug
-    include /index/signup.pug
-    include /index/teaser.pug
-    include /index/schedule.pug
-    include /index/sponsors.pug
-    include /index/faq.pug
+    include ../includes/index/navbar.pug
+    include ../includes/index/header.pug
+    include ../includes/index/signup.pug
+    include ../includes/index/teaser.pug
+    include ../includes/index/schedule.pug
+    include ../includes/index/sponsors.pug
+    include ../includes/index/faq.pug
