@@ -50,29 +50,29 @@
 }
 
 /*
- ------------ Events SECTION -------------
+ ------------ Workshops SECTION -------------
 */
 
-.events-section {
+.workshops-section {
     background-color: #d65b12;
     color: #ffffff;
     padding-bottom: 8em;
 }
 
-.events-section:before {
+.workshops-section:before {
   top: -4em;
   height: 4em;
   background-image: url("../img/figures/orange_bottom_right_triangle.svg");
 }
 
-.events-section h2 {
+.workshops-section h2 {
   text-align: right;
 }
 
-.events-section hr {
+.workshops-section hr {
   background-color: #ffffff;
 }
 
-.events-section p {
+.workshops-section p {
   text-align: left;
 }
