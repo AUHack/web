@@ -1,0 +1,13 @@
+extends /layout.pug
+
+append config
+    - const PAGE_TITLE = "Workshops"
+
+block custom_css
+    link(href='css/workshops.css' rel='stylesheet')
+
+block content
+    include /workshops/navbar.pug
+    include /workshops/header.pug
+    include /workshops/teaser.pug
+    include /workshops/workshops.pug
