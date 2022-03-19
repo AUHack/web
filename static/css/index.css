@@ -4,6 +4,15 @@ hr {
 }
 
 /*
+ -------------- 1mm SECTION --------------
+ */
+ #onemm-section {
+   color: white;
+   background-color: red;
+   padding-top: 100vh;
+ }
+
+/*
  -------------- Logo SECTION --------------
  */
 
