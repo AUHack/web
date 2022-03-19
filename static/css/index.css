@@ -9,7 +9,24 @@ hr {
  #onemm-section {
    color: white;
    background-color: red;
-   padding-top: 100vh;
+   padding-top: 16vh;
+ }
+
+ #onemm-section hr {
+   margin-bottom: 10px;
+ }
+
+ #onemm-section h2 {
+   font-size: large;
+ }
+
+ #onemm-section p {
+   font-size: medium;
+ }
+
+ #onemm-section a {
+   color: white;
+   text-decoration: underline;
  }
 
 /*
