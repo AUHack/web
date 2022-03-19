@@ -4,6 +4,8 @@ block custom_css
     link(href='css/index.css' rel='stylesheet')
 
 block content
+    if SHOW_ONEMM_SUBMISSION
+      include /index/onemm.pug
     include /index/navbar.pug
     include /index/header.pug
     include /index/signup.pug
@@ -11,5 +13,3 @@ block content
     include /index/schedule.pug
     include /index/sponsors.pug
     include /index/faq.pug
-    if SHOW_ONEMM_SUBMISSION
-      include /index/onemm.pug
