@@ -1,18 +1,19 @@
 //--- Date ---
 //- The year of the event. E.g. "2019"
-- const YEAR = "2022"
+- const YEAR = "2023"
 
 //- The date interval of the event in short form. E.g. "April 5th - 7th"
-- const SHORT_INTERVAL = "March 18th - 20th"
+- const SHORT_INTERVAL = "TBD"
 
 //- The date interval of the event in long form. E.g. "April 5th to 7th"
-- const LONG_INTERVAL = "March 18th to 20th"
+- const LONG_INTERVAL = "TBD"
 
 //- The start time of the event. E.g. "16:00"
-- const START_TIME = "15:30"
+- const START_TIME = "TBD"
 
 //- The end time of the event (on Sunday). E.g. "16:30"
-- const END_TIME = "16:00"
+- const END_TIME = "TBD"
+
 
 //--- Sign-Up ---
 //- Sign-up states. Do not change!
@@ -21,18 +22,43 @@
 - const SIGN_UP_CLOSED = 2
 
 //- Current sign-up state. E.g. SIGN_UP_OPEN
-- const SIGN_UP_STATE = SIGN_UP_CLOSED
+- const SIGN_UP_STATE = SIGN_UP_OPENING
 
 //- Link for the sign-up. E.g. "http://register.auhack.org"
 - const SIGN_UP_LINK = "http://register.auhack.org"
 
 //- The date where sign-up begins. Can be null. E.g. "February 4th"
-- const SIGN_UP_START_DATE = "February 9th"
+- const SIGN_UP_START_DATE = "TBD"
+
 
 //--- Sponsors ---
 //- Whether the sponsors are announced and visible.
-- const SPONSORS_ANNOUNCED = true
+- const SPONSORS_ANNOUNCED = false
+
 
 //--- Expo ---
 //- Whether to show the submission form for 1-minute madness.
 - const SHOW_ONEMM_SUBMISSION = false
+
+
+//--- Cases ---
+//- Whether to show the cases button in the navbar.
+- const SHOW_CASES = false
+
+
+//--- Events ---
+//- Whether to show the events button in the navbar.
+- const SHOW_EVENTS = false
+
+
+//--- Workshops ---
+//- Whether to show the workshops button in the navbar.
+- const SHOW_WORKSHOPS = false
+
+
+//--- Schedule ---
+//- Whether the schedule has been announced.
+- const SCHEDULE_ANNOUNCED = false
+
+//- Whether the schedule is the final version.
+- const SCHEDULE_FINAL = false
