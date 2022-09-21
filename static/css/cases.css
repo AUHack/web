@@ -76,6 +76,9 @@
 .cases-section p {
   text-align: left;
   color: #000000;
+  margin-bottom: 0;
+  font-size: 1rem;
+  line-height: 1.5;
 }
 
 .cases-section .card {
@@ -106,4 +109,15 @@
 
 .cases-section .btn {
     margin: 3px;
+}
+
+.cases-section .back-to-top {
+  cursor: pointer;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: none;
+  z-index: 100;
+  background: #364759;
+  color: white;
 }

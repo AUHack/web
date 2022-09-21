@@ -6,23 +6,27 @@
     {
     id: "test1", 
     sponsor_name: "Test1",
-    title: "Test1 title",
-    description_short: "Short Test1 description",
-    description_long: "Long Test1 description",
-    technology: "Technology section for Test1!",
-    judging_criteria: "These are all of the judging criteria!"
+    title: "This is the title!",
+    description_short: "This is an example of a short description.",
+    description_long: "This is an example of a very long description that just keeps on going and going forever and ever! I don't know what else to write here, but I hope you have a nice day! And don't forget to have fun! :)",
+    technology: "Technology section for Test1.",
+    judging_criteria: "These are all of the judging criteria. But don't worry, I won't judge you :)"
     }, 
     {
     id: "test2",
     sponsor_name: "Test2",
     title: "Test2 title",
-    description_short: "Short Test2 desc"
+    description_short: "Short Test2 desc.",
+    description_long: "Long Test2 desc.",
+    technology: "Technology section for Test2.",
+    judging_criteria: "Judging criteria section for Test2."
     }
     ]
 
 mixin set_buttons()
   .row: .col-sm-12
     h2 Cases
+    a#back-to-top.btn.btn-lg.back-to-top.smoothscroll(href="#cases-section" role="button" title="Click to return to top" data-toggle="tooltip" data-placement="left")
     .text-center
       each item in cases
         a.smoothscroll.btn.btn-secondary(href="#" + item.id) #{item.sponsor_name} Case
