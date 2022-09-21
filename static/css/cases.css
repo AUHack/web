@@ -50,7 +50,7 @@
 }
 
 /*
- ------------ Workshops SECTION -------------
+ ------------ Cases SECTION -------------
 */
 
 .cases-section {
@@ -75,4 +75,37 @@
 
 .cases-section p {
   text-align: left;
+  color: #000000;
+}
+
+/*
+ ------------ Extra things -------------
+*/
+
+.card a {
+    text-decoration: underline;
+}
+
+.card-img-top {
+    /*width: 80%;
+    margin: 10px 0;*/
+    width: 100%;
+    align-self: center;
+}
+
+.card-body {
+    padding: 10px 20px;
+}
+
+h6 {
+    margin-top: .3rem;
+    margin-bottom: 0;
+}
+
+.text-muted {
+    font-size: 0.8rem;
+}
+
+.btn {
+    margin: 3px;
 }

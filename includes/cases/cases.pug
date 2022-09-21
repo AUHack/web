@@ -1,29 +1,73 @@
-section.cases-section#cases-section(class="triangle"): .container 
+//- Ignore this:
+  #[a(href="https://albertbz.com/") test]
+
+- 
+  var cases = [
+    {
+    id: "lego", 
+    sponsor_name: "Lego",
+    title: "Lego title",
+    description_short: "Short Lego desc",
+    description_long: "Long Lego desc - #[a(href="https://albertbz.com/") test]",
+    technology: "Technology section for Lego!",
+    judging_criteria: "These are all of the judging criteria!"
+    }, 
+    {
+    id: "grundfos",
+    sponsor_name: "Grundfos",
+    title: "Grundfos title",
+    description_short: "Short Grundfos desc"
+    }
+    ]
+
+mixin set_buttons()
   .row: .col-sm-12
     h2 Cases
     .text-center
-      a.smoothscroll.btn.btn-secondary(href="#lego") Lego Case
-      a.smoothscroll.btn.btn-secondary(href="#grundfos") Grundfos Case
+      each item in cases
+        a.smoothscroll.btn.btn-secondary(href="#" + item.id) #{item.sponsor_name} Case
     hr
+
+mixin set_cards()
+  .row: .col-sm-6
+    each item in cases
+      .card (id=#{item.id})
+        img.card-img-top(src=("img/sponsors/" + item.id + ".jpg") alt=item.sponsor_name)
+        .card-body
+          h5= item.title
+          i.text-muted= item.sponsor
+          hr
+          p= item.description_short
+          h6 Case
+          p= item.description_long
+          h6 Technology
+          p= item.technology
+          h6 Judging criteria
+          p= item.judging_criteria
+
+section.cases-section#cases-section(class="triangle"): .container 
+  +set_buttons()
+  +set_cards()
   
+//-
   .row: .col-sm-6
     .card#lego
       img.card-img-top(src=("img/sponsors/lego.jpg") alt="Lego")
       .card-body
-        h5 Title of case
+        h5 Case title
         i.text-muted Lego
         hr
         p.
-          Lego would blah blah blah test
+          Short description of case
         h6 Case
         p.
-          Imagine lots of text here
+          Long description of case
         h6 Technology
         p.
-          Imagine stuff about technology here
+          Description of technology
         h6 Judging criteria
         p.
-          Imagine even more stuff thx
+          Description of judging criteria
 //-        
   .row: .col-sm-12: #lego
     h5 The LEGO Group: Rebuild the workplace.
