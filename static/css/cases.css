@@ -82,13 +82,20 @@
  ------------ Extra things -------------
 */
 
+
+/*
+.card {
+  position: relative;
+  display: flex;
+}
+
 .card a {
     text-decoration: underline;
 }
 
 .card-img-top {
     /*width: 80%;
-    margin: 10px 0;*/
+    margin: 10px 0;*//*
     width: 100%;
     align-self: center;
 }
@@ -109,3 +116,4 @@ h6 {
 .btn {
     margin: 3px;
 }
+*/

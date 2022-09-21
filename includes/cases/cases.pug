@@ -31,7 +31,7 @@ mixin set_buttons()
 mixin set_cards()
   .row: .col-sm-6
     each item in cases
-      .card (id=#{item.id})
+      .card(id=item.id)
         img.card-img-top(src=("img/sponsors/" + item.id + ".jpg") alt=item.sponsor_name)
         .card-body
           h5= item.title
