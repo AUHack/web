@@ -55,7 +55,6 @@
 
 .cases-section {
     background-color: #d65b12;
-    color: #ffffff;
     padding-bottom: 8em;
 }
 
@@ -67,6 +66,7 @@
 
 .cases-section h2 {
   text-align: right;
+  color: #ffffff;
 }
 
 .cases-section hr {
@@ -78,34 +78,32 @@
   color: #000000;
 }
 
-/*
- ------------ Extra things -------------
-*/
+.cases-section .card {
+  margin-bottom: 20px;
+}
 
-.card a {
+.cases-section .card a {
     text-decoration: underline;
 }
 
-.card-img-top {
-    /*width: 80%;
-    margin: 10px 0;*/
+.cases-section .card-img-top {
     width: 100%;
     align-self: center;
 }
 
-.card-body {
+.cases-section .card-body {
     padding: 10px 20px;
 }
 
-h6 {
+.cases-section h6 {
     margin-top: .3rem;
     margin-bottom: 0;
 }
 
-.text-muted {
+.cases-section .text-muted {
     font-size: 0.8rem;
 }
 
-.btn {
+.cases-section .btn {
     margin: 3px;
 }

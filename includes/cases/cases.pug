@@ -4,19 +4,19 @@
 - 
   var cases = [
     {
-    id: "lego", 
-    sponsor_name: "Lego",
-    title: "Lego title",
-    description_short: "Short Lego desc",
-    description_long: "Long Lego desc",
-    technology: "Technology section for Lego!",
+    id: "test1", 
+    sponsor_name: "Test1",
+    title: "Test1 title",
+    description_short: "Short Test1 description",
+    description_long: "Long Test1 description",
+    technology: "Technology section for Test1!",
     judging_criteria: "These are all of the judging criteria!"
     }, 
     {
-    id: "grundfos",
-    sponsor_name: "Grundfos",
-    title: "Grundfos title",
-    description_short: "Short Grundfos desc"
+    id: "test2",
+    sponsor_name: "Test2",
+    title: "Test2 title",
+    description_short: "Short Test2 desc"
     }
     ]
 
@@ -29,21 +29,30 @@ mixin set_buttons()
     hr
 
 mixin set_cards()
-  .row: .col-sm-6
-    each item in cases
-      .card(id=item.id)
-        img.card-img-top(src=("img/sponsors/" + item.id + ".jpg") alt=item.sponsor_name)
-        .card-body
-          h5= item.title
-          i.text-muted= item.sponsor
-          hr
-          p= item.description_short
-          h6 Case
-          p= item.description_long
-          h6 Technology
-          p= item.technology
-          h6 Judging criteria
-          p= item.judging_criteria
+  .row 
+    .col-sm-6
+      each item, index in cases
+        if (index % 2 == 0)
+          +set_cards_helper(item)
+    .col-sm-6
+      each item, index in cases
+        if (index % 2 == 1)
+          +set_cards_helper(item)
+
+mixin set_cards_helper(item)
+  .card(id=item.id)
+    img.card-img-top(src=("img/sponsors/case_banners/" + item.id + ".jpg") alt=item.sponsor_name)
+    .card-body
+      h5= item.title
+      i.text-muted= item.sponsor_name
+      hr
+      p= item.description_short
+      h6 Case
+      p= item.description_long
+      h6 Technology
+      p= item.technology
+      h6 Judging criteria
+      p= item.judging_criteria
 
 section.cases-section#cases-section(class="triangle"): .container 
   +set_buttons()
