@@ -26,6 +26,7 @@
 mixin set_buttons()
   .row: .col-sm-12
     h2 Cases
+    //- Back-to-top button does not work :(
     a#back-to-top.btn.btn-lg.back-to-top.smoothscroll(href="#cases-section" role="button" title="Click to return to top" data-toggle="tooltip" data-placement="left")
     .text-center
       each item in cases
@@ -61,62 +62,6 @@ mixin set_cards_helper(item)
 section.cases-section#cases-section(class="triangle"): .container 
   +set_buttons()
   +set_cards()
-  
-//-
-  .row: .col-sm-6
-    .card#lego
-      img.card-img-top(src=("img/sponsors/lego.jpg") alt="Lego")
-      .card-body
-        h5 Case title
-        i.text-muted Lego
-        hr
-        p.
-          Short description of case
-        h6 Case
-        p.
-          Long description of case
-        h6 Technology
-        p.
-          Description of technology
-        h6 Judging criteria
-        p.
-          Description of judging criteria
-//-        
-  .row: .col-sm-12: #lego
-    h5 The LEGO Group: Rebuild the workplace.
-    p.
-      This case focusses on the new normal, where it's possible to work from home,
-      at the office, or any other place - which can affect ones mood and effectiveness,
-      especially when it comes to (hybrid) meetings. The LEGO Group have brought Cisco
-      desk devices, LEGO Spikes as well as VR headset that you guys can use to solve
-      the case.
-  .row: .col-sm-12: #grundfos
-    h5 Grundfos: Any- and everything that will help support the SDG (Sustainable Development Goals) 6 and 13.
-    p.
-      The two goals, 6 and 13, are "Clean water and sanitation" and "Climate action".
-      Grundfos have said that they would like you all to
-      work with either homes or medium to large commercial buildings, and in their
-      evaluation they will value novel ideas, user centered design and cool use of
-      tech. They have brought a large dataset from the Grundfos 
-      Dormitory as well as VR headsets and free to use assets in Sketchfab - along
-      with a lot of mentors that you can use to get going!
-  .row: .col-sm-12: #bankdata
-    h5 Bankdata: Banking in the Metaverse.
-    p  This is what Bankdata want to say about their case:
-    p.
-      Did you know that in 1932, the term “Virtual Reality” appeared for the first 
-      time? This kickstarted a long path toward what is known today as the METAVERSE.
-    p.
-      After decades of cool sci-fi concepts and clunky technology, we now see a 
-      revival of augmented and virtual reality.
-    p.
-      We wonder how banking will take place in the Metaverse?
-    p.
-      We want you to think PAST the obvious of just putting a bank branch in a virtual world.
-    p.
-      We want you to challenge the very core of Banks and Banking.
-    p.
-      Help us shape the future of Banking. 
       
         
   

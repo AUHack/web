@@ -18,6 +18,20 @@ jQuery(document).ready(function($) {
         }
     });
 
+    /*
+    Try to do the back-to-top button thing
+    */
+
+    $(window).on('scroll', function () {
+        var button = $('#back-to-top');
+
+        if ( $(window).scrollTop() > $('#cases-section').offset().top) {
+            button.fadeIn('fast');
+        } else {
+            button.fadeOut('fast');
+        }
+    });
+
     /*----------------------------------------------------*/
     /*	Handle FAQ Collapsing
      ------------------------------------------------------*/
