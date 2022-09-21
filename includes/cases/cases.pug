@@ -26,8 +26,8 @@
 mixin set_buttons()
   .row: .col-sm-12
     h2 Cases
-    //- Back-to-top button does not work :(
     a#back-to-top.btn.btn-lg.back-to-top.smoothscroll(href="#cases-section" role="button" title="Click to return to top" data-toggle="tooltip" data-placement="left")
+      span.fa.fa-chevron-up
     .text-center
       each item in cases
         a.smoothscroll.btn.btn-secondary(href="#" + item.id) #{item.sponsor_name} Case
