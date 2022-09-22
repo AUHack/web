@@ -25,7 +25,7 @@
 mixin set_buttons()
   .row: .col-sm-12
     h2 Workshops
-    a#back-to-top.btn.btn-lg.back-to-top.smoothscroll(href="#workshops-section" role="button" title="Click to return to top" data-toggle="tooltip" data-placement="left")
+    a#back-to-top.btn.btn-lg.back-to-top.smoothscroll(href="#cards-section" role="button" title="Click to return to top" data-toggle="tooltip" data-placement="left")
       span.fa.fa-chevron-up
     .text-center
       each item in workshops
@@ -59,6 +59,6 @@ mixin set_cards_helper(item)
       h6 Hardware needed
       p= item.hardware_needed
 
-section.cards-section#workshops-section(class="triangle"): .container 
+section.cards-section#cards-section(class="triangle"): .container 
   +set_buttons()
   +set_cards()

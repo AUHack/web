@@ -25,7 +25,7 @@ jQuery(document).ready(function($) {
     $(window).on('scroll', function () {
         var button = $('#back-to-top');
 
-        if ( $(window).scrollTop() > $('#cases-section').offset().top) {
+        if ( $(window).scrollTop() > $('#cards-section').offset().top) {
             button.fadeIn('fast');
         } else {
             button.fadeOut('fast');
