@@ -47,7 +47,7 @@ mixin set_cards_helper(item)
   .card(id=item.id)
     img.card-img-top(src=("img/workshops/" + item.id + ".jpg") alt=item.name)
     .card-body
-      h5= item.name
+      h5= item.long_name
       i.text-muted= item.tags
       hr
       h6 Description
