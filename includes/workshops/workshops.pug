@@ -1,29 +1,64 @@
-section.workshops-section#workshops-section(class="triangle"): .container 
+- 
+  var workshops = [
+    {
+    id: "test1",
+    short_name: "Test1",
+    long_name: "Test number one",
+    tags: "Testing, TDD, Stuff",
+    description: "This is the entire description for this workshop, where I don't know what to write because this is just a test...",
+    prerequisites: "You have to know how to think.",
+    software_needed: "Everything!",
+    hardware_needed: "Nothing!"
+    },
+    {
+    id: "test2",
+    short_name: "idk",
+    long_name: "something",
+    tags: "bababooie, fisk",
+    description: "yessir",
+    prerequisites: "weee",
+    software_needed: "?",
+    hardware_needed: ":D"
+    }
+    ]
+  
+mixin set_buttons()
   .row: .col-sm-12
     h2 Workshops
+    a#back-to-top.btn.btn-lg.back-to-top.smoothscroll(href="#workshops-section" role="button" title="Click to return to top" data-toggle="tooltip" data-placement="left")
+      span.fa.fa-chevron-up
+    .text-center
+      each item in workshops
+        a.smoothscroll.btn.btn-secondary(href="#" + item.id) #{item.short_name}
     hr
   
-  .row: .col-sm-12: #audio
-    h5 Audio workshop (Open source wireless audio streaming - Wifi & Bluetooth on the ESP32 & Merus Audio amps)
-    p.
-      This workshop will be held Saturday from 10:00 - 12:00. If you wish to have
-      any kind of sound in your hack this year, you will definitely want to come to
-      this workshop! More specifically, you will be able to learn about the ESP32
-      and how it, with its Wifi and Bluetooth capabilities, can be used for wireless
-      audio streaming. 
-  .row: .col-sm-12: #crypto
-    h5 Crypto workshop
-    p.
-      This workshop will be held Saturday from 14:30 - 15:30. If you like cryptography
-      and would like to make a hack that uses some sort of communication that you
-      want to be secure, come check out this workshop! 
-  .row: .col-sm-12: #pitching
-    h5 Pitching workshop
-    p.
-      This workshop will be held early Sunday from 08:45 - 09:30. If you want to
-      have a higher chance of impressing the judges during the evaluation (which
-      starts at 10:00), make sure to come to this workshop! Grundfos will be telling
-      you how you do the perfect pitch - which is a very useful skill in the IT world!
-      
-        
+mixin set_cards()
+  .row 
+    .col-sm-6
+      each item, index in workshops
+        if (index % 2 == 0)
+          +set_cards_helper(item)
+    .col-sm-6
+      each item, index in workshops
+        if (index % 2 == 1)
+          +set_cards_helper(item)
   
+mixin set_cards_helper(item)
+  .card(id=item.id)
+    img.card-img-top(src=("img/workshops/" + item.id + ".jpg") alt=item.name)
+    .card-body
+      h5= item.name
+      i.text-muted= item.tags
+      hr
+      h6 Description
+      p= item.description
+      h6 Prerequisites
+      p= item.prerequisites
+      h6 Software needed
+      p= item.software_needed
+      h6 Hardware needed
+      p= item.hardware_needed
+
+section.cards-section#workshops-section(class="triangle"): .container 
+  +set_buttons()
+  +set_cards()

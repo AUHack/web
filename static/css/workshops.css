@@ -48,31 +48,3 @@
 .teaser-section hr {
     border-top: 1px solid #364759;
 }
-
-/*
- ------------ Workshops SECTION -------------
-*/
-
-.workshops-section {
-    background-color: #d65b12;
-    color: #ffffff;
-    padding-bottom: 8em;
-}
-
-.workshops-section:before {
-  top: -4em;
-  height: 4em;
-  background-image: url("../img/figures/orange_bottom_right_triangle.svg");
-}
-
-.workshops-section h2 {
-  text-align: right;
-}
-
-.workshops-section hr {
-  background-color: #ffffff;
-}
-
-.workshops-section p {
-  text-align: left;
-}
