@@ -16,8 +16,8 @@
     id: "test2",
     sponsor_name: "Test2",
     title: "Test2 title",
-    description_short: "<a href='https://auhack.org/'>link test</a>.",
-    description_long: "Long Test2 desc.",
+    description_short: "Short Test2 desc.",
+    description_long: "Long Test2 desc. <a href='https://auhack.org/'>Is this a link?</a> Please let it be!",
     technology: "Technology section for Test2.",
     judging_criteria: "Judging criteria section for Test2."
     }
@@ -51,13 +51,13 @@ mixin set_cards_helper(item)
       h5= item.title
       i.text-muted= item.sponsor_name
       hr
-      p= item.description_short
+      p!= item.description_short
       h6 Case
-      p= item.description_long
+      p!= item.description_long
       h6 Technology
-      p= item.technology
+      p!= item.technology
       h6 Judging criteria
-      p= item.judging_criteria
+      p!= item.judging_criteria
 
 section.cards-section#cards-section(class="triangle"): .container 
   +set_buttons()

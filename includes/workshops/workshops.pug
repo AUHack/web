@@ -51,13 +51,13 @@ mixin set_cards_helper(item)
       i.text-muted= item.tags
       hr
       h6 Description
-      p= item.description
+      p!= item.description
       h6 Prerequisites
-      p= item.prerequisites
+      p!= item.prerequisites
       h6 Software needed
-      p= item.software_needed
+      p!= item.software_needed
       h6 Hardware needed
-      p= item.hardware_needed
+      p!= item.hardware_needed
 
 section.cards-section#cards-section(class="triangle"): .container 
   +set_buttons()
