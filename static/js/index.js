@@ -24,12 +24,14 @@ jQuery(document).ready(function($) {
 
     $(window).on('scroll', function () {
         var button = $('#back-to-top');
-
-        if ( $(window).scrollTop() > $('#cards-section').offset().top) {
-            button.fadeIn('fast');
-        } else {
-            button.fadeOut('fast');
-        }
+        if (document.body.contains(document.querySelector('#back-to-top'))) {
+            if ( $(window).scrollTop() > $('#cards-section').offset().top) {
+                button.fadeIn('fast');
+            } else {
+                button.fadeOut('fast');
+            }
+        } 
+        
     });
 
     /*----------------------------------------------------*/

@@ -1,0 +1,37 @@
+- 
+    var judges = [
+        {
+        id: "alberteinstein",
+        name: "Albert Einstein",
+        description: "dis dood really went and did some fancy stuff ye boi haha gravity go brr"
+        },
+        {
+        id: "nikolaj",
+        name: "Nikolaj Simon Sørensen",
+        description: "Very cool guy, but left me to go study female bodies :("
+        }
+    ]
+
+mixin set_cards()
+    .row
+        .col-sm-6
+            each item, index in judges
+                if (index % 2 == 0)
+                    +set_cards_helper(item)
+        .col-sm-6
+            each item, index in judges
+                if (index % 2 == 1)
+                    +set_cards_helper(item)
+
+
+mixin set_cards_helper(item)
+    .card(id=item.id)
+        img.card-img-top(src=("img/judges/" + item.id + ".jpg") alt=item.name)
+        .card-body
+            h4= item.name
+            p= item.description
+
+section.judges-section#judges-section(class="triangle"): .container: .row: .col-sm-12
+    h2 Judges
+    hr
+    +set_cards()
