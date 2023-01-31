@@ -6,6 +6,10 @@ mixin sponsor(class_name, name, image_name, url)
 mixin diamond(name, image_name, url)
     +sponsor("col-sm-6", name, image_name, url)
 
+//- For logos that are very wide (e.g. InCommodities)
+mixin diamondBig(name, image_name, url)
+    +sponsor("col-sm-8", name, image_name, url)
+
 //- NOT USED AT THE MOMENT
   mixin platinum(name, image_name, url)
       +sponsor("col-sm-4", name, image_name, url)
@@ -32,7 +36,7 @@ mixin silver(name, image_name, url)
         .row
             +diamond("Grundfos", "grundfos.jpg", "https://www.grundfos.com/")
             +diamond("Trifork", "trifork.png", "https://trifork.com/")
-            +diamond("InCommodities", "incommodities.png", "https://incommodities.com/")
+            +diamondBig("InCommodities", "incommodities.png", "https://incommodities.com/")
             //- +diamond("LEGO Group", "lego.jpg", "https://www.lego.com/da-dk")
             //- +diamond("Bankdata", "bankdata-logo-green.png", "https://www.bankdata.dk/")
             //- +diamond("Jysk", "JYSK_logo.png", "https://jysk.dk/")
