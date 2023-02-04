@@ -20,6 +20,13 @@ mixin gold(name, image_name, url)
 mixin silver(name, image_name, url)
     +sponsor("col-sm-2", name, image_name, url)
 
+//- For logos that are very tall
+mixin silverSmall(name, image_name, url)
+    +sponsor("col-sm-1", name, image_name, url)
+
+mixin silverBig(name, image_name, url)
+    +sponsor("col-sm-3", name, image_name, url)
+
 //- Example:
   +diamond("Grundfos", "grundfos.jpg", "https://www.grundfos.com/")
 
@@ -47,8 +54,9 @@ mixin silver(name, image_name, url)
             //- +gold("RS", "rs.jpg", "https://dk.rs-online.com/web/")
         hr
         .row
-            //- +silver("Nordic Hi-Fi", "nordichifi", "")
             +silver("IT Minds", "itminds.png", "https://www.it-minds.dk/")
+            +silverSmall("Nordic Hi-Fi", "nordichifi.png", "https://argonaudio.dk/")
+            +silver("Visma", "visma.png", "https://www.visma.dk/")
             //- +silver("Delegate", "delegate.png", "https://www.delegate.dk/")
             //- +silver("Prosa", "prosa_logo.png", "https://www.prosa.dk/")
             //- +silver("Netcompany", "netcompany.png", "https://www.netcompany.com/")
