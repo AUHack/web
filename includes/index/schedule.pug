@@ -24,7 +24,7 @@ section.triangle#schedule-section: .container
     .row: .col-sm-12
         h2 Schedule
         if SCHEDULE_ANNOUNCED
-          p.
+          //-p.
             For more information about the events and workshops, check out the
             navigation bar at the top of the page!
           if !SCHEDULE_FINAL
@@ -35,11 +35,31 @@ section.triangle#schedule-section: .container
             fun events for the best weekend of the year!
     if SCHEDULE_ANNOUNCED
       +day("Friday", 
-        {time: "XX:XX - XX:XX", event: "XX", loc: "XX"},
-        {time: "XX:XX - XX:XX", event: "XX", loc: "XX"})
+        {time: "13:00 - 15:30", event: "Check-in", loc: "Info stand"},
+        {time: "16:00 - 17:00", event: "Opening ceremony", loc: "Peter Bøgh Auditorium"},
+        {time: "17:00 - 18:00", event: "Ideation & group formation", loc: "Peter Bøgh Auditorium"},
+        {time: "18:00 - 20:30", event: "Dinner & group registration", loc: "Café area & Nygaard-basement"},
+        {time: "22:00 - 23:00", event: "TBD", loc: "TBD"}
+        )
       +day("Saturday",
-        {time: "XX:XX - XX:XX", event: "XX", loc: "XX"},
-        {time: "XX:XX - XX:XX", event: "XX", loc: "XX"})
+        {time: "07:00 - 09:00", event: "Breakfast", loc: "Café area"},
+        {time: "09:00 - 10:00", event: "TBD", loc: "TBD"},
+        {time: "10:30 - 12:00", event: "TBD", loc: "TBD"},
+        {time: "12:00 - 13:00", event: "Lunch", loc: "Café area"},
+        {time: "13:30 - 15:00", event: "TBD", loc: "TBD"},
+        {time: "13:30 - 17:00", event: "Coffee cart", loc: "TBD"},
+        {time: "15:00 - 15:30", event: "Cake!", loc: "TBD"},
+        {time: "15:30 - 17:00", event: "TBD", loc: "TBD"},
+        {time: "17:00 - 20:00", event: "TBD", loc: "TBD"},
+        {time: "18:00 - 19:30", event: "Dinner", loc: "Café area"},
+        {time: "20:00 - 21:00", event: "TBD", loc: "TBD"}
+        )
       +day("Sunday",
-        {time: "XX:XX - XX:XX", event: "XX", loc: "XX"},
-        {time: "XX:XX - XX:XX", event: "XX", loc: "XX"})
+        {time: "07:00 - 09:00", event: "Breakfast", loc: "Café area"},
+        {time: "10:00 - 11:00", event: "One Minute Madness", loc: "Peter Bøgh Auditorium"},
+        {time: "11:00 - 14:00", event: "Evaluation", loc: "Nygaard-basement"},
+        {time: "12:00 - 14:00", event: "Return hardware", loc: "Hardware area"},
+        {time: "12:00 - 14:30", event: "Lunch", loc: "Café area"},
+        {time: "14:00 - 14:30", event: "Clean up", loc: "Nygaard-basement"},
+        {time: "14:30 - 15:30", event: "Prizes", loc: "Peter Bøgh Auditorium"}
+        )
