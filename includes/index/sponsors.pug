@@ -17,6 +17,9 @@ mixin diamondBig(name, image_name, url)
 mixin gold(name, image_name, url)
     +sponsor("col-sm-4", name, image_name, url)
 
+mixin goldBig(name, image_name, url) 
+    +sponsor("col-sm-5", name, image_name, url)
+
 mixin silver(name, image_name, url)
     +sponsor("col-sm-2", name, image_name, url)
 
@@ -50,7 +53,8 @@ mixin silverBig(name, image_name, url)
         hr
         .row
             +gold("Systematic", "systematic.png", "https://systematic.com/")
-            +gold("EPICO NextGen", "epiconextgen.png", "https://epiconextgen.dk/")
+            +goldBig("Knowit", "knowit.png", "https://www.knowit.dk/")
+            +goldBig("EPICO NextGen", "epiconextgen.png", "https://epiconextgen.dk/")
             //- +gold("RS", "rs.jpg", "https://dk.rs-online.com/web/")
         hr
         .row
