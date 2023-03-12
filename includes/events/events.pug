@@ -5,6 +5,7 @@
     name: "Rubber Duck",
     time: "Time is but a concept...",
     location: "Nygaard",
+    signup: "No need to sign up!",
     description: "Yes, you are correct - this event is not shown on the schedule. Why? Glad you asked!<br><br>Over the course of the weekend, rubber ducks will randomly spawn in the Nygaard building. What will you get for finding them? Only one way to find out... *insert mysterious sounds here*"
     },
     {
@@ -12,20 +13,23 @@
     name: "Robot Sumo",
     time: "Friday, 20:30-21:30 & Saturday, 20:00-21:30",
     location: "Peter Bøgh Auditorium",
-    description: "The first event of the weekend!<br><br>Ever wanted to build your very own robot sumowrestler? And also use it to fight other robot sumowrestlers?? Well now is your chance!<br><br>The building part of this event will be happening from 20:30 to 21:30 friday evening, and then you will be able to use them saturday evening from 20:00 to 21:30!"
+    signup: "Sign up as a group.",
+    description: "The first event of the weekend!<br><br>Ever wanted to build your very own robot sumowrestler? And also use it to fight other robot sumowrestlers?? Of course of you have! Well, now is your chance!<br><br>The intro/building part of this event will be happening from 20:30 to 21:30 friday evening, and then you will be able to use them saturday evening from 20:00 to 21:30 in the tourney!"
     },
     {
     id: "yoga",
     name: "Yoga",
     time: "Saturday, 09:00-10:00",
     location: "ADA-333",
-    description: "The best way to wake up in the morning after breakfast - some yoga!<br><br>As we all know, we really need this. Attend this event if you want to have an edge on your competition or if you were supposed to have been to fitness this morning (but didn't go because AUHack is of course prioritized ;))"
+    signup: "Sign up per person.",
+    description: "The best way to wake up in the morning after breakfast - some yoga!<br><br>As we all know, IT folk have terrible posture being bent over our laptops for the majority of our day - and possibly all night too! Attend this event if you want to have an edge on your competition or if you were supposed to have been to fitness this morning (but didn't go because AUHack is of course prioritized ;))"
     },
     {
     id: "coffeeandcake",
     name: "Coffe Cart and Cake",
     time: "Saturday, 13:30-17:00",
     location: "Café area",
+    signup: "No need to sign up!",
     description: "Coffee and cake!<br>It's free. There will be a lot. Thanks for coming to my TED talk."
     },
     {
@@ -33,20 +37,23 @@
     name: "Bowtag",
     time: "Saturday, 14:00-17:00",
     location: "Benjamin-Hallen",
-    description: "Grundfos will be bringing bowtag back again this year!<br>A favorite of last year, you will be fighting another team with a bow and arrow, much like dodgeball. The arrows have tips made of foam, and you will at most get some bruises! It's a lot of fun, so don't forget to sign up!"
+    signup: "Sign up as a group.",
+    description: "Your voices have been heard. A favorite of last year's hack, Grundfos will bring bowtag once again!<br>You will fight another team with a bow and arrow, much like dodgeball. The arrows have tips made of foam, so at worst you will get some bruises, at best you will hit your opponent with a clear headshot! It's a lot of fun, so be sure to sign up!"
     },
     {
     id: "beatsaber",
     name: "Beat Saber Tourney",
     time: "Saturday, 16:00-18:00",
     location: "Peter Bøgh Auditorium",
-    description: "Ever heard of VR?<br><br>Trifork will be showing you all Beat Saber, a virtual reality rythm game, and they will find out who is the best at swinging their arms like a maniac!<br>You can get quite sweaty, so it might be a good idea to bring an extra shirt - or use your new one ;)"
+    signup: "Sign up per person.",
+    description: "Ever heard of VR?<br><br>Trifork will be showing you all Beat Saber, a virtual reality rhythm game, and they will find out who is the best at swinging their arms like a maniac!<br>You can get quite sweaty, so it might be a good idea to bring an extra shirt - or use your new one ;)"
     },
     {
     id: "pizza",
     name: "Pizza",
     time: "Saturday, 22:00-23:00",
     location: "Café area",
+    signup: "No need to sign up!",
     description: "We are IT people after all, and some late night pizza is always useful. Especially because you don't have much time left to work on your hack! Unless you stay up for the entirety of the night... which is, of course, a possibility. We definitely have enough food and snacks for you!"
     },
     {
@@ -54,14 +61,16 @@
     name: "One Minute Madness",
     time: "Sunday, 10:00-11:00",
     location: "Peter Bøgh Auditorium",
-    description: "It's time. Show all of the other teams what you have come up with, and make full use of that minute! You will be given no more nor less than 60 seconds, so good luck!"
+    signup: "We will ask for a single slide late saturday/early sunday from each group.",
+    description: "It's time. Show everybody what you have come up with and how far you got, and be sure to make full use of that minute! You will be given neither more nor less than 60 seconds, so good luck!<br><br>Psst. Remember that your presentation will be part of the evaluation of your hack."
     },
     {
     id: "eval",
     name: "Evaluation",
     time: "Sunday, 11:00-14:00",
     location: "Nygaard-basement",
-    description: "The very last event of the weekend - the evaluation.<br><br>For more information on this part of the hackathon, see the dedicated page <a href='expo.html'>here</a>!"
+    signup: "No need to sign up!",
+    description: "Time for evaluation, the very last event of the weekend (with the exception of the award ceremony). You will want to make sure to be ready at your group table when our judges come by to ask questions about your hack.<br><br>For more information on this very important part of AUHack, see the dedicated page <a href='expo.html'>here</a>!"
     }
     ]
   
@@ -95,6 +104,8 @@ mixin set_cards_helper(item)
       br
       i.text-muted= item.location
       hr
+      h6 Sign-up specifics
+      p!= item.signup
       h6 Description
       p!= item.description
 
