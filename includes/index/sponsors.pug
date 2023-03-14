@@ -37,7 +37,8 @@ mixin silverBig(name, image_name, url)
     .row: .col-sm-12
         h2 Sponsors
         if SPONSORS_ANNOUNCED
-            p Are you interested in becoming a sponsor? Then take a look #[a(href="sponsor.html") here].
+            if !SPONSORS_FINAL
+                p Are you interested in becoming a sponsor? Then take a look #[a(href="sponsor.html") here].
         else
             p We have not announced our sponsors yet. Are you interested? Then take a look #[a(href="sponsor.html") here].
     hr
