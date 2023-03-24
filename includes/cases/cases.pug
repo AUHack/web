@@ -1,34 +1,31 @@
-//- Ignore this:
-  #[a(href="https://albertbz.com/") test]
-
 - 
   var cases = [
     {
     id: "grundfos", 
     sponsor_name: "Grundfos",
-    title: "Placeholder",
-    description_short: "Placeholder",
-    description_long: "Placeholder",
-    technology: "Placeholder",
-    judging_criteria: "Placeholder"
+    title: "Help us solve the world's water and climate challenges!",
+    description_short: "At Grundfos our <strong>purpose</strong> is to pioneer solutions to the world's water and climate challenges and improve quality of life for people.",
+    description_long: "Our case is in principle very open, you can work with anything that will help or inspire us in solving the world's water and climate challenges. We have brought one of our products from the domain of District Heating, iGrid, and can explain that product and related products in depth - and we have a dataset that you can work on. You can either base your work on that domain and product, or work on anything else that is related to the world's water and climate challenges.<br><br>You are very free in how you want to address our challenge, it could be entering the realm of physical computing, doing machine learning on our dataset, visualizing data in new innovative ways - there are many possibilities, possibilities that we need your help to unlock!",
+    technology: "We provide: <ul><li>A data set with real world anonymized data from our iGrid product</li><li>Employees that are able to help with product related questions, or development related questions e.g. around the dataset</li></ul>You are of course also allowed to use dummy data and various other technologies.",
+    judging_criteria: "We value novel ideas, user centered design and cool use of tech."
     }, 
-    {
-    id: "trifork",
-    sponsor_name: "Trifork",
-    title: "Placeholder",
-    description_short: "Placeholder",
-    description_long: "Placeholder",
-    technology: "Placeholder",
-    judging_criteria: "Placeholder"
-    },
     {
     id: "incommodities",
     sponsor_name: "InCommodities",
-    title: "Placeholder",
-    description_short: "Placeholder",
-    description_long: "Placeholder",
-    technology: "Placeholder",
-    judging_criteria: "Placeholder"
+    title: "Give Us The Precious Data",
+    description_short: "",
+    description_long: "Our trading algorithms rely on massive amounts of data to make the best possible decisions in the market. The faster we can obtain and process data, the better we can help balance the grid. At InCommodities, we have a whole team dedicated to this task, internally nicknamed &quot;Gold Diggers&quot;.<br><br>You've probably been taught how to interact with well-designed systems, but what about badly designed systems? In an ideal world, APIs have proper documentation and always work, but in reality, things may look ugly, and sometimes they break.<br><br>We would like you to help us obtain precious data. We will provide you with access to two APIs: A and B. Your task is to take data from A and deliver it to B. The catch is that A is one of those aforementioned ill-mannered systems.<br><br>Think of our challenge as a crash course in aggressively defensive programming.",
+    technology: "We've set up a live platform for you to test your solution on and get instant feedback. To participate in the case, you can use any language, framework, and libraries you see fit. If you're feeling extra adventurous, we encourage you to try out F#.<br><br>If you have questions, our skilled experts are standing by to help and advise. And if you need a break, visit our lounge area where you can relax, snack, and get &quot;your game on&quot; to refill on energy to continue working on the case!",
+    judging_criteria: "Elegance of solution and beauty of the code<br>Low latency in delivering newly published datasheets<br>Amount of correct data sets delivered"
+    },
+    {
+    id: "trifork",
+    sponsor_name: "Trifork",
+    title: "Best possible office spaces",
+    description_short: "",
+    description_long: "Trifork aims to create intelligent buildings and make the best possible office spaces. We need your help to develop a product that improves the experience at the office based on the current amount of people in the building. Be mindful about anonymity and privacy while hacking.<br><br>READ MORE <a href='https://trifork.com/auhack/'>HERE</a>.",
+    technology: "We encourage you to make the product however you want - use your favorite tool/technology, or something you have never tried before.<br>Be inspired by the example projects on the website, or create your own unique product.<br>We are of course available throughout the entire event, if you have any questions, don't hesitate asking, we are full of good ideas.",
+    judging_criteria: "We value things that are highly creative, but more importantly, are done to the point of a minimum viable product, and encourage you to make your project presentable. Besides this, the world is your oyster."
     }
     ]
 
@@ -63,8 +60,10 @@ mixin set_cards_helper(item)
       p!= item.description_short
       h6 Case
       p!= item.description_long
+      br
       h6 Technology
       p!= item.technology
+      br
       h6 Judging criteria
       p!= item.judging_criteria
 
