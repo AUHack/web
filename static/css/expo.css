@@ -113,3 +113,26 @@
 .judges-section .card {
     margin-bottom: 20px;
 }
+
+/*
+ ----------------- Evaluation Plan ---------------------
+ */
+ .evaluationplan-section {
+    background-color: #D65B12;
+    color: white;
+    padding-bottom: 8em;
+ }
+
+ .evaluationplan-section:before {
+    top: -4em;
+    height: 4em;
+    background-image: url("../img/figures/orange_bottom_left_triangle.svg");
+ }
+
+ .evaluationplan-section .table {
+    text-align: left;
+ }
+
+ .evaluationplan-section hr {
+    background-color: #ffffff;
+}
