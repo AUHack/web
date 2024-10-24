@@ -2,8 +2,18 @@
     var judges = [
         {
         id: "clemens",
-        name: "Clemens",
-        description: "..."
+        name: "Clemens Nylandsted Klokmose",
+        description: "Clemens has been an associate professor at Aarhus University since 2016. His specialties are Graphical User Interfaces and Human-Computer Interaction."
+        },
+        {
+        id: "henrik",
+        name: "Henrik Bærbak Christensen",
+        description: "Henrik has been at the Computer Science department for just about 30 years as an associate professor. His field of interest is software architecture, software engineering and the fantastic world of developing reliable and maintainable (beautiful!) code.<br><q>I am a coder at heart - so I have joined AUHack as a judge to see awesome systems made from awesome code.</q>"
+        },
+        {
+        id: "michael",
+        name: "Michael Wessely",
+        description: "Michael is also an associate professor at Aarhus University. He specialises in Human-Computer Interaction with a focus on physical interfaces made out of different materials and the fabrication of these interfaces."
         }
     ]
 
@@ -29,5 +39,4 @@ mixin set_cards_helper(item)
 section.judges-section#judges-section(class="triangle"): .container: .row: .col-sm-12
     h2 Judges
     hr
-    p To be announced.
-    //- +set_cards()
+    +set_cards()
