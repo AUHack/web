@@ -2,11 +2,19 @@
   var events = [
     {
     id: "rubberduck",
-    name: "Rubber Duck",
+    name: "Duck Hunt",
     time: "Time is but a concept...",
     location: "Nygaard",
     signup: "No need to sign up!",
     description: "Yes, you are correct - this event is not shown on the schedule. Why? Glad you asked!<br><br>Over the course of the weekend, rubber ducks will randomly spawn in the Nygaard building. What will you get for finding them? Only one way to find out... *insert mysterious sounds here*"
+    },
+    {
+    id: "murdermystery",
+    name: "Murder Mystery",
+    time: "The entirety of the weekend",
+    location: "Nygaard",
+    signup: "No need to sign up!",
+    description: "This event also does not have a specific timeslot nor is shown on the schedule. That's because this murder mystery game will be going on for most of the weekend. As the name suggests, you will have to guess how someone has been 'killed', with new hints showing up over the duration of the weekend. The event will be explained more in-depth during the opening ceremony."
     },
     {
     id: "robotsumo",
@@ -85,6 +93,6 @@ mixin set_cards_helper(item)
       h6 Description
       p!= item.description
 
-section.cards-section#cards-section(class="triangle"): .container 
+section.cards-section#cards-section(class="triangle"): .container
   +set_buttons()
   +set_cards()
