@@ -21,42 +21,30 @@ mixin add_evaluation_plan(case_name, ...rows)
 section.evaluationplan-section#evaluationplan-section(class="triangle"): .container: .row: .col-sm-12
     h2 Evaluation Plan
     hr
-    p Will be made available during the weekend.
-    //-+add_evaluation_plan("Trifork Case",
-        {evalnum: "1", groupnum: "Group 4", groupname: "DJ Productions +1", evalstart: "11:20", evalend: "11:24"},
-        {evalnum: "2", groupnum: "Group 5", groupname: "The Digital Dames", evalstart: "11:24", evalend: "11:28"},
-        {evalnum: "3", groupnum: "Group 6", groupname: "Potty Potty", evalstart: "11:28", evalend: "11:32"},
-        {evalnum: "4", groupnum: "Group 8", groupname: "IT og produktion", evalstart: "11:32", evalend: "11:36"},
-        {evalnum: "5", groupnum: "Group 10", groupname: "Glidebane", evalstart: "11:36", evalend: "11:40"},
-        {evalnum: "6", groupnum: "Group 16", groupname: "GR16", evalstart: "11:40", evalend: "11:44"},
-        {evalnum: "7", groupnum: "Group 26", groupname: "Theas Tæsketøsser", evalstart: "11:44", evalend: "11:48"},
-        {evalnum: "8", groupnum: "Group 31", groupname: "Code copeiuhm", evalstart: "11:48", evalend: "11:52"},
-        {evalnum: "9", groupnum: "Group 34", groupname: "TRI4K", evalstart: "11:52", evalend: "11:56"},
-        {evalnum: "10", groupnum: "Group 38", groupname: "Hacker-Lømlerne", evalstart: "11:56", evalend: "12:00"}
-        )
-    //-+add_evaluation_plan("Grundfos Case",
-        {evalnum: "11", groupnum: "Group 2", groupname: "!Best", evalstart: "12:16", evalend: "12:20"},
-        {evalnum: "12", groupnum: "Group 3", groupname: "AU Analytica", evalstart: "12:20", evalend: "12:24"},
-        {evalnum: "13", groupnum: "Group 12", groupname: "Databanden", evalstart: "12:24", evalend: "12:28"},
-        {evalnum: "14", groupnum: "Group 19", groupname: "NMA PowerHacks", evalstart: "12:28", evalend: "12:32"},
-        {evalnum: "15", groupnum: "Group 20", groupname: "HiveMind", evalstart: "12:32", evalend: "12:36"}
-        )
-    //-+add_evaluation_plan("InCommodities Case",
-        {evalnum: "16", groupnum: "Group 7", groupname: "DROPTABLE users", evalstart: "12:36", evalend: "12:40"},
-        {evalnum: "17", groupnum: "Group 9", groupname: "Team F", evalstart: "12:40", evalend: "12:44"},
-        {evalnum: "18", groupnum: "Group 18", groupname: "OkayIPullUp", evalstart: "12:44", evalend: "12:48"},
-        {evalnum: "19", groupnum: "Group 22", groupname: "And now for the weather", evalstart: "12:48", evalend: "12:52"},
-        {evalnum: "20", groupnum: "Group 27", groupname: "Duck Hunters", evalstart: "12:52", evalend: "12:56"},
-        {evalnum: "21", groupnum: "Group 40", groupname: "mystaGOGical", evalstart: "12:56", evalend: "13:00"}
-        )
-    //-+add_evaluation_plan("Rogue Case",
-        {evalnum: "22", groupnum: "Group 1", groupname: "Østjyllands Storkreds", evalstart: "13:20", evalend: "13:24"},
-        {evalnum: "23", groupnum: "Group 15", groupname: "Luigis La Casa de La Tires", evalstart: "13:24", evalend: "13:28"},
-        {evalnum: "24", groupnum: "Group 17", groupname: "BadAtNaming", evalstart: "13:28", evalend: "13:32"},
-        {evalnum: "25", groupnum: "Group 24", groupname: "Trolle Hombres", evalstart: "13:32", evalend: "13:36"},
-        {evalnum: "26", groupnum: "Group 28", groupname: "XNOR-LAX", evalstart: "13:36", evalend: "13:40"},
-        {evalnum: "27", groupnum: "Group 33", groupname: "RPGPT", evalstart: "13:40", evalend: "13:44"},
-        {evalnum: "28", groupnum: "Group 37", groupname: "SCHID-KIDS", evalstart: "13:44", evalend: "13:48"},
-        {evalnum: "29", groupnum: "Group 39", groupname: "Peak Web Dev", evalstart: "13:48", evalend: "13:52"}
-        )
+    if SHOW_EVAL_PLAN
+        +add_evaluation_plan("DeiC Case",
+            {evalnum: "1", groupnum: "Group 2", groupname: "De voldsomme vildgnuer", evalstart: "12:15", evalend: "12:20"},
+            {evalnum: "2", groupnum: "Group 6", groupname: "Schlobbers", evalstart: "12:20", evalend: "12:25"},
+            {evalnum: "3", groupnum: "Group 9", groupname: "Wizzards", evalstart: "12:25", evalend: "12:30"},
+            {evalnum: "4", groupnum: "Group 12", groupname: "Biominds", evalstart: "12:30", evalend: "12:35"},
+            {evalnum: "5", groupnum: "Group 22", groupname: "Databanden", evalstart: "12:35", evalend: "12:40"},
+            {evalnum: "6", groupnum: "Group 27", groupname: "Smørklatten", evalstart: "12:40", evalend: "12:45"}
+            )
+        +add_evaluation_plan("AUHack Case",
+            {evalnum: "7", groupnum: "Group 1", groupname: "Blabble", evalstart: "12:55", evalend: "13:00"},
+            {evalnum: "8", groupnum: "Group 3", groupname: "Questionable Research, Doubtful Conclusions", evalstart: "13:00", evalend: "13:05"},
+            {evalnum: "9", groupnum: "Group 7", groupname: "That group se7en", evalstart: "13:05", evalend: "13:10"},
+            {evalnum: "10", groupnum: "Group 10", groupname: "Deadlock Disciples", evalstart: "13:10", evalend: "13:15"},
+            {evalnum: "11", groupnum: "Group 25", groupname: "Open Sesame", evalstart: "13:15", evalend: "13:20"},
+            {evalnum: "12", groupnum: "Group 28", groupname: "Class Meter", evalstart: "13:20", evalend: "13:25"},
+            {evalnum: "13", groupnum: "Group 29", groupname: "S P A C E", evalstart: "13:25", evalend: "13:30"},
+            {evalnum: "14", groupnum: "Group 30", groupname: "The pasta pálika paella squad", evalstart: "13:30", evalend: "13:35"},
+            {evalnum: "15", groupnum: "Group 31", groupname: "KSDH*", evalstart: "13:35", evalend: "13:40"}
+            )
+        +add_evaluation_plan("Rogue Case",
+            {evalnum: "16", groupnum: "Group 14", groupname: "HFPH", evalstart: "13:50", evalend: "13:55"},
+            {evalnum: "17", groupnum: "Group 19", groupname: "ALPHA Sigmas", evalstart: "13:55", evalend: "14:00"}
+            )
+    else
+        p Will be made available during the weekend.
     
