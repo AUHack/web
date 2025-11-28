@@ -53,30 +53,64 @@
  -------------- FAQ SECTION --------------
  */
 
-.faq-section {
-    background-color: #D65B12;
-    padding-bottom: 8em;
+#faq-section {
+  background-color: #d65b12;
+  color: #ffffff;
+  text-align: left;
+  padding-bottom: 90px;
 }
 
-.faq-section:before {
-    top: -4em;
-    height: 4em;
-    background-image: url("../img/figures/orange_bottom_right_triangle.svg");
+#faq-section:before {
+  top: -4em;
+  height: 4em;
+  background-image: url("../img/figures/orange_bottom_left_triangle.svg");
 }
 
-.faq-section h2 {
-    text-align: right;
-    color: #ffffff;
+#faq-section hr {
+	background-color: #ffffff;
+	margin-bottom: 50px;
 }
 
-.faq-section hr {
-    background-color: #ffffff;
+#faq-section h2 {
+  text-align: center;
 }
 
-.faq-section .card {
-    margin-bottom: 20px;
+#faq-section h3 {
+  font-size: 2em;
+  text-align: left;
+  /*text-decoration: underline;*/
+  line-height: 50px;
 }
 
-.faq-section .card-header {
+#faq-section h4 {
+  cursor: pointer;
+}
+
+#faq-section a {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+@media (max-width: 767px) {
+  #faq-section h4 {
     cursor: pointer;
+  }
+
+  #logo-section #logo-section-top-margin {
+    height: 30vh;
+  }
+}
+
+#faq-section .arrow-animate {
+  -moz-transition: all 0.5s linear;
+  -webkit-transition: all 0.5s linear;
+  transition: all 0.5s linear;
+}
+
+#faq-section .arrow-animate.down {
+  -o-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -webkit-transform: rotate(-90deg);
+  transform: rotate(-90deg);
 }
