@@ -36,11 +36,6 @@ mixin silverBig(name, image_name, url)
 .triangle#sponsors-section: .container
     .row: .col-sm-12
         h2 Sponsors
-        if SPONSORS_ANNOUNCED
-            if !SPONSORS_FINAL
-                p Are you interested in becoming a sponsor? Then take a look #[a(href="sponsor.html") here].
-        else
-            p We have not announced our sponsors yet. Are you interested? Then take a look #[a(href="sponsor.html") here].
     hr
 
     if SPONSORS_ANNOUNCED
@@ -68,7 +63,17 @@ mixin silverBig(name, image_name, url)
             //- +silver("Delegate", "delegate.png", "https://www.delegate.dk/")
             //- +silver("Prosa", "prosa_logo.png", "https://www.prosa.dk/")
             //- +silver("Netcompany", "netcompany.png", "https://www.netcompany.com/")
-        hr
+        //hr
+
+    hr
+    .row: .col-sm-12
+        if SPONSORS_ANNOUNCED
+            if !SPONSORS_FINAL
+                p Are you interested in becoming a sponsor? Then take a look #[a(href="sponsor.html") here].
+                br
+        else
+            p We have not announced our sponsors yet. Are you interested? Then take a look #[a(href="sponsor.html") here].
+            br
     
     //- .row: .col-sm-12
         h4 New sponsor?
