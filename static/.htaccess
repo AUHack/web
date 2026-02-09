@@ -1,0 +1,1 @@
+RewriteRule ^register$ https://forms.cloud.microsoft/e/57KiaEXG33 [L,R]
