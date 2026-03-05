@@ -39,4 +39,7 @@ mixin set_cards_helper(item)
 section.judges-section#judges-section(class="triangle"): .container: .row: .col-sm-12
     h2 Judges
     hr
-    +set_cards()
+    if SHOW_JUDGES
+        +set_cards()
+    else
+        p Will be made available during the weekend.
