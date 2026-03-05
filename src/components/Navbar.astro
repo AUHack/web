@@ -1,0 +1,91 @@
+---
+interface NavbarItem {
+    name: string;
+    href: string;
+    show?: boolean;
+}
+
+interface Props {
+    leftItems: NavbarItem[];
+    rightItems?: NavbarItem[];
+}
+
+const { leftItems, rightItems = [] } = Astro.props;
+---
+
+<nav>
+    <div class="container">
+        <a class="navbar-brand" href="index.html"
+            ><img
+                class="logo"
+                src="img/AUHack_logo.png"
+                alt="AUHack logo"
+            />
+        </a>
+
+        <div class="nav-items">
+            <ul class="nav-left">
+                {leftItems.filter(item => !item.show).map((item) => (
+                    <li>
+                        <a href={item.href}>{item.name}</a>
+                    </li>
+                ))}
+            </ul>
+            <ul class="nav-right"></ul>
+        </div>
+    </div>
+</nav>
+
+
+<style>
+    nav {
+        position: fixed;
+        inset-inline: 0;
+        background-color: white;
+        height: 6rem;
+    }
+    
+    nav .container {
+        height: 100%;
+        display: flex;
+        align-items: center;
+    }
+
+    .logo {
+        height: 50px;
+        margin-right: 1rem;
+    }
+
+    .nav-items {
+        display: flex;
+        gap: 2rem;
+        height: 100%;
+    }
+
+    .nav-items ul {
+        height: 100%;
+        display: flex;
+        gap: 1rem;
+        list-style: none;
+
+        color: rgb(100, 100, 100);
+        font-size: 2rem;
+
+        li {
+            height: 100%;
+        }
+
+        a {
+            display: flex;
+            align-items: center;
+            height: 100%;
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+
+            &:hover {
+                color: rgb(25, 25, 25);
+            }
+        }
+    }
+</style>
