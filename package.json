@@ -1,20 +1,14 @@
 {
-  "name": "auhack-web",
-  "private": true,
-  "version": "0.0.0",
-  "description": "Website for AUHack",
-  "author": "Nicklas Vedsted",
+  "name": "astro",
+  "type": "module",
+  "version": "0.0.1",
   "scripts": {
-    "clean": "rm -rf build",
-    "collectstatic": "cp -r static/ build",
-    "start": "npm run clean && npm run collectstatic && npx pug --watch --out=build --basedir=includes/ pages",
-    "build": "npm run clean && npm run collectstatic && npx pug --out=build --basedir=includes/ pages"
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
   },
   "dependencies": {
-    "pug-cli": "1.0.0-alpha6"
-  },
-  "repository": {
-    "url": "https://github.com/AUHack/web",
-    "type": "git"
+    "astro": "^5.17.1"
   }
 }
