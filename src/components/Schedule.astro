@@ -58,12 +58,23 @@ for (let min = minTime; min <= maxTime; min += 60) {
     const hour = Math.floor(min / 60);
     hours.push(hour.toString().padStart(2, '0') + ':00');
 }
+
+const now = Math.floor(Date.now() / 60000) % (24 * 60); // Current time in minutes since midnight
+
+const showNowCursor = now >= minTime && now <= maxTime;
+
+const HOUR_MIN_WIDTH = 100;
+const MIN_SCHEDULE_WIDTH = 970;
+
+const widthByHours = (totalDuration / 60) * HOUR_MIN_WIDTH;
+
+const scheduleWidth = Math.max(widthByHours, MIN_SCHEDULE_WIDTH);
 ---
 
 <section>
     <h3>{Astro.props.headline}</h3>
     <div class="schedule-wrapper">
-        <div class="schedule-tracks">
+        <div class="schedule-tracks" style={`width: ${scheduleWidth}px;`}>
             <div class="schedule-ticks">
                 {hours.map((hour) => (
                     <div class="schedule-tick" style={`left: ${((timeToMinutes(hour) - minTime) / totalDuration) * 100}%`}>
@@ -91,9 +102,66 @@ for (let min = minTime; min <= maxTime; min += 60) {
                     })}
                 </div>
             ))}
+            <div class="schedule-now" hidden={!showNowCursor} style={`left: ${((now - minTime) / totalDuration) * 100}%`}></div>
         </div>
     </div>
 </section>
+
+<script>
+const blocks = document.querySelectorAll('.schedule-block');
+const VIEWPORT_MARGIN = 0;
+
+blocks.forEach(block => {
+    let clone: HTMLElement | null = null;
+    const wrapper = block.closest('.schedule-wrapper') as HTMLElement | null;
+
+    const removeClone = () => {
+        if (clone) {
+            clone.remove();
+            clone = null;
+        }
+    };
+
+    const showClone = () => {
+        const rect = block.getBoundingClientRect();
+        const wrapperRect = wrapper?.getBoundingClientRect();
+        removeClone();
+        clone = block.cloneNode(true) as HTMLElement;
+        
+        clone.style.position = 'fixed';
+        clone.style.top = `${rect.top}px`;
+        clone.style.left = `${rect.left}px`;
+        clone.style.width = 'max-content';
+        clone.style.minWidth = `${rect.width}px`;
+        clone.style.height = `${rect.height}px`;
+        clone.style.minHeight = `${rect.height}px`;
+        clone.style.maxWidth = `calc(100vw - ${VIEWPORT_MARGIN * 2}px)`;
+        clone.style.zIndex = '9999';
+        clone.style.pointerEvents = 'none';
+        clone.style.boxShadow = '0 4px 12px rgba(0,0,0,0.2)';
+        
+        document.body.appendChild(clone);
+
+        const cloneRect = clone.getBoundingClientRect();
+        const minLeft = wrapperRect ? (wrapperRect.left + VIEWPORT_MARGIN) : VIEWPORT_MARGIN;
+        const maxLeft = wrapperRect
+            ? (wrapperRect.right - cloneRect.width - VIEWPORT_MARGIN)
+            : (window.innerWidth - cloneRect.width - VIEWPORT_MARGIN);
+        const maxTop = window.innerHeight - cloneRect.height - VIEWPORT_MARGIN;
+
+        const clampedLeft = Math.min(Math.max(rect.left, minLeft), Math.max(minLeft, maxLeft));
+        const clampedTop = Math.min(Math.max(rect.top, VIEWPORT_MARGIN), Math.max(VIEWPORT_MARGIN, maxTop));
+
+        clone.style.left = `${clampedLeft}px`;
+        clone.style.top = `${clampedTop}px`;
+    };
+
+    block.addEventListener('mouseenter', showClone);
+    block.addEventListener('mouseleave', removeClone);
+    wrapper?.addEventListener('scroll', removeClone, { passive: true });
+    window.addEventListener('scroll', removeClone, { passive: true });
+});
+</script>
 
 <style>
     section {
@@ -119,10 +187,17 @@ for (let min = minTime; min <= maxTime; min += 60) {
         padding-left: 0.25rem;
         font-size: 0.75rem;
     }
+
+    .schedule-now {
+        position: absolute;
+        top: 1rem;
+        bottom: 0;
+        border-left: 2px solid rgb(from var(--orange-600) r g b / 0.7);
+    }
     
     .schedule-tracks {
         position: relative;
-        min-width: 1200px;
+        min-width: 970px;
         display: flex;
         flex-direction: column;
         gap: 8px;
@@ -132,15 +207,13 @@ for (let min = minTime; min <= maxTime; min += 60) {
         position: relative;
         height: 4.5rem;
         width: 100%;
-        background-color: rgba(0, 0, 0, 0.02);
-        border-radius: 4px;
     }
 
     .schedule-block {
         position: absolute;
         top: 0;
         height: 100%;
-        background-color: var(--color-primary, #3b82f6);
+        background-color: var(--orange-600);
         color: white;
         border-radius: 4px;
         padding: 0.25rem 0.5rem;
@@ -151,12 +224,6 @@ for (let min = minTime; min <= maxTime; min += 60) {
         overflow: hidden;
         box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         border: 1px solid rgba(255,255,255,0.2);
-
-        &:hover {
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-            z-index: 2;
-            min-width: fit-content !important;
-        }
     }
 
     .event-time {
