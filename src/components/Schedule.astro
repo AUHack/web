@@ -1,0 +1,188 @@
+---
+interface Props {
+    headline: string;
+    items: Array<{
+        start: string; // hh:mm
+        end: string; // hh:mm
+        event: string;
+        location: string;
+    }>;
+}
+
+const { items = [] } = Astro.props;
+
+function timeToMinutes(timeString: string) {
+    if (!timeString) return 0;
+    const [hours, minutes] = timeString.split(':').map(Number);
+    return hours * 60 + (minutes || 0);
+}
+
+const processedItems = items.map((item) => ({
+    ...item,
+    startMin: timeToMinutes(item.start),
+    endMin: timeToMinutes(item.end)
+}));
+
+const minTime = processedItems.length > 0 ? Math.min(...processedItems.map((item) => item.startMin)) : 0;
+const maxTime = processedItems.length > 0 ? Math.max(...processedItems.map((item) => item.endMin)) : 0;
+const totalDuration = maxTime - minTime || 1; // avoid division by zero
+
+// Sort primarily by start time
+const sortedItems = [...processedItems].sort((a, b) => {
+    if (a.startMin !== b.startMin) {
+        return a.startMin - b.startMin;
+    }
+    return (b.endMin - b.startMin) - (a.endMin - a.startMin);
+});
+
+// Calculate tracks for overlapping items
+const tracks: typeof processedItems[] = [];
+
+for (const item of sortedItems) {
+    let placed = false;
+    for (const track of tracks) {
+        const lastItem = track[track.length - 1];
+        if (lastItem.endMin <= item.startMin) {
+            track.push(item);
+            placed = true;
+            break;
+        }
+    }
+    if (!placed) {
+        tracks.push([item]);
+    }
+}
+
+const hours: string[] = [];
+for (let min = minTime; min <= maxTime; min += 60) {
+    const hour = Math.floor(min / 60);
+    hours.push(hour.toString().padStart(2, '0') + ':00');
+}
+---
+
+<section>
+    <h3>{Astro.props.headline}</h3>
+    <div class="schedule-wrapper">
+        <div class="schedule-tracks">
+            <div class="schedule-ticks">
+                {hours.map((hour) => (
+                    <div class="schedule-tick" style={`left: ${((timeToMinutes(hour) - minTime) / totalDuration) * 100}%`}>
+                        {hour}
+                    </div>
+                ))}
+            </div>
+            {tracks.map((track) => (
+                <div class="schedule-track">
+                    {track.map((item) => {
+                        const leftPercentage = ((item.startMin - minTime) / totalDuration) * 100;
+                        const widthPercentage = ((item.endMin - item.startMin) / totalDuration) * 100;
+
+                        return (
+                            <div
+                                class="schedule-block"
+                                style={`left: ${leftPercentage}%; width: ${widthPercentage}%;`}
+                                title={`${item.start} - ${item.end}: ${item.event} (${item.location})`}
+                            >
+                                <div class="event-time">{item.start} - {item.end}</div>
+                                <div class="event-name">{item.event}</div>
+                                {item.location && <div class="event-location">{item.location}</div>}
+                            </div>
+                        );
+                    })}
+                </div>
+            ))}
+        </div>
+    </div>
+</section>
+
+<style>
+    section {
+        margin-bottom: 2rem;
+    }
+
+    .schedule-wrapper {
+        width: 100%;
+        overflow-x: auto;
+        padding: 1rem 0;
+    }
+
+    .schedule-ticks {
+        width: 100%;
+        height: 1.5rem;
+    }
+
+    .schedule-tick {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        border-left: 1px solid rgb(from currentColor r g b / 0.2);
+        padding-left: 0.25rem;
+        font-size: 0.75rem;
+    }
+    
+    .schedule-tracks {
+        position: relative;
+        min-width: 1200px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .schedule-track {
+        position: relative;
+        height: 4.5rem;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.02);
+        border-radius: 4px;
+    }
+
+    .schedule-block {
+        position: absolute;
+        top: 0;
+        height: 100%;
+        background-color: var(--color-primary, #3b82f6);
+        color: white;
+        border-radius: 4px;
+        padding: 0.25rem 0.5rem;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        overflow: hidden;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        border: 1px solid rgba(255,255,255,0.2);
+
+        &:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            z-index: 2;
+            min-width: fit-content !important;
+        }
+    }
+
+    .event-time {
+        font-size: 0.7rem;
+        font-weight: 500;
+        opacity: 0.9;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;    
+    }
+
+    .event-name {
+        font-size: 0.85rem;
+        font-weight: 700;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-top: 2px;
+    }
+
+    .event-location {
+        font-size: 0.7rem;
+        opacity: 0.8;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-top: auto;
+    }
+</style>
