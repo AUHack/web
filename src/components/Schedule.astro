@@ -84,13 +84,21 @@ const scheduleWidth = Math.max(widthByHours, MIN_SCHEDULE_WIDTH);
             </div>
             {tracks.map((track) => (
                 <div class="schedule-track">
-                    {track.map((item) => {
+                    {track.map((item, index) => {
                         const leftPercentage = ((item.startMin - minTime) / totalDuration) * 100;
                         const widthPercentage = ((item.endMin - item.startMin) / totalDuration) * 100;
+                        const previousItem = track[index - 1];
+                        const nextItem = track[index + 1];
+                        const touchesPrevious = previousItem?.endMin === item.startMin;
+                        const touchesNext = nextItem?.startMin === item.endMin;
 
                         return (
                             <div
-                                class="schedule-block"
+                                class:list={{
+                                    'schedule-block': true,
+                                    'schedule-block--touches-left': touchesPrevious,
+                                    'schedule-block--touches-right': touchesNext
+                                }}
                                 style={`left: ${leftPercentage}%; width: ${widthPercentage}%;`}
                                 title={`${item.start} - ${item.end}: ${item.event} (${item.location})`}
                             >
@@ -127,6 +135,8 @@ blocks.forEach(block => {
         const wrapperRect = wrapper?.getBoundingClientRect();
         removeClone();
         clone = block.cloneNode(true) as HTMLElement;
+
+        clone.classList.remove('schedule-block--touches-left', 'schedule-block--touches-right');
         
         clone.style.position = 'fixed';
         clone.style.top = `${rect.top}px`;
@@ -224,6 +234,16 @@ blocks.forEach(block => {
         overflow: hidden;
         box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .schedule-block--touches-left {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    .schedule-block--touches-right {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
     }
 
     .event-time {
