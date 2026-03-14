@@ -1,0 +1,29 @@
+---
+interface Props {
+    ["as"]?: string;
+}
+
+const { as = "h2" } = Astro.props;
+const Tag = as;
+---
+
+<header>
+    <Tag><slot /></Tag>
+    <hr>
+</header>
+
+<style>
+    header {
+        width: 100%;
+
+        *:not(hr) {
+            font-size: 3.5rem;
+            text-align: right;
+            text-transform: uppercase;
+        }
+
+        hr {
+            margin-bottom: 3.25rem;
+        }
+    }
+</style>

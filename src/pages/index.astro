@@ -2,6 +2,7 @@
 import Header from "../components/Header.astro";
 import Navbar from "../components/Navbar.astro";
 import Section from "../components/Section.astro";
+import SectionHeader from "../components/SectionHeader.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
@@ -13,31 +14,18 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 		{ name: "FAQ", href: "#faq" }
 	]} />
 	
-	<Header>
-		<h1>AUHack 2026</h1>
-		<p>March 13th - 15th</p>
-	</Header>
+	<Header
+		title="AUHack 2026"
+		subtitle="March 13th - 15th"
+	/>
 
-	<Section>
-		<div class="container">
-			<p>March 13th - 15th</p>
-		</div>
+	<Section class="center">
+		<strong class="text-lg">Sign-ups for this year's AUHack have closed.</strong>
 	</Section>
 	<Section>
-		<div class="container">
-			<p>March 13th - 15th</p>
-		</div>
+		<SectionHeader>Schedule</SectionHeader>
 	</Section>
 	<Section reverse>
-		<div class="container">
-			<p>March 13th - 15th</p>
-		</div>
+		<p>March 13th - 15th</p>
 	</Section>
-	<h1>AUHack 2026</h1>
-	<h1>AUHack 2026</h1>
-	<p>March 13th - 15th</p>
-	<h1>AUHack 2026</h1>
-	<p>March 13th - 15th</p>
-	<h1>AUHack 2026</h1>
-	<p>March 13th - 15th</p>
 </BaseLayout>

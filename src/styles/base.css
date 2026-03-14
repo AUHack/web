@@ -1,3 +1,5 @@
+@import url("./colors.css");
+
 @font-face {
   font-family: AU_Passata;
   src: url(/font-au/AUPassata_Rg.ttf);
@@ -36,6 +38,7 @@ body {
   height: 100%;
   background: #fff;
   font-family: AU_Passata, "opensans-regular", sans-serif;
+  color: var(--blue-950);
 }
 
 @media (min-width: 1200px) {
@@ -55,7 +58,8 @@ h2,
 h3,
 h4,
 h5,
-h6 {
+h6,
+strong {
   font-family: AU_Passata_bold, "opensans-bold", sans-serif;
   font-weight: normal;
 }
@@ -85,4 +89,26 @@ h3 {
   max-width: 970px;
   width: 100%;
   margin: 0 auto;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.text-sm {
+  font-size: 0.75em;
+}
+
+.text-normal {
+  font-size: 1em;
+}
+
+.text-md {
+  font-size: 1.1em;
+}
+
+.text-lg {
+  font-size: 1.25em;
 }
