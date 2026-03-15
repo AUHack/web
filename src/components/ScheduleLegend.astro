@@ -1,0 +1,58 @@
+---
+import type { HTMLAttributes } from 'astro/types'
+
+interface Props extends HTMLAttributes<'ul'> {}
+---
+
+<ul {...Astro.props}>
+    <li class="mandatory">Mandatory</li>
+    <li class="food">Food</li>
+    <li class="event">Event</li>
+    <li class="workshop">Workshop</li>
+</ul>
+
+<style>
+    ul {
+        display: flex;
+        gap: 1em;
+        flex-wrap: wrap;
+        padding: 0;
+        list-style: none;
+    }
+
+    li {
+        display: flex;
+        align-items: center;
+        font-weight: bold;
+    }
+
+    li::after {
+        content: "";
+        display: inline-block;
+        width: 1em;
+        height: 1em;
+        margin-left: 0.5em;
+
+    }
+
+    li.mandatory::after {
+        background-color: var(--schedule-mandatory);
+        color: white;
+    }
+
+    li.food::after {
+        background-color: var(--schedule-food);
+        color: white;
+    }
+
+    li.workshop::after {
+        background-color: var(--schedule-workshop);
+        color: white;
+    }
+
+    li.event::after {
+        background-color: var(--schedule-event);
+        color: white;
+    }
+
+</style>

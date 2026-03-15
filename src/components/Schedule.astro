@@ -1,57 +1,34 @@
 ---
+import { timeToMinutes, parallelizeEvents, sortIntervalEvents, type IntervalEvent, type ImmediateEvent } from '../utils/schedule';
+
 interface Props {
     headline: string;
-    items: Array<{
-        start: string; // hh:mm
-        end: string; // hh:mm
-        event: string;
-        location: string;
-    }>;
+    date: Date;
+    items: Array<IntervalEvent | ImmediateEvent>;
 }
 
-const { items = [] } = Astro.props;
+const { items = [], date } = Astro.props;
 
-function timeToMinutes(timeString: string) {
-    if (!timeString) return 0;
-    const [hours, minutes] = timeString.split(':').map(Number);
-    return hours * 60 + (minutes || 0);
-}
+const groupededImmediateEvents = Object.groupBy(
+    items.filter((item): item is ImmediateEvent => !('end' in item)),
+    (item) => item.start
+);
 
-const processedItems = items.map((item) => ({
-    ...item,
-    startMin: timeToMinutes(item.start),
-    endMin: timeToMinutes(item.end)
-}));
+const processedItems = items
+    .filter((item): item is IntervalEvent => 'end' in item)
+    .map((item) => ({
+        ...item,
+        startMin: timeToMinutes(item.start),
+        endMin: timeToMinutes(item.end)
+    }))
+    .sort(sortIntervalEvents);
 
 const minTime = processedItems.length > 0 ? Math.min(...processedItems.map((item) => item.startMin)) : 0;
 const maxTime = processedItems.length > 0 ? Math.max(...processedItems.map((item) => item.endMin)) : 0;
 const totalDuration = maxTime - minTime || 1; // avoid division by zero
 
-// Sort primarily by start time
-const sortedItems = [...processedItems].sort((a, b) => {
-    if (a.startMin !== b.startMin) {
-        return a.startMin - b.startMin;
-    }
-    return (b.endMin - b.startMin) - (a.endMin - a.startMin);
-});
-
 // Calculate tracks for overlapping items
-const tracks: typeof processedItems[] = [];
-
-for (const item of sortedItems) {
-    let placed = false;
-    for (const track of tracks) {
-        const lastItem = track[track.length - 1];
-        if (lastItem.endMin <= item.startMin) {
-            track.push(item);
-            placed = true;
-            break;
-        }
-    }
-    if (!placed) {
-        tracks.push([item]);
-    }
-}
+const tracks = parallelizeEvents(processedItems);
 
 const hours: string[] = [];
 for (let min = minTime; min <= maxTime; min += 60) {
@@ -61,7 +38,7 @@ for (let min = minTime; min <= maxTime; min += 60) {
 
 const now = Math.floor(Date.now() / 60000) % (24 * 60); // Current time in minutes since midnight
 
-const showNowCursor = now >= minTime && now <= maxTime;
+const showNowCursor = now >= minTime && now <= maxTime && date.toDateString() === new Date().toDateString();
 
 const HOUR_MIN_WIDTH = 100;
 const MIN_SCHEDULE_WIDTH = 970;
@@ -69,6 +46,8 @@ const MIN_SCHEDULE_WIDTH = 970;
 const widthByHours = (totalDuration / 60) * HOUR_MIN_WIDTH;
 
 const scheduleWidth = Math.max(widthByHours, MIN_SCHEDULE_WIDTH);
+
+const maxImmediateEventCount = Math.max(...Object.values(groupededImmediateEvents).map(events => events?.length || 0), 0);
 ---
 
 <section>
@@ -94,7 +73,10 @@ const scheduleWidth = Math.max(widthByHours, MIN_SCHEDULE_WIDTH);
 
                         return (
                             <div
+                                data-schedule-popup
+                                data-event-type={item.type}
                                 class:list={{
+                                    'schedule-event': true,
                                     'schedule-block': true,
                                     'schedule-block--touches-left': touchesPrevious,
                                     'schedule-block--touches-right': touchesNext
@@ -110,13 +92,39 @@ const scheduleWidth = Math.max(widthByHours, MIN_SCHEDULE_WIDTH);
                     })}
                 </div>
             ))}
+            <div class="schedule-immediate">
+                {Object.entries(groupededImmediateEvents).map(([time, events]) => {
+                    if (!events?.length) return null;
+                    
+                    const leftPercentage = ((timeToMinutes(time) - minTime) / totalDuration) * 100;
+
+                    return (
+                        <div
+                            class="schedule-immediate-group"
+                            style={`left: ${leftPercentage}%; width: max-content; min-width: 80px;`}
+                        >
+                            {events.map(event => (
+                                <div
+                                    class="schedule-immediate-event schedule-event"
+                                    data-schedule-popup
+                                    data-event-type={event.type}
+                                    title={`${time}: ${event.event} (${event.location})`}
+                                >
+                                    <div class="event-time">{time}</div>
+                                    <div class="event-name">{event.event}</div>
+                                </div>
+                            ))}
+                        </div>
+                    );
+                })}
+            </div>
             <div class="schedule-now" hidden={!showNowCursor} style={`left: ${((now - minTime) / totalDuration) * 100}%`}></div>
         </div>
     </div>
 </section>
 
 <script>
-const blocks = document.querySelectorAll('.schedule-block');
+const blocks = document.querySelectorAll('[data-schedule-popup]');
 const VIEWPORT_MARGIN = 0;
 
 blocks.forEach(block => {
@@ -167,13 +175,14 @@ blocks.forEach(block => {
     };
 
     block.addEventListener('mouseenter', showClone);
+    block.addEventListener('click', showClone);
     block.addEventListener('mouseleave', removeClone);
     wrapper?.addEventListener('scroll', removeClone, { passive: true });
     window.addEventListener('scroll', removeClone, { passive: true });
 });
 </script>
 
-<style>
+<style define:vars={{ immediateEventCount: maxImmediateEventCount }}>
     section {
         margin-bottom: 2rem;
     }
@@ -219,12 +228,32 @@ blocks.forEach(block => {
         width: 100%;
     }
 
+    .schedule-event {
+        &[data-event-type="mandatory"] {
+            background-color: var(--schedule-mandatory);
+            color: white;
+        }
+        
+        &[data-event-type="food"] {
+            background-color: var(--schedule-food);
+            color: white;
+        }
+        
+        &[data-event-type="workshop"] {
+            background-color: var(--schedule-workshop);
+            color: white;
+        }
+
+        &[data-event-type="event"] {
+            background-color: var(--schedule-event);
+            color: white;
+        }
+    }
+
     .schedule-block {
         position: absolute;
         top: 0;
         height: 100%;
-        background-color: var(--orange-600);
-        color: white;
         border-radius: 4px;
         padding: 0.25rem 0.5rem;
         box-sizing: border-box;
@@ -232,8 +261,8 @@ blocks.forEach(block => {
         flex-direction: column;
         justify-content: flex-start;
         overflow: hidden;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         border: 1px solid rgba(255,255,255,0.2);
+        gap: 2px;
     }
 
     .schedule-block--touches-left {
@@ -261,7 +290,6 @@ blocks.forEach(block => {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        margin-top: 2px;
     }
 
     .event-location {
@@ -271,5 +299,36 @@ blocks.forEach(block => {
         overflow: hidden;
         text-overflow: ellipsis;
         margin-top: auto;
+    }
+
+    .schedule-immediate {
+        width: 100%;
+        height: calc(1.8rem * var(--immediateEventCount));
+
+    }
+
+    .schedule-immediate-group {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        gap: 0.25rem;
+        top: 0;
+        bottom: 0;
+        border-left: 1.5px solid var(--yellow);
+        padding-left: 0.25rem;
+        pointer-events: none;
+        touch-action: none;
+    }
+
+    .schedule-immediate-event {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        border-radius: 4px;
+        padding: 0.25rem 0.5rem;
+
+        pointer-events: auto;
+        touch-action: auto;
     }
 </style>

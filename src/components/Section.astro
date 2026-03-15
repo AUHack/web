@@ -3,12 +3,16 @@ import type { HTMLAttributes } from 'astro/types';
 
 interface Props extends HTMLAttributes<'section'> {
     reverse?: boolean;
+    color: 'orange' | 'white' | 'blue';
 }
 
-const { reverse = false, class: cl, ...rest } = Astro.props;
+const { reverse = false, class: cl, color, ...rest } = Astro.props;
 ---
 
-<section class:list={[reverse && "reverse"]} {...rest}>
+<section
+    class:list={[reverse && "reverse", color]}
+    {...rest}
+>
     <slot name="outer" />
     <div class:list={["container", cl]}>
         <slot />
@@ -16,21 +20,21 @@ const { reverse = false, class: cl, ...rest } = Astro.props;
 </section>
 
 <style>
-    section:nth-of-type(1) {
+    section.orange {
         --bg-color: var(--orange);
         --color: white;
         --figure-url: url("/img/figures/orange_bottom_right_triangle.svg");
         --reverse-figure-url: url("/img/figures/orange_bottom_left_triangle.svg");
     }
 
-    section:nth-of-type(2) {
+    section.white {
         --bg-color: white;
         --color: var(--blue-950);
         --figure-url: url("/img/figures/white_bottom_right_triangle.svg");
         --reverse-figure-url: url("/img/figures/white_bottom_left_triangle.svg");
     }
 
-    section:nth-of-type(3) {
+    section.blue {
         --bg-color: var(--blue-600);
         --color: white;
         --figure-url: url("/img/figures/gray_bottom_right_triangle.svg");

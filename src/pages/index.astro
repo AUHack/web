@@ -2,9 +2,11 @@
 import Header from "../components/Header.astro";
 import Navbar from "../components/Navbar.astro";
 import Schedule from "../components/Schedule.astro";
+import ScheduleLegend from "../components/ScheduleLegend.astro";
 import Section from "../components/Section.astro";
 import SectionHeader from "../components/SectionHeader.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { EventType } from "../utils/schedule";
 ---
 
 
@@ -20,54 +22,59 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 		subtitle="March 13th - 15th"
 	/>
 
-	<Section class="center">
+	<Section class="center" color="orange">
 		<strong class="text-lg">Sign-ups for this year's AUHack have closed.</strong>
 	</Section>
-	<Section>
+	<Section color="blue">
 	</Section>
-	<Section id="schedule">
-		<SectionHeader>Schedule</SectionHeader>
-	
+	<Section id="schedule" color="white">
+		<SectionHeader>
+			Schedule
+			<ScheduleLegend slot="subtitle" class="justify-end mt-0.5" />
+		</SectionHeader>
 		<Schedule
 			headline="Friday"
+			date={new Date(2026, 2, 15)}
 			items={[
-				{start: "13:00", end: "15:00", event: "Check-in", location: "Info stand"},
-				{start: "13:00", end: "15:30", event: "Bean bag toss w/ Knowit", location: "KnowIT"},
-				{start: "13:30", end: "15:30", event: "Coffee cart", location: "Café area"},
-				{start: "15:15", end: "16:00", event: "Opening ceremony", location: "Peter Bøgh Auditorium"},
-				{start: "16:00", end: "16:30", event: "Guest lecture starring Bjarne Stroustrup", location: "Peter Bøgh Auditorium"},
-				{start: "16:30", end: "17:00", event: "Case presentation", location: "Peter Bøgh Auditorium"},
-				{start: "17:00", end: "18:00", event: "Ideation & group formation", location: "Peter Bøgh Auditorium"},
-				{start: "18:00", end: "20:30", event: "Dinner", location: "Café area & Nygaard-basement"},
-				// {start: "18:00", event: "Hacking begins!", location: "Everywhere!"},
-				// {start: "18:00", event: "Robot minigolf begins!", location: "Info desk"},
-				// {start: "18:00", event: "Build a van Gogh", location: "Nygaard-basement"},
-				{start: "19:30", end: "20:30", event: "Functional programming workshop w/ InCommodities", location: "Nygaard-192"}
+				{type: EventType.Mandatory, start: "13:00", end: "15:00", event: "Check-in", location: "Info stand"},
+				{type: EventType.Event, start: "13:00", end: "15:30", event: "Bean bag toss w/ Knowit", location: "KnowIT"},
+				{type: EventType.Food, start: "13:30", end: "15:30", event: "Coffee cart", location: "Café area"},
+				{type: EventType.Mandatory, start: "15:15", end: "16:00", event: "Opening ceremony", location: "Peter Bøgh Auditorium"},
+				{type: EventType.Mandatory, start: "16:00", end: "16:30", event: "Guest lecture starring Bjarne Stroustrup", location: "Peter Bøgh Auditorium"},
+				{type: EventType.Mandatory, start: "16:30", end: "17:00", event: "Case presentation", location: "Peter Bøgh Auditorium"},
+				{type: EventType.Mandatory, start: "17:00", end: "18:00", event: "Ideation & group formation", location: "Peter Bøgh Auditorium"},
+				{type: EventType.Food, start: "18:00", end: "20:30", event: "Dinner", location: "Café area & Nygaard-basement"},
+				{type: EventType.Mandatory, start: "18:00", event: "Hacking begins!", location: "Everywhere!"},
+				{type: EventType.Event, start: "18:00", event: "Robot minigolf begins!", location: "Info desk"},
+				{type: EventType.Event, start: "18:00", event: "Build a van Gogh", location: "Nygaard-basement"},
+				{type: EventType.Workshop, start: "19:30", end: "20:30", event: "Functional programming workshop w/ InCommodities", location: "Nygaard-192"}
 			]}
 		/>
 		<Schedule
 			headline="Saturday"
+			date={new Date(2026, 2, 14)}
 			items={[
-				{start: "07:00", end: "09:00", event: "Breakfast", location: "Café area"},
-				{start: "09:00", end: "10:00", event: "Yoga", location: "Nygaard-192"},
-				{start: "10:00", end: "11:55", event: "LEGO MASTERS w/ InCommodities", location: "Info desk"},
-				{start: "12:00", end: "15:00", event: "Masonic PC Gaming", location: "Nygaard-192"},
-				{start: "13:00", end: "14:30", event: "Lunch", location: "Café area"},
-				{start: "16:00", end: "16:45", event: "Playful Pitch Practice w/ CSG", location: "Peter Bøgh Auditorium"},
-				{start: "18:00", end: "19:30", event: "Dinner", location: "Café area"}
+				{type: EventType.Food, start: "07:00", end: "09:00", event: "Breakfast", location: "Café area"},
+				{type: EventType.Event, start: "09:00", end: "10:00", event: "Yoga", location: "Nygaard-192"},
+				{type: EventType.Event, start: "10:00", end: "11:55", event: "LEGO MASTERS w/ InCommodities", location: "Info desk"},
+				{type: EventType.Event, start: "12:00", end: "15:00", event: "Masonic PC Gaming", location: "Nygaard-192"},
+				{type: EventType.Food, start: "13:00", end: "14:30", event: "Lunch", location: "Café area"},
+				{type: EventType.Event, start: "16:00", end: "16:45", event: "Playful Pitch Practice w/ CSG", location: "Peter Bøgh Auditorium"},
+				{type: EventType.Food, start: "18:00", end: "19:30", event: "Dinner", location: "Café area"}
 			]}
 		/>
 		<Schedule
 			headline="Sunday"
+			date={new Date(2026, 2, 15)}
 			items={[
-				{start: "07:00", end: "09:00", event: "Breakfast", location: "Café area"},
-				{start: "11:00", end: "12:00", event: "One Minute Madness", location: "Peter Bøgh Auditorium"},
-				{start: "12:00", end: "14:00", event: "Evaluation", location: "Nygaard-basement"},
-				{start: "12:00", end: "14:00", event: "Return hardware", location: "Hardware area"},
-				{start: "12:00", end: "14:30", event: "Lunch", location: "Café area"},
-				{start: "14:00", end: "14:30", event: "Clearing of group tables", location: "Nygaard-basement"},
-				{start: "14:30", end: "15:30", event: "Closing ceremony and prizes", location: "Peter Bøgh Auditorium"},
-				// {start: "15:30", event: "The end. Thanks for participating!", location: "Peter Bøgh Auditorium"}
+				{type: EventType.Food, start: "07:00", end: "09:00", event: "Breakfast", location: "Café area"},
+				{type: EventType.Mandatory, start: "11:00", end: "12:00", event: "One Minute Madness", location: "Peter Bøgh Auditorium"},
+				{type: EventType.Mandatory, start: "12:00", end: "14:00", event: "Evaluation", location: "Nygaard-basement"},
+				{type: EventType.Mandatory, start: "12:00", end: "14:00", event: "Return hardware", location: "Hardware area"},
+				{type: EventType.Food, start: "12:00", end: "14:30", event: "Lunch", location: "Café area"},
+				{type: EventType.Mandatory, start: "14:00", end: "14:30", event: "Clearing of group tables", location: "Nygaard-basement"},
+				{type: EventType.Mandatory, start: "14:30", end: "15:30", event: "Closing ceremony and prizes", location: "Peter Bøgh Auditorium"},
+				{type: EventType.Event, start: "15:30", event: "The end. Thanks for participating!", location: "Peter Bøgh Auditorium"}
 			]}
 		/>
 	</Section>

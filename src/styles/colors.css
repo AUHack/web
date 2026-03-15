@@ -8,4 +8,12 @@
     --blue-600: #39485D;
     --blue-900: #333E50;
     --blue-950: #292B2C;
+
+    --green: #3c5d39;
+
+    /* Schedule colors */
+    --schedule-mandatory: var(--blue-600);
+    --schedule-food: var(--yellow);
+    --schedule-workshop: var(--green);
+    --schedule-event: var(--orange-600);
 }
