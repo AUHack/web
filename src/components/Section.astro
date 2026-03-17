@@ -21,29 +21,29 @@ const { reverse = false, class: cl, color, ...rest } = Astro.props;
 
 <style>
     section.orange {
-        --bg-color: var(--orange);
-        --color: white;
+        --section-bg-color: var(--orange);
+        --section-color: white;
         --figure-url: url("/img/figures/orange_bottom_right_triangle.svg");
         --reverse-figure-url: url("/img/figures/orange_bottom_left_triangle.svg");
     }
 
     section.white {
-        --bg-color: white;
-        --color: var(--blue-950);
+        --section-bg-color: white;
+        --section-color: var(--blue-950);
         --figure-url: url("/img/figures/white_bottom_right_triangle.svg");
         --reverse-figure-url: url("/img/figures/white_bottom_left_triangle.svg");
     }
 
     section.blue {
-        --bg-color: var(--blue-600);
-        --color: white;
+        --section-bg-color: var(--blue-600);
+        --section-color: white;
         --figure-url: url("/img/figures/gray_bottom_right_triangle.svg");
         --reverse-figure-url: url("/img/figures/gray_bottom_left_triangle.svg");
     }
     
     section {
-        background-color: var(--bg-color);
-        color: var(--color);
+        background-color: var(--section-bg-color);
+        color: var(--section-color);
         padding-bottom: 8em;
 
         &::before {
