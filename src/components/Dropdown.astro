@@ -1,0 +1,58 @@
+---
+interface Props {
+    title: string;
+    ["as"]?: string;
+}
+
+const { as = "h4", title } = Astro.props;
+const Tag = as;
+---
+
+<details>
+    <summary>
+        <Tag class:list={["faq-heading"]}>{title}</Tag>
+        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"/>
+        </svg>
+    </summary>
+    <div class="content">
+        <slot />
+    </div>
+</details>
+
+<style>
+    .faq-heading {
+        font-size: 1.5rem;
+        text-transform: none;
+    }
+
+    details {
+        font-size: 1.25rem;
+
+        &:open {
+            margin-bottom: 1.25rem;
+
+            svg {
+                transform: rotate(90deg);
+            }
+        }
+    }
+
+    summary {
+        list-style: none;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        cursor: pointer;
+        margin-bottom: 0.5rem;
+
+        svg {
+            font-size: 1.5rem;
+            transition: transform 0.2s ease;
+        }
+    }
+    
+    summary::-webkit-details-marker {
+        display: none;
+    }
+</style>
