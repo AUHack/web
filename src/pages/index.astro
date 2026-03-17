@@ -10,6 +10,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import { EventType } from "../utils/schedule";
 import DropdownGroup from "../components/DropdownGroup.astro";
 import KeyPoints from "../components/KeyPoints.astro";
+import Sponsors from "../components/Sponsors.astro";
+import Sponsor from "../components/Sponsor.astro";
 ---
 
 
@@ -28,6 +30,20 @@ import KeyPoints from "../components/KeyPoints.astro";
 	<Section class="center" color="orange">
 		<strong class="text-lg">Sign-ups for this year's AUHack have closed.</strong>
 	</Section>
+	<Section color="white">
+		<SectionHeader centered>
+			Sponsors
+		</SectionHeader>
+
+		<Sponsors>
+			<Sponsor slot="diamond" href="https://incommodities.com/" img="incommodities.png" name="InCommodities" />
+			<Sponsor slot="gold" href="https://www.knowit.dk/" img="knowit.svg" name="Knowit" />
+			<Sponsor slot="gold" href="https://www.prosa.dk/" img="prosa_logo.svg" name="Prosa" />
+			<Sponsor slot="silver" href="https://www.beumergroup.com/" img="beumergroup.jpg" name="Beumer Group" />
+			<Sponsor slot="silver" href="https://www.ida.dk/" img="ida_logo.png" name="IDA" />
+			<Sponsor slot="silver" href="https://www.mjolner.dk/" img="mjolner_logo.svg" name="Mjolner" />
+		</Sponsors>
+	</Section>
 	<Section color="blue">
 		<SectionHeader>
 			What is AUHack?
@@ -41,7 +57,7 @@ import KeyPoints from "../components/KeyPoints.astro";
 
 		<KeyPoints />
 	</Section>
-	<Section id="schedule" color="white">
+	<Section color="white">
 		<SectionHeader>
 			Schedule
 			<ScheduleLegend slot="subtitle" class="justify-end mt-0.5" />

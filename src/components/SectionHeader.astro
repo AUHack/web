@@ -1,13 +1,14 @@
 ---
 interface Props {
+    centered?: boolean;
     ["as"]?: string;
 }
 
-const { as = "h2" } = Astro.props;
+const { as = "h2", centered = false } = Astro.props;
 const Tag = as;
 ---
 
-<header>
+<header class:list={{ centered }}>
     <Tag><slot /></Tag>
     <hr>
     <slot name="subtitle" />
@@ -19,6 +20,10 @@ const Tag = as;
         text-align: right; /* If the is places inside a reverse section, the text-align will be flipped */
         margin-bottom: 3.25rem;
 
+        &.centered {
+            text-align: center;
+        }
+        
         h1, h2, h3, h4, h5, h6 {
             font-size: 3.5rem;
             text-transform: uppercase;
