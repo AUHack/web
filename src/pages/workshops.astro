@@ -1,0 +1,106 @@
+---
+import Header from "../components/Header.astro";
+import Navbar from "../components/Navbar.astro";
+import Section from "../components/Section.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Footer from "../components/Footer.astro";
+import Masonry from "../components/Masonry.astro";
+import Card from "../components/Card.astro";
+
+interface Workshop {
+    id: string;
+    short_name: string;
+    long_name: string;
+    tags: string;
+    description: string;
+    prerequisites: string;
+    software_needed: string;
+    hardware_needed: string;
+}
+
+const workshops: Workshop[] = [];
+---
+
+<BaseLayout title="Workshops">
+    <Navbar
+        leftItems={[
+            { name: "Info", href: "#info" },
+            { name: "Workshops", href: "#workshops" },
+        ]}
+    />
+
+    <Header title="AUHack 2026" subtitle="Workshops" />
+
+    <Section color="white" id="info">
+        <SectionHeader>Workshops at AUHack</SectionHeader>
+
+        <p>
+            We will host <strong>0</strong> workshops Saturday. Participating in a
+            workshop will give you some great skills on various topics, such that you
+            afterwards can build cool stuff, instead of spending hours setting up
+            environments.
+        </p>
+
+        <h4>Do I need to sign up?</h4>
+        <p>
+            Yes, during team registration! A team is allowed to split up and cover
+            several workshops.
+        </p>
+
+        <h4>Do I need to do anything before the workshops?</h4>
+        <p>
+            If you already know which workshop you definitely will participate in,
+            then consider downloading the material needed before the workshop starts.
+            In a perfect dreamworld, everybody will do that and you can then spend
+            more time on the interesting material.
+        </p>
+
+        <h4>Can I participate in multiple workshops?</h4>
+        <p>
+            You're allowed to participate in multiple workshops, as long as they are
+            not at the exact same time. Furthermore, all team members are by no means
+            required to attend the same workshops. Perhaps you can divide and conquer?
+        </p>
+    </Section>
+
+    <Section color="orange" id="workshops">
+        <SectionHeader>Workshops</SectionHeader>
+
+        {
+            workshops.length > 0 ? (
+                <Masonry>
+                    {workshops.map((workshop) => (
+                        <Card key={workshop.id}>
+                            <img
+                                slot="image"
+                                src={`/img/workshops/${workshop.id}.jpg`}
+                                alt={workshop.short_name}
+                            />
+                            <h5>{workshop.long_name}</h5>
+                            <i class="muted">{workshop.tags}</i>
+
+                            <hr class="muted" />
+
+                            <h6>Description</h6>
+                            <p set:html={workshop.description} />
+
+                            <h6>Prerequisites</h6>
+                            <p set:html={workshop.prerequisites} />
+
+                            <h6>Software needed</h6>
+                            <p set:html={workshop.software_needed} />
+
+                            <h6>Hardware needed</h6>
+                            <p set:html={workshop.hardware_needed} />
+                        </Card>
+                    ))}
+                </Masonry>
+            ) : (
+                <p>No workshops have been announced yet.</p>
+            )
+        }
+    </Section>
+
+    <Footer />
+</BaseLayout>

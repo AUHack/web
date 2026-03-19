@@ -56,6 +56,10 @@ const Tag = as;
         color: var(--section-color);
         padding-bottom: 8em;
 
+        @media (max-width: 612px) {
+            padding-bottom: 4em;
+        }
+
         &::before {
             background-image: var(--figure-url);
             background-repeat: no-repeat;
@@ -68,6 +72,11 @@ const Tag = as;
             top: -4em;
             height: 4em;
             z-index: 0;
+
+            @media (max-width: 612px) {
+                height: 2em;
+                top: -2em;
+            }
         }
 
         &.reverse::before {

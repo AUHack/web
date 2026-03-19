@@ -9,8 +9,8 @@
     article.card {
         display: flex;
         flex-direction: column;
-        background-color: white;
-        color: var(--blue-950);
+        background-color: var(--card-bg);
+        color: var(--card-color);
         border-radius: 0.5rem;
         
         p, i {
@@ -34,5 +34,19 @@
 
     .content {
         padding: 1rem 2rem;
+    }
+</style>
+
+<style is:global>
+    .section.white {
+        --card-bg: var(--orange);
+        --card-color: white;
+    }
+
+    .section.yellow,
+    .section.blue,
+    .section.orange {
+        --card-bg: white;
+        --card-color: var(--blue-950);
     }
 </style>

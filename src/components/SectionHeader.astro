@@ -1,14 +1,14 @@
 ---
 interface Props {
-    centered?: boolean;
+    align?: "left" | "center" | "right";
     ["as"]?: string;
 }
 
-const { as = "h2", centered = false } = Astro.props;
+const { as = "h2", align } = Astro.props;
 const Tag = as;
 ---
 
-<header class:list={{ centered }}>
+<header class:list={[align]}>
     <Tag class:list={["headline"]}><slot /></Tag>
     <hr>
     <slot name="subtitle" />
@@ -20,8 +20,16 @@ const Tag = as;
         text-align: right; /* If the is places inside a reverse section, the text-align will be flipped */
         margin-bottom: 3.25rem;
 
-        &.centered {
+        &.left {
+            text-align: left;
+        }
+
+        &.center {
             text-align: center;
+        }
+
+        &.right {
+            text-align: right;
         }
         
         .headline {
