@@ -5,10 +5,30 @@ interface Props extends HTMLAttributes<'ul'> {}
 ---
 
 <ul {...Astro.props}>
-    <li class="mandatory">Mandatory</li>
-    <li class="food">Food</li>
-    <li class="event">Event</li>
-    <li class="workshop">Workshop</li>
+    <li class="mandatory">
+        <label for="mandatory">
+            Mandatory
+            <input type="checkbox" name="mandatory" id="mandatory" checked>
+        </label>
+    </li>
+    <li class="food">
+        <label for="food">
+            Food
+            <input type="checkbox" name="food" id="food" checked>
+        </label>
+    </li>
+    <li class="event">
+        <label for="event">
+            Event
+            <input type="checkbox" name="event" id="event" checked>
+        </label>
+    </li>
+    <li class="workshop">
+        <label for="workshop">
+            Workshop
+            <input type="checkbox" name="workshop" id="workshop" checked>
+        </label>
+    </li>
 </ul>
 
 <style>
@@ -21,37 +41,63 @@ interface Props extends HTMLAttributes<'ul'> {}
     }
 
     li {
-        display: flex;
-        align-items: center;
         font-weight: bold;
     }
 
-    li::after {
+    input {
+        appearance: none;
+
+        &:active, &:focus {
+            outline: none;
+        }
+    }
+
+    label {
+        display: flex;
+        align-items: center;
+    }
+
+    label:focus-within {
+        outline: 2px solid blue;
+    }
+
+    label::after {
+        box-sizing: border-box;
         content: "";
         display: inline-block;
-        width: 1em;
-        height: 1em;
+        width: 1rem;
+        height: 1rem;
         margin-left: 0.5em;
-
+        border-radius: 0.25em;
+        border: 2px solid;
+        transition: all 0.2s;
+    }
+    
+    li:has(input:not(:checked)) label::after {
+        background-color: transparent;
     }
 
-    li.mandatory::after {
+    li.mandatory label::after {
         background-color: var(--schedule-mandatory);
+        border-color: var(--schedule-mandatory);
         color: white;
     }
 
-    li.food::after {
+    li.food label::after {
         background-color: var(--schedule-food);
+        border-color: var(--schedule-food);
         color: white;
     }
 
-    li.workshop::after {
+    li.workshop label::after {
         background-color: var(--schedule-workshop);
+        border-color: var(--schedule-workshop);
         color: white;
     }
 
-    li.event::after {
+    li.event label::after {
         background-color: var(--schedule-event);
+        border-color: var(--schedule-event);
         color: white;
     }
 

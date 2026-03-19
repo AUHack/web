@@ -232,21 +232,37 @@ blocks.forEach(block => {
         &[data-event-type="mandatory"] {
             background-color: var(--schedule-mandatory);
             color: white;
+
+            body:has(input[name="mandatory"]:not(:checked)) & { /* Logic for toggling events on/off see ScheduleLegend.astro for actual inputs */
+                display: none;
+            }
         }
         
         &[data-event-type="food"] {
             background-color: var(--schedule-food);
             color: white;
+
+            body:has(input[name="food"]:not(:checked)) & { /* Logic for toggling events on/off see ScheduleLegend.astro for actual inputs */
+                display: none;
+            }
         }
         
         &[data-event-type="workshop"] {
             background-color: var(--schedule-workshop);
             color: white;
+
+            body:has(input[name="workshop"]:not(:checked)) & { /* Logic for toggling events on/off see ScheduleLegend.astro for actual inputs */
+                display: none;
+            }
         }
 
         &[data-event-type="event"] {
             background-color: var(--schedule-event);
             color: white;
+
+            body:has(input[name="event"]:not(:checked)) & { /* Logic for toggling events on/off see ScheduleLegend.astro for actual inputs */
+                display: none;
+            }
         }
     }
 

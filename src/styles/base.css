@@ -39,6 +39,7 @@ body {
   background: #fff;
   font-family: AU_Passata, "opensans-regular", sans-serif;
   color: var(--blue-950);
+  outline-color: blue;
 }
 
 a {
