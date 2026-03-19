@@ -75,6 +75,8 @@ const maxImmediateEventCount = Math.max(...Object.values(groupededImmediateEvent
                             <div
                                 data-schedule-popup
                                 data-event-type={item.type}
+                                role="button"
+                                tabindex="0"
                                 class:list={{
                                     'schedule-event': true,
                                     'schedule-block': true,
@@ -108,6 +110,8 @@ const maxImmediateEventCount = Math.max(...Object.values(groupededImmediateEvent
                                     class="schedule-immediate-event schedule-event"
                                     data-schedule-popup
                                     data-event-type={event.type}
+                                    role="button"
+                                    tabindex="0"
                                     title={`${time}: ${event.event} (${event.location})`}
                                 >
                                     <div class="event-time">{time}</div>
@@ -174,9 +178,18 @@ blocks.forEach(block => {
         clone.style.top = `${clampedTop}px`;
     };
 
+    const handleKeyDown = (event: Event) => {
+        const keyEvent = event as KeyboardEvent;
+        if (keyEvent.key === 'Enter' || keyEvent.key === ' ') {
+            event.preventDefault();
+            showClone();
+        }
+    };
+
     block.addEventListener('mouseenter', showClone);
     block.addEventListener('click', showClone);
     block.addEventListener('mouseleave', removeClone);
+    block.addEventListener('keydown', handleKeyDown);
     wrapper?.addEventListener('scroll', removeClone, { passive: true });
     window.addEventListener('scroll', removeClone, { passive: true });
 });
@@ -240,7 +253,7 @@ blocks.forEach(block => {
         
         &[data-event-type="food"] {
             background-color: var(--schedule-food);
-            color: white;
+            color: var(--blue-950);
 
             body:has(input[name="food"]:not(:checked)) & { /* Logic for toggling events on/off see ScheduleLegend.astro for actual inputs */
                 display: none;
