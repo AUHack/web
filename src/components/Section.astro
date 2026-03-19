@@ -3,45 +3,54 @@ import type { HTMLAttributes } from 'astro/types';
 
 interface Props extends HTMLAttributes<'section'> {
     reverse?: boolean;
-    color: 'orange' | 'white' | 'blue';
+    color: 'orange' | 'yellow' | 'white' | 'blue';
+    ["as"]?: string;
 }
 
-const { reverse = false, class: cl, color, ...rest } = Astro.props;
+const { reverse = false, class: cl, color, as = "section", ...rest } = Astro.props;
+const Tag = as;
 ---
 
-<section
-    class:list={[reverse && "reverse", color]}
+<Tag
+    class:list={["section", reverse && "reverse", color]}
     {...rest}
 >
     <slot name="outer" />
-    <div class:list={["container", cl]}>
+    <div class:list={["container", cl]} {...rest}>
         <slot />
     </div>
-</section>
+</Tag>
 
 <style>
-    section.orange {
+    .section.orange {
         --section-bg-color: var(--orange);
         --section-color: white;
         --figure-url: url("/img/figures/orange_bottom_right_triangle.svg");
         --reverse-figure-url: url("/img/figures/orange_bottom_left_triangle.svg");
     }
 
-    section.white {
+    .section.yellow {
+        --section-bg-color: var(--yellow);
+        --section-color: var(--blue-950);
+        --figure-url: url("/img/figures/yellow_bottom_right_triangle.svg");
+        --reverse-figure-url: url("/img/figures/yellow_bottom_left_triangle.svg");
+    }
+
+    .section.white {
         --section-bg-color: white;
         --section-color: var(--blue-950);
         --figure-url: url("/img/figures/white_bottom_right_triangle.svg");
         --reverse-figure-url: url("/img/figures/white_bottom_left_triangle.svg");
     }
 
-    section.blue {
+    .section.blue {
         --section-bg-color: var(--blue-600);
         --section-color: white;
         --figure-url: url("/img/figures/gray_bottom_right_triangle.svg");
         --reverse-figure-url: url("/img/figures/gray_bottom_left_triangle.svg");
     }
     
-    section {
+    .section {
         background-color: var(--section-bg-color);
         color: var(--section-color);
         padding-bottom: 8em;
@@ -67,7 +76,7 @@ const { reverse = false, class: cl, color, ...rest } = Astro.props;
 </style>
 
 <style is:global>
-    section.reverse > .container header {
+    .section.reverse > .container header {
         text-align: left;
     }
 </style>
