@@ -1,0 +1,41 @@
+---
+import { JSDOM } from "jsdom";
+
+const html = await Astro.slots.render("default");
+const dom = new JSDOM(html);
+const children = [...dom.window.document.body.children];
+
+
+const left = children.filter((_, i) => i % 2 === 0).map((child) => child.outerHTML);
+const right = children.filter((_, i) => i % 2 === 1).map((child) => child.outerHTML);
+---
+
+<div class="columns">
+    <div class="column">{left.map(html => <Fragment set:html={html} />)}</div>
+    <div class="column">{right.map(html => <Fragment set:html={html} />)}</div>
+</div>
+
+<style>
+    .columns {
+        --gap-size: 2rem;
+
+        display: flex;
+        gap: var(--gap-size);
+
+        @media (max-width: 990px) {
+            --gap-size: 1rem;
+        }
+
+        @media (max-width: 570px) {
+            --gap-size: 1rem;
+            flex-direction: column;
+        }
+    }
+
+    .column {
+        display: flex;
+        flex-direction: column;
+        gap: var(--gap-size);
+        flex-basis: 50%;
+    }
+</style>

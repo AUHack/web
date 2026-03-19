@@ -9,6 +9,10 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.17.1"
+    "astro": "^5.17.1",
+    "jsdom": "^29.0.0"
+  },
+  "devDependencies": {
+    "@types/jsdom": "^28.0.0"
   }
 }

@@ -69,9 +69,15 @@ strong {
 }
 
 p {
-  font: 19px/28px AU_Passata, "opensans-light", sans-serif;
-  /* 19px/36px*/
-  margin-bottom: 18px;
+  font: 18px/28px AU_Passata, "opensans-light", sans-serif;
+
+  &:not(:last-child) {
+    margin-bottom: 18px;
+  }
+}
+
+.muted {
+  color: hsl(from currentColor h s l / 0.8);
 }
 
 h1 {
@@ -94,12 +100,21 @@ h4 {
   font-size: 1.5em;
 }
 
+h5 {
+  font-size: 1.25em;
+  margin-bottom: 0.5rem;
+}
+
+h6 {
+  font-size: 1em;
+}
+
 .container {
   max-width: 970px;
   width: 100%;
   margin: 0 auto;
 
-  @media (max-width: 970px) {
+  @media (max-width: 990px) {
     padding: 0 16px;
   }
 }
