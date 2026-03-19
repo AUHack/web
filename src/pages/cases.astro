@@ -1,0 +1,111 @@
+---
+import Header from "../components/Header.astro";
+import Navbar from "../components/Navbar.astro";
+import Section from "../components/Section.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Footer from "../components/Footer.astro";
+import Masonry from "../components/Masonry.astro";
+import Card from "../components/Card.astro";
+
+const cases = [
+    {
+        id: "incommodities",
+        sponsorName: "InCommodities",
+        title: "Decode the Power Market",
+        descriptionShort:
+            "The European energy market is a fast-moving, complex distributed system. Driven by massive amounts of data and external signals like the weather, shifts in supply and demand constantly ripple through the grid, affecting electricity prices in real time.",
+        descriptionLong:
+            "Your challenge? <strong>Treat the energy market like a puzzle made of data.</strong><br><br>Dive into structured datasets of real spot prices and weather fundamentals to uncover meaningful patterns. Your goal is to build a working artifact-like a dynamic dashboard or visualization-that explores, abstracts, and explains the underlying dynamics of what truly moves the price.<br><br>Read the full case description, curiosity prompts, and evaluation criteria here <a href='https://www.kaggle.com/t/8c074f2bbd8943d0a4a836f5f4bfa6f6'>https://www.kaggle.com/t/8c074f2bbd8943d0a4a836f5f4bfa6f6</a>",
+        technology:
+            "The choice of tech stack is entirely up to you! Since you will be exploring structured datasets to build a working artifact-like a visualization, dashboard, or prediction model-tools suited for data analysis, machine learning, and frontend development (such as Python, R, SQL, JavaScript, or BI tools) will be your best friends.",
+        judgingCriteria:
+            "Submissions will be evaluated qualitatively based on four core pillars:<ul><li><strong>Insight:</strong> How well do you understand the power market system and communicate your findings?</li><li><strong>Craft:</strong> Is your code clean, readable, and well-structured?</li><li><strong>Originality:</strong> Did you bring a fresh angle, ask an unexpected question, or use a novel approach?</li><li><strong>Extensibility:</strong> Could your solution scale to include more countries, additional data sources, or a live data feed?</li></ul>",
+    },
+    {
+        id: "auhack",
+        sponsorName: "AUHack",
+        title: "Improve Your University Life",
+        descriptionShort:
+            "How might we improve everyday university life for students and create a stronger sense of community and engagement? Your solution could explore areas such as supporting volunteer experiences, exploring new teaching formats, improving everyday student life, or facilitating community between international and Danish students.",
+        descriptionLong:
+            "Teams are encouraged to develop a concept, prototype, or solution that enhances the student experience.<br><br><ul><li><strong>Supporting volunteer experiences and activities:</strong> How might we help students discover, join, or create meaningful volunteer opportunities?</li><li><strong>Exploring new teaching formats:</strong> How might new formats, tools, or learning environments make teaching more engaging and interactive?</li><li><strong>Improving everyday student life and needs:</strong> How might we make daily student life easier, more social, or more supportive?</li><li><strong>Facilitating community between international and Danish students:</strong> With new English-language programmes launched this summer, how might we create stronger connections between international and Danish students?</li></ul>",
+        technology:
+            "As always, there will be 3D printers and hardware available for use. You may also leverage available data, or imagine how to create or obtain data to support your concept or prototype. Volunteers and lab staff will be available to assist with hardware and technical questions.",
+        judgingCriteria:
+            "Judging will focus on the novelty of your hack, the clarity of your problem definition, and the strength of your argumentation for why your solution works and addresses the challenge.",
+    },
+];
+---
+
+<BaseLayout title="Cases">
+    <Navbar
+        leftItems={[
+            { name: "Info", href: "#info" },
+            { name: "Cases", href: "#cases" },
+        ]}
+    />
+
+    <Header title="AUHack 2026" subtitle="Cases" />
+
+    <Section color="white" id="info">
+        <SectionHeader>Cases at AUHack</SectionHeader>
+
+        <p>
+            Our diamond sponsor and AUHack itself are hosting a case, where you
+            can compete to make the best solution. These are typically based in
+            each company's expertise, and are meant as an inspiration and
+            foundation for your projects here at AUHack 2026.
+        </p>
+
+        <h4>Do we need to sign up?</h4>
+        <p>
+            Yes, we would like to know what you're working on. On your team's
+            table, there should be a piece of paper with a number on it. Please
+            write what you've chosen to work on on this piece of paper (if
+            you've chosen any).
+        </p>
+
+        <h4>Can we solve several cases at once?</h4>
+        <p>
+            Yes, of course! We're not limiting your creativity or area that you
+            want to focus on.
+        </p>
+    </Section>
+
+    <Section color="orange" id="cases">
+        <SectionHeader>Cases</SectionHeader>
+
+        <Masonry>
+            {
+                cases.map((item) => (
+                    <Card key={item.id}>
+                        <img
+                            slot="image"
+                            src={`/img/cases/${item.id}.jpg`}
+                            alt={item.sponsorName}
+                        />
+
+                        <h5>{item.title}</h5>
+                        <i class="muted">{item.sponsorName}</i>
+
+                        <hr class="muted" />
+
+                        <p>{item.descriptionShort}</p>
+
+                        <h6>Case</h6>
+                        <p set:html={item.descriptionLong} />
+
+                        <h6>Technology</h6>
+                        <p>{item.technology}</p>
+
+                        <h6>Judging criteria</h6>
+                        <p set:html={item.judgingCriteria} />
+                    </Card>
+                ))
+            }
+        </Masonry>
+    </Section>
+
+    <Footer />
+</BaseLayout>
