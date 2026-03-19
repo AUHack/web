@@ -2,6 +2,7 @@
 import type { HTMLAttributes } from 'astro/types';
 
 interface Props extends HTMLAttributes<'section'> {
+    id: string;
     reverse?: boolean;
     color: 'orange' | 'yellow' | 'white' | 'blue';
     ["as"]?: string;
@@ -71,6 +72,10 @@ const Tag = as;
 
         &.reverse::before {
             background-image: var(--reverse-figure-url);
+        }
+
+        &:target {
+            scroll-margin-top: 160px;
         }
     }
 </style>

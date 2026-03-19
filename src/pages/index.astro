@@ -28,13 +28,11 @@ import Footer from "../components/Footer.astro";
 		subtitle="March 13th - 15th"
 	/>
 
-	<Section class="center" color="orange">
+	<Section class="center" color="orange" id="signup">
 		<strong class="text-lg">Sign-ups for this year's AUHack have closed.</strong>
 	</Section>
-	<Section color="white">
-		<SectionHeader centered>
-			Sponsors
-		</SectionHeader>
+	<Section color="white" id="sponsors">
+		<SectionHeader centered>Sponsors</SectionHeader>
 
 		<Sponsors>
 			<Sponsor slot="diamond" href="https://incommodities.com/" img="incommodities.png" name="InCommodities" />
@@ -45,10 +43,8 @@ import Footer from "../components/Footer.astro";
 			<Sponsor slot="silver" href="https://www.mjolner.dk/" img="mjolner_logo.svg" name="Mjolner" />
 		</Sponsors>
 	</Section>
-	<Section color="blue">
-		<SectionHeader>
-			What is AUHack?
-		</SectionHeader>
+	<Section color="blue" id="about">
+		<SectionHeader>What is AUHack?</SectionHeader>
 
 		<p>AUHack is one of Denmark's largest hackathons for students. Over a 36-hour period from March 13th to 15th, students interested in IT will meet, form groups and work intensively to create awesome prototypes and concepts. Whether you like to concept develop, design or code, or if you're just into IT - this is for you.</p>
 
@@ -58,7 +54,7 @@ import Footer from "../components/Footer.astro";
 
 		<KeyPoints />
 	</Section>
-	<Section color="white">
+	<Section color="white" id="schedule">
 		<SectionHeader>
 			Schedule
 			<ScheduleLegend slot="subtitle" class="justify-end mt-0.5" />
@@ -109,7 +105,7 @@ import Footer from "../components/Footer.astro";
 			]}
 		/>
 	</Section>
-	<Section color="orange" reverse>
+	<Section color="orange" reverse id="faq">
 		<SectionHeader>FAQ</SectionHeader>
 
 

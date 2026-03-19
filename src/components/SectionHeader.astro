@@ -9,7 +9,7 @@ const Tag = as;
 ---
 
 <header class:list={{ centered }}>
-    <Tag><slot /></Tag>
+    <Tag class:list={["headline"]}><slot /></Tag>
     <hr>
     <slot name="subtitle" />
 </header>
@@ -24,9 +24,13 @@ const Tag = as;
             text-align: center;
         }
         
-        h1, h2, h3, h4, h5, h6 {
+        .headline {
             font-size: 3.5rem;
             text-transform: uppercase;
+
+            &:target {
+                scroll-margin-top: 128px;
+            }
         }
 
         hr {
