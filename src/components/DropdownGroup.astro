@@ -1,24 +1,24 @@
 ---
 interface Props {
-    title: string;
+	title: string;
 }
 
 const { title } = Astro.props;
 ---
 
 <div class="dropdown-group">
-    <h3>{title}</h3>
-    <slot />
+	<h3>{title}</h3>
+	<slot />
 </div>
 
 <style>
-    .dropdown-group {
-        margin-bottom: 2rem;
-    }
-    
-    h3 {
-        font-size: 2em;
-        text-transform: uppercase;
-        margin-bottom: 0.5rem;
-    }
+	.dropdown-group {
+		margin-bottom: 2rem;
+	}
+
+	h3 {
+		font-size: 2em;
+		text-transform: uppercase;
+		margin-bottom: 0.5rem;
+	}
 </style>

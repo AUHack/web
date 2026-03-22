@@ -1,0 +1,15 @@
+# Old pug project
+build
+includes
+pages
+static
+
+# Build files
+dist
+
+# Other file types
+*.jpg
+*.png
+*.svg
+*.ico
+*.pdf

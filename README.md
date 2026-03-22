@@ -1,5 +1,6 @@
 # AUHack's Website
-Welcome to source code of AUHack's website! 
+
+Welcome to source code of AUHack's website!
 
 **As of 2022, Build and Deploy isn't used/doesn't work.**
 

@@ -1,38 +1,38 @@
 ---
 interface Props {
-    title: string;
-    subtitle: string;
+	title: string;
+	subtitle: string;
 }
 
 const { title, subtitle } = Astro.props;
 ---
 
 <header>
-    <div class="container">
-        <h1>{title}</h1>
-        <p>{subtitle}</p>
-    </div>
+	<div class="container">
+		<h1>{title}</h1>
+		<p>{subtitle}</p>
+	</div>
 </header>
 
 <style>
-    header {
-        display: flex;
-        align-items: center;
-        
-        background-image: url('/img/WebBanner.jpg');
-        background-size: cover;
-        background-position: center;
+	header {
+		display: flex;
+		align-items: center;
 
-        height: 100vh;
+		background-image: url("/img/WebBanner.jpg");
+		background-size: cover;
+		background-position: center;
 
-        color: white;
+		height: 100vh;
 
-        h1 {
-            font-size: 10vh;
-        }
+		color: white;
 
-        p {
-            font-size: 5vh
-        }
-    }
+		h1 {
+			font-size: 10vh;
+		}
+
+		p {
+			font-size: 5vh;
+		}
+	}
 </style>

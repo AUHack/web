@@ -1,46 +1,45 @@
 ---
 interface Props {
-    slot: "diamond" | "gold" | "silver";
-    img: string;
-    name: string;
-    href: string;
+	slot: "diamond" | "gold" | "silver";
+	img: string;
+	name: string;
+	href: string;
 }
 ---
 
 <li class:list={[Astro.props.slot]}>
-    <a href={Astro.props.href} target="_blank" rel="noopener noreferrer">
-        <img src={`/img/sponsors/${Astro.props.img}`} alt={Astro.props.name} />
-    </a>
+	<a href={Astro.props.href} target="_blank" rel="noopener noreferrer">
+		<img src={`/img/sponsors/${Astro.props.img}`} alt={Astro.props.name} />
+	</a>
 </li>
 
 <style>
-    li {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+	li {
+		display: flex;
+		align-items: center;
+		justify-content: center;
 
-        &.diamond {
-            max-width: 384px;
-            width: 100%;
-        }
-        &.gold {
-            max-width: 224px;
-            width: 100%;
-        }
-        &.silver {
-            max-width: 160px;
-            width: 100%;
-        }
-    }
+		&.diamond {
+			max-width: 384px;
+			width: 100%;
+		}
+		&.gold {
+			max-width: 224px;
+			width: 100%;
+		}
+		&.silver {
+			max-width: 160px;
+			width: 100%;
+		}
+	}
 
+	a {
+		width: 100%;
+	}
 
-    a {
-        width: 100%;
-    }
-
-    img {
-        width: 100%;
-        height: auto;
-        object-fit: contain;
-    }
+	img {
+		width: 100%;
+		height: auto;
+		object-fit: contain;
+	}
 </style>

@@ -2,159 +2,159 @@
 import type { SvgComponent } from "astro/types";
 
 interface Tab {
-    title: string;
-    id: string;
-    icon: SvgComponent;
+	title: string;
+	id: string;
+	icon: SvgComponent;
 }
 
 interface Props {
-    tabs: Tab[];
+	tabs: Tab[];
 }
 
 const { tabs } = Astro.props;
 
 const sections = await Promise.all(
-    tabs
-        .map((tab) => tab.id)
-        .filter((id) => Astro.slots.has(id))
-        .map(async (id) => {
-            const content = await Astro.slots.render(id);
-            return { id, content };
-        }),
+	tabs
+		.map((tab) => tab.id)
+		.filter((id) => Astro.slots.has(id))
+		.map(async (id) => {
+			const content = await Astro.slots.render(id);
+			return { id, content };
+		}),
 );
 ---
 
 <nav>
-    <ul>
-        {
-            tabs.map((tab) => {
-                const Icon = tab.icon;
-                return (
-                    <li>
-                        <a data-tab-toggle-for={tab.id} href={`#${tab.id}`} class="tab-nav-link">
-                            <div class="icon">
-                                <Icon />
-                            </div>
-                            {tab.title}
-                        </a>
-                    </li>
-                );
-            })
-        }
-    </ul>
+	<ul>
+		{
+			tabs.map((tab) => {
+				const Icon = tab.icon;
+				return (
+					<li>
+						<a data-tab-toggle-for={tab.id} href={`#${tab.id}`} class="tab-nav-link">
+							<div class="icon">
+								<Icon />
+							</div>
+							{tab.title}
+						</a>
+					</li>
+				);
+			})
+		}
+	</ul>
 </nav>
 
 {sections.map((section) => <Fragment set:html={section.content} />)}
 
 <style>
-    nav ul {
-        display: flex;
-        justify-content: center;
-        padding: 0;
-        margin-bottom: 2rem;
-        list-style: none;
-        gap: 1rem;
-        padding-bottom: 1rem;
-        border-bottom: 2px solid currentColor;
+	nav ul {
+		display: flex;
+		justify-content: center;
+		padding: 0;
+		margin-bottom: 2rem;
+		list-style: none;
+		gap: 1rem;
+		padding-bottom: 1rem;
+		border-bottom: 2px solid currentColor;
 
-        li {
-            display: flex;
-            justify-content: stretch;
-            flex: 1 1;
-        }
+		li {
+			display: flex;
+			justify-content: stretch;
+			flex: 1 1;
+		}
 
-        @media (max-width: 600px) {
-            gap: 0.5rem;
-            padding-bottom: 0.5rem;
-        }
-    }
+		@media (max-width: 600px) {
+			gap: 0.5rem;
+			padding-bottom: 0.5rem;
+		}
+	}
 
-    nav ul li {
-        container-type: inline-size;
-        container-name: tab-nav-link;
+	nav ul li {
+		container-type: inline-size;
+		container-name: tab-nav-link;
 
-        @container tab-nav-link (width < 170px) {
-            .tab-nav-link {
-                font-size: 1rem;
-            }
+		@container tab-nav-link (width < 170px) {
+			.tab-nav-link {
+				font-size: 1rem;
+			}
 
-            .icon {
-                padding: 1rem;
-                font-size: 2rem;
-            }
-        }
-    }
+			.icon {
+				padding: 1rem;
+				font-size: 2rem;
+			}
+		}
+	}
 
-    .tab-nav-link {
-        text-align: center;
-        width: 100%;
-        padding: 1rem 2rem;
-        font-size: 1.5rem;
-        font-family: AU_Passata_bold, "opensans-bold", sans-serif;
-        text-decoration: none;
-        border-radius: 0.25rem;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 0.5rem;
+	.tab-nav-link {
+		text-align: center;
+		width: 100%;
+		padding: 1rem 2rem;
+		font-size: 1.5rem;
+		font-family: AU_Passata_bold, "opensans-bold", sans-serif;
+		text-decoration: none;
+		border-radius: 0.25rem;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.5rem;
 
-        &:not(.active):hover {
-            background-color: #ddd;
-        }
+		&:not(.active):hover {
+			background-color: #ddd;
+		}
 
-        .icon {
-            padding: 1.5rem;
-            border-radius: 100%;
-            background-color: var(--orange);
-            color: white;
-            font-size: 3rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-    }
+		.icon {
+			padding: 1.5rem;
+			border-radius: 100%;
+			background-color: var(--orange);
+			color: white;
+			font-size: 3rem;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+	}
 
-    .tab-nav-link.active {
-        background-color: var(--blue-600);
-        color: white;
+	.tab-nav-link.active {
+		background-color: var(--blue-600);
+		color: white;
 
-        .icon {
-            background-color: white;
-            color: var(--blue-600);
-        }
-    }
+		.icon {
+			background-color: white;
+			color: var(--blue-600);
+		}
+	}
 </style>
 
 <script>
-    const tabLinks = document.querySelectorAll<HTMLElement>("[data-tab-toggle-for]");
-    const sections = document.querySelectorAll<HTMLElement>("[data-tab-section]");
+	const tabLinks = document.querySelectorAll<HTMLElement>("[data-tab-toggle-for]");
+	const sections = document.querySelectorAll<HTMLElement>("[data-tab-section]");
 
-    function activateTab(id: string) {
-        // Deactivate all tabs and sections
-        tabLinks.forEach((link) => {
-            link.classList.toggle("active", link.dataset.tabToggleFor === id);
-        });
+	function activateTab(id: string) {
+		// Deactivate all tabs and sections
+		tabLinks.forEach((link) => {
+			link.classList.toggle("active", link.dataset.tabToggleFor === id);
+		});
 
-        sections.forEach((section) => {
-            section.classList.toggle("active", section.dataset.tabSection === id);
-        });
-    }
+		sections.forEach((section) => {
+			section.classList.toggle("active", section.dataset.tabSection === id);
+		});
+	}
 
-    tabLinks.forEach((link) => {
-        link.addEventListener("click", (e) => {
-            e.preventDefault();
-            const targetId = link.dataset.tabToggleFor!;
-            activateTab(targetId);
-            history.pushState(null, "", `#${targetId}`);
-        });
-    });
+	tabLinks.forEach((link) => {
+		link.addEventListener("click", (e) => {
+			e.preventDefault();
+			const targetId = link.dataset.tabToggleFor!;
+			activateTab(targetId);
+			history.pushState(null, "", `#${targetId}`);
+		});
+	});
 
-    // Activate the tab based on the URL hash on page load
-    const initialHash = window.location.hash.substring(1);
-    if (initialHash) {
-        activateTab(initialHash);
-    } else if (tabLinks.length > 0) {
-        // Activate the first tab by default if no hash is present
-        activateTab(tabLinks[0].dataset.tabToggleFor!);
-    }
+	// Activate the tab based on the URL hash on page load
+	const initialHash = window.location.hash.substring(1);
+	if (initialHash) {
+		activateTab(initialHash);
+	} else if (tabLinks.length > 0) {
+		// Activate the first tab by default if no hash is present
+		activateTab(tabLinks[0].dataset.tabToggleFor!);
+	}
 </script>

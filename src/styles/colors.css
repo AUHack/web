@@ -1,19 +1,19 @@
 :root {
-    --yellow: #F19C00;
-    
-    --orange: #D65B12;
-    --orange-600: #D24C15;
-    
-    --blue: #415B7D;
-    --blue-600: #364759;
-    --blue-900: #333E50;
-    --blue-950: #292B2C;
+	--yellow: #f19c00;
 
-    --green: #3c5d39;
+	--orange: #d65b12;
+	--orange-600: #d24c15;
 
-    /* Schedule colors */
-    --schedule-mandatory: var(--blue-600);
-    --schedule-food: var(--yellow);
-    --schedule-workshop: var(--green);
-    --schedule-event: var(--orange-600);
+	--blue: #415b7d;
+	--blue-600: #364759;
+	--blue-900: #333e50;
+	--blue-950: #292b2c;
+
+	--green: #3c5d39;
+
+	/* Schedule colors */
+	--schedule-mandatory: var(--blue-600);
+	--schedule-food: var(--yellow);
+	--schedule-workshop: var(--green);
+	--schedule-event: var(--orange-600);
 }

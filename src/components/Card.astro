@@ -1,52 +1,53 @@
 <article class="card">
-    <slot name="image" />
-    <div class="content">
-        <slot />
-    </div>
+	<slot name="image" />
+	<div class="content">
+		<slot />
+	</div>
 </article>
 
 <style>
-    article.card {
-        display: flex;
-        flex-direction: column;
-        background-color: var(--card-bg);
-        color: var(--card-color);
-        border-radius: 0.5rem;
-        
-        p, i {
-            font-size: 1rem;
-            line-height: 24px;
-        }
+	article.card {
+		display: flex;
+		flex-direction: column;
+		background-color: var(--card-bg);
+		color: var(--card-color);
+		border-radius: 0.5rem;
 
-        > img {
-            border-top-left-radius: 0.5rem;
-            border-top-right-radius: 0.5rem;
-            width: 100%;
-            height: auto;
-        }
+		p,
+		i {
+			font-size: 1rem;
+			line-height: 24px;
+		}
 
-        hr {
-            border-width: 0;
-            border-bottom-width: 1px;
-            margin: 1rem 0;
-        }
-    }
+		> img {
+			border-top-left-radius: 0.5rem;
+			border-top-right-radius: 0.5rem;
+			width: 100%;
+			height: auto;
+		}
 
-    .content {
-        padding: 1rem 2rem;
-    }
+		hr {
+			border-width: 0;
+			border-bottom-width: 1px;
+			margin: 1rem 0;
+		}
+	}
+
+	.content {
+		padding: 1rem 2rem;
+	}
 </style>
 
 <style is:global>
-    .section.white {
-        --card-bg: var(--orange);
-        --card-color: white;
-    }
+	.section.white {
+		--card-bg: var(--orange);
+		--card-color: white;
+	}
 
-    .section.yellow,
-    .section.blue,
-    .section.orange {
-        --card-bg: white;
-        --card-color: var(--blue-950);
-    }
+	.section.yellow,
+	.section.blue,
+	.section.orange {
+		--card-bg: white;
+		--card-color: var(--blue-950);
+	}
 </style>

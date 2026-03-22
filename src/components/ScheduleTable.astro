@@ -1,11 +1,11 @@
 ---
 interface Props {
-    headline: string;
-    items: Array<{
-        time: string;
-        event: string;
-        location: string;
-    }>;
+	headline: string;
+	items: Array<{
+		time: string;
+		event: string;
+		location: string;
+	}>;
 }
 
 const { headline, items } = Astro.props;
@@ -13,27 +13,29 @@ const { headline, items } = Astro.props;
 
 <h3>{headline}</h3>
 <table class="table">
-    <thead>
-        <tr>
-            <th style="width: 20%">Time</th>
-            <th style="width: 40%">Event</th>
-            <th style="width: 40%">Location</th>
-        </tr>
-    </thead>
-    <tbody>
-        {items.map((item) => (
-            <tr>
-                <td>{item.time}</td>
-                <td>{item.event}</td>
-                <td>{item.location}</td>
-            </tr>
-        ))}
-    </tbody>
+	<thead>
+		<tr>
+			<th style="width: 20%">Time</th>
+			<th style="width: 40%">Event</th>
+			<th style="width: 40%">Location</th>
+		</tr>
+	</thead>
+	<tbody>
+		{
+			items.map((item) => (
+				<tr>
+					<td>{item.time}</td>
+					<td>{item.event}</td>
+					<td>{item.location}</td>
+				</tr>
+			))
+		}
+	</tbody>
 </table>
 
 <style>
-    h3 {
-        margin-bottom: 1rem;
-        text-align: center;
-    }
+	h3 {
+		margin-bottom: 1rem;
+		text-align: center;
+	}
 </style>

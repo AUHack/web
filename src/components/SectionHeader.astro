@@ -1,7 +1,7 @@
 ---
 interface Props {
-    align?: "left" | "center" | "right";
-    ["as"]?: string;
+	align?: "left" | "center" | "right";
+	["as"]?: string;
 }
 
 const { as = "h2", align } = Astro.props;
@@ -9,40 +9,40 @@ const Tag = as;
 ---
 
 <header class:list={[align]}>
-    <Tag class:list={["headline"]}><slot /></Tag>
-    <hr>
-    <slot name="subtitle" />
+	<Tag class:list={["headline"]}><slot /></Tag>
+	<hr />
+	<slot name="subtitle" />
 </header>
 
 <style>
-    header {
-        width: 100%;
-        text-align: right; /* If the is places inside a reverse section, the text-align will be flipped */
-        margin-bottom: 3.25rem;
+	header {
+		width: 100%;
+		text-align: right; /* If the is places inside a reverse section, the text-align will be flipped */
+		margin-bottom: 3.25rem;
 
-        &.left {
-            text-align: left;
-        }
+		&.left {
+			text-align: left;
+		}
 
-        &.center {
-            text-align: center;
-        }
+		&.center {
+			text-align: center;
+		}
 
-        &.right {
-            text-align: right;
-        }
-        
-        .headline {
-            font-size: 3.5rem;
-            text-transform: uppercase;
+		&.right {
+			text-align: right;
+		}
 
-            &:target {
-                scroll-margin-top: 128px;
-            }
-        }
+		.headline {
+			font-size: 3.5rem;
+			text-transform: uppercase;
 
-        hr {
-            color: inherit;
-        }
-    }
+			&:target {
+				scroll-margin-top: 128px;
+			}
+		}
+
+		hr {
+			color: inherit;
+		}
+	}
 </style>

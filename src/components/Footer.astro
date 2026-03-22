@@ -8,69 +8,70 @@ const year = new Date().getFullYear();
 ---
 
 <Section as="footer" color="blue" reverse id="footer">
-    <h3>Contact</h3>
+	<h3>Contact</h3>
 
-    <ul class="contacts">
-        <li>
-            <a href="mailto:contact@auhack.org">
-                <EnvelopeFill />
-            </a>
-        </li>
-        <li>
-            <a href="https://www.facebook.com/AUHack">
-                <FacebookIcon />
-            </a>
-        </li>
-        <li>
-            <a href="https://www.linkedin.com/company/auhack/">
-                <LinkedInIcon />
-            </a>
-        </li>
-    </ul>
+	<ul class="contacts">
+		<li>
+			<a href="mailto:contact@auhack.org">
+				<EnvelopeFill />
+			</a>
+		</li>
+		<li>
+			<a href="https://www.facebook.com/AUHack">
+				<FacebookIcon />
+			</a>
+		</li>
+		<li>
+			<a href="https://www.linkedin.com/company/auhack/">
+				<LinkedInIcon />
+			</a>
+		</li>
+	</ul>
 
-    <hr>
+	<hr />
 
-    <p>
-        AUHack © 2016-{year} | <a href="mailto:contact@auhack.org">contact@auhack.org</a> | <a href="/code-of-conduct">Code of Conduct</a>
-        <br>
-        Made with ❤️ by real humans at the AUHack Team.
-    </p>
+	<p>
+		AUHack © 2016-{year} | <a href="mailto:contact@auhack.org">contact@auhack.org</a> | <a href="/code-of-conduct"
+			>Code of Conduct</a
+		>
+		<br />
+		Made with ❤️ by real humans at the AUHack Team.
+	</p>
 </Section>
 
-
 <style>
-    .contacts {
-        display: flex;
-        gap: 2rem;
-        list-style: none;
-        color: inherit;
-        text-decoration: none;
-        
-        svg {
-            width: 64px;
-            height: 64px;
-            
-            &:hover {
-                transform: scale(1.1);
-            }
-        }
-    }
+	.contacts {
+		display: flex;
+		gap: 2rem;
+		list-style: none;
+		color: inherit;
+		text-decoration: none;
 
-    hr {
-        width: 100%;
-        color: currentColor;
-        margin: 0;
-    }
+		svg {
+			width: 64px;
+			height: 64px;
 
-    .container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 2rem;
-        text-align: center;
-    }
+			&:hover {
+				transform: scale(1.1);
+			}
+		}
+	}
 
-    footer.section {
-        padding-bottom: 4rem;
-    }
+	hr {
+		width: 100%;
+		color: currentColor;
+		margin: 0;
+	}
+
+	.container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 2rem;
+		text-align: center;
+	}
+
+	footer.section {
+		padding-bottom: 4rem;
+	}
 </style>

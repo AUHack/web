@@ -1,27 +1,33 @@
 ---
-import { timeToMinutes, parallelizeEvents, sortIntervalEvents, type IntervalEvent, type ImmediateEvent } from '../utils/schedule';
+import {
+	timeToMinutes,
+	parallelizeEvents,
+	sortIntervalEvents,
+	type IntervalEvent,
+	type ImmediateEvent,
+} from "../utils/schedule";
 
 interface Props {
-    headline: string;
-    date: Date;
-    items: Array<IntervalEvent | ImmediateEvent>;
+	headline: string;
+	date: Date;
+	items: Array<IntervalEvent | ImmediateEvent>;
 }
 
 const { items = [], date } = Astro.props;
 
 const groupededImmediateEvents = Object.groupBy(
-    items.filter((item): item is ImmediateEvent => !('end' in item)),
-    (item) => item.start
+	items.filter((item): item is ImmediateEvent => !("end" in item)),
+	(item) => item.start,
 );
 
 const processedItems = items
-    .filter((item): item is IntervalEvent => 'end' in item)
-    .map((item) => ({
-        ...item,
-        startMin: timeToMinutes(item.start),
-        endMin: timeToMinutes(item.end)
-    }))
-    .sort(sortIntervalEvents);
+	.filter((item): item is IntervalEvent => "end" in item)
+	.map((item) => ({
+		...item,
+		startMin: timeToMinutes(item.start),
+		endMin: timeToMinutes(item.end),
+	}))
+	.sort(sortIntervalEvents);
 
 const minTime = processedItems.length > 0 ? Math.min(...processedItems.map((item) => item.startMin)) : 0;
 const maxTime = processedItems.length > 0 ? Math.max(...processedItems.map((item) => item.endMin)) : 0;
@@ -32,8 +38,8 @@ const tracks = parallelizeEvents(processedItems);
 
 const hours: string[] = [];
 for (let min = minTime; min <= maxTime; min += 60) {
-    const hour = Math.floor(min / 60);
-    hours.push(hour.toString().padStart(2, '0') + ':00');
+	const hour = Math.floor(min / 60);
+	hours.push(hour.toString().padStart(2, "0") + ":00");
 }
 
 const now = Math.floor(Date.now() / 60000) % (24 * 60); // Current time in minutes since midnight
@@ -47,317 +53,339 @@ const widthByHours = (totalDuration / 60) * HOUR_MIN_WIDTH;
 
 const scheduleWidth = Math.max(widthByHours, MIN_SCHEDULE_WIDTH);
 
-const maxImmediateEventCount = Math.max(...Object.values(groupededImmediateEvents).map(events => events?.length || 0), 0);
+const maxImmediateEventCount = Math.max(
+	...Object.values(groupededImmediateEvents).map((events) => events?.length || 0),
+	0,
+);
 ---
 
 <section>
-    <h3>{Astro.props.headline}</h3>
-    <div class="schedule-wrapper">
-        <div class="schedule-tracks" style={`width: ${scheduleWidth}px;`}>
-            <div class="schedule-ticks">
-                {hours.map((hour) => (
-                    <div class="schedule-tick" style={`left: ${((timeToMinutes(hour) - minTime) / totalDuration) * 100}%`}>
-                        {hour}
-                    </div>
-                ))}
-            </div>
-            {tracks.map((track) => (
-                <div class="schedule-track">
-                    {track.map((item, index) => {
-                        const leftPercentage = ((item.startMin - minTime) / totalDuration) * 100;
-                        const widthPercentage = ((item.endMin - item.startMin) / totalDuration) * 100;
-                        const previousItem = track[index - 1];
-                        const nextItem = track[index + 1];
-                        const touchesPrevious = previousItem?.endMin === item.startMin;
-                        const touchesNext = nextItem?.startMin === item.endMin;
+	<h3>{Astro.props.headline}</h3>
+	<div class="schedule-wrapper">
+		<div class="schedule-tracks" style={`width: ${scheduleWidth}px;`}>
+			<div class="schedule-ticks">
+				{
+					hours.map((hour) => (
+						<div
+							class="schedule-tick"
+							style={`left: ${((timeToMinutes(hour) - minTime) / totalDuration) * 100}%`}
+						>
+							{hour}
+						</div>
+					))
+				}
+			</div>
+			{
+				tracks.map((track) => (
+					<div class="schedule-track">
+						{track.map((item, index) => {
+							const leftPercentage = ((item.startMin - minTime) / totalDuration) * 100;
+							const widthPercentage = ((item.endMin - item.startMin) / totalDuration) * 100;
+							const previousItem = track[index - 1];
+							const nextItem = track[index + 1];
+							const touchesPrevious = previousItem?.endMin === item.startMin;
+							const touchesNext = nextItem?.startMin === item.endMin;
 
-                        return (
-                            <div
-                                data-schedule-popup
-                                data-event-type={item.type}
-                                role="button"
-                                tabindex="0"
-                                class:list={{
-                                    'schedule-event': true,
-                                    'schedule-block': true,
-                                    'schedule-block--touches-left': touchesPrevious,
-                                    'schedule-block--touches-right': touchesNext
-                                }}
-                                style={`left: ${leftPercentage}%; width: ${widthPercentage}%;`}
-                                title={`${item.start} - ${item.end}: ${item.event} (${item.location})`}
-                            >
-                                <div class="event-time">{item.start} - {item.end}</div>
-                                <div class="event-name">{item.event}</div>
-                                {item.location && <div class="event-location">{item.location}</div>}
-                            </div>
-                        );
-                    })}
-                </div>
-            ))}
-            <div class="schedule-immediate">
-                {Object.entries(groupededImmediateEvents).map(([time, events]) => {
-                    if (!events?.length) return null;
-                    
-                    const leftPercentage = ((timeToMinutes(time) - minTime) / totalDuration) * 100;
+							return (
+								<div
+									data-schedule-popup
+									data-event-type={item.type}
+									role="button"
+									tabindex="0"
+									class:list={{
+										"schedule-event": true,
+										"schedule-block": true,
+										"schedule-block--touches-left": touchesPrevious,
+										"schedule-block--touches-right": touchesNext,
+									}}
+									style={`left: ${leftPercentage}%; width: ${widthPercentage}%;`}
+									title={`${item.start} - ${item.end}: ${item.event} (${item.location})`}
+								>
+									<div class="event-time">
+										{item.start} - {item.end}
+									</div>
+									<div class="event-name">{item.event}</div>
+									{item.location && <div class="event-location">{item.location}</div>}
+								</div>
+							);
+						})}
+					</div>
+				))
+			}
+			<div class="schedule-immediate">
+				{
+					Object.entries(groupededImmediateEvents).map(([time, events]) => {
+						if (!events?.length) return null;
 
-                    return (
-                        <div
-                            class="schedule-immediate-group"
-                            style={`left: ${leftPercentage}%; width: max-content; min-width: 80px;`}
-                        >
-                            {events.map(event => (
-                                <div
-                                    class="schedule-immediate-event schedule-event"
-                                    data-schedule-popup
-                                    data-event-type={event.type}
-                                    role="button"
-                                    tabindex="0"
-                                    title={`${time}: ${event.event} (${event.location})`}
-                                >
-                                    <div class="event-time">{time}</div>
-                                    <div class="event-name">{event.event}</div>
-                                </div>
-                            ))}
-                        </div>
-                    );
-                })}
-            </div>
-            <div class="schedule-now" hidden={!showNowCursor} style={`left: ${((now - minTime) / totalDuration) * 100}%`}></div>
-        </div>
-    </div>
+						const leftPercentage = ((timeToMinutes(time) - minTime) / totalDuration) * 100;
+
+						return (
+							<div
+								class="schedule-immediate-group"
+								style={`left: ${leftPercentage}%; width: max-content; min-width: 80px;`}
+							>
+								{events.map((event) => (
+									<div
+										class="schedule-immediate-event schedule-event"
+										data-schedule-popup
+										data-event-type={event.type}
+										role="button"
+										tabindex="0"
+										title={`${time}: ${event.event} (${event.location})`}
+									>
+										<div class="event-time">{time}</div>
+										<div class="event-name">{event.event}</div>
+									</div>
+								))}
+							</div>
+						);
+					})
+				}
+			</div>
+			<div
+				class="schedule-now"
+				hidden={!showNowCursor}
+				style={`left: ${((now - minTime) / totalDuration) * 100}%`}
+			>
+			</div>
+		</div>
+	</div>
 </section>
 
 <script>
-const blocks = document.querySelectorAll('[data-schedule-popup]');
-const VIEWPORT_MARGIN = 0;
+	const blocks = document.querySelectorAll("[data-schedule-popup]");
+	const VIEWPORT_MARGIN = 0;
 
-blocks.forEach(block => {
-    let clone: HTMLElement | null = null;
-    const wrapper = block.closest('.schedule-wrapper') as HTMLElement | null;
+	blocks.forEach((block) => {
+		let clone: HTMLElement | null = null;
+		const wrapper = block.closest(".schedule-wrapper") as HTMLElement | null;
 
-    const removeClone = () => {
-        if (clone) {
-            clone.remove();
-            clone = null;
-        }
-    };
+		const removeClone = () => {
+			if (clone) {
+				clone.remove();
+				clone = null;
+			}
+		};
 
-    const showClone = () => {
-        const rect = block.getBoundingClientRect();
-        const wrapperRect = wrapper?.getBoundingClientRect();
-        removeClone();
-        clone = block.cloneNode(true) as HTMLElement;
+		const showClone = () => {
+			const rect = block.getBoundingClientRect();
+			const wrapperRect = wrapper?.getBoundingClientRect();
+			removeClone();
+			clone = block.cloneNode(true) as HTMLElement;
 
-        clone.classList.remove('schedule-block--touches-left', 'schedule-block--touches-right');
-        
-        clone.style.position = 'fixed';
-        clone.style.top = `${rect.top}px`;
-        clone.style.left = `${rect.left}px`;
-        clone.style.width = 'max-content';
-        clone.style.minWidth = `${rect.width}px`;
-        clone.style.height = `${rect.height}px`;
-        clone.style.minHeight = `${rect.height}px`;
-        clone.style.maxWidth = `calc(100vw - ${VIEWPORT_MARGIN * 2}px)`;
-        clone.style.zIndex = '9999';
-        clone.style.pointerEvents = 'none';
-        clone.style.boxShadow = '0 4px 12px rgba(0,0,0,0.2)';
-        
-        document.body.appendChild(clone);
+			clone.classList.remove("schedule-block--touches-left", "schedule-block--touches-right");
 
-        const cloneRect = clone.getBoundingClientRect();
-        const minLeft = wrapperRect ? (wrapperRect.left + VIEWPORT_MARGIN) : VIEWPORT_MARGIN;
-        const maxLeft = wrapperRect
-            ? (wrapperRect.right - cloneRect.width - VIEWPORT_MARGIN)
-            : (window.innerWidth - cloneRect.width - VIEWPORT_MARGIN);
-        const maxTop = window.innerHeight - cloneRect.height - VIEWPORT_MARGIN;
+			clone.style.position = "fixed";
+			clone.style.top = `${rect.top}px`;
+			clone.style.left = `${rect.left}px`;
+			clone.style.width = "max-content";
+			clone.style.minWidth = `${rect.width}px`;
+			clone.style.height = `${rect.height}px`;
+			clone.style.minHeight = `${rect.height}px`;
+			clone.style.maxWidth = `calc(100vw - ${VIEWPORT_MARGIN * 2}px)`;
+			clone.style.zIndex = "9999";
+			clone.style.pointerEvents = "none";
+			clone.style.boxShadow = "0 4px 12px rgba(0,0,0,0.2)";
 
-        const clampedLeft = Math.min(Math.max(rect.left, minLeft), Math.max(minLeft, maxLeft));
-        const clampedTop = Math.min(Math.max(rect.top, VIEWPORT_MARGIN), Math.max(VIEWPORT_MARGIN, maxTop));
+			document.body.appendChild(clone);
 
-        clone.style.left = `${clampedLeft}px`;
-        clone.style.top = `${clampedTop}px`;
-    };
+			const cloneRect = clone.getBoundingClientRect();
+			const minLeft = wrapperRect ? wrapperRect.left + VIEWPORT_MARGIN : VIEWPORT_MARGIN;
+			const maxLeft = wrapperRect
+				? wrapperRect.right - cloneRect.width - VIEWPORT_MARGIN
+				: window.innerWidth - cloneRect.width - VIEWPORT_MARGIN;
+			const maxTop = window.innerHeight - cloneRect.height - VIEWPORT_MARGIN;
 
-    const handleKeyDown = (event: Event) => {
-        const keyEvent = event as KeyboardEvent;
-        if (keyEvent.key === 'Enter' || keyEvent.key === ' ') {
-            event.preventDefault();
-            showClone();
-        }
-    };
+			const clampedLeft = Math.min(Math.max(rect.left, minLeft), Math.max(minLeft, maxLeft));
+			const clampedTop = Math.min(Math.max(rect.top, VIEWPORT_MARGIN), Math.max(VIEWPORT_MARGIN, maxTop));
 
-    block.addEventListener('mouseenter', showClone);
-    block.addEventListener('click', showClone);
-    block.addEventListener('mouseleave', removeClone);
-    block.addEventListener('keydown', handleKeyDown);
-    wrapper?.addEventListener('scroll', removeClone, { passive: true });
-    window.addEventListener('scroll', removeClone, { passive: true });
-});
+			clone.style.left = `${clampedLeft}px`;
+			clone.style.top = `${clampedTop}px`;
+		};
+
+		const handleKeyDown = (event: Event) => {
+			const keyEvent = event as KeyboardEvent;
+			if (keyEvent.key === "Enter" || keyEvent.key === " ") {
+				event.preventDefault();
+				showClone();
+			}
+		};
+
+		block.addEventListener("mouseenter", showClone);
+		block.addEventListener("click", showClone);
+		block.addEventListener("mouseleave", removeClone);
+		block.addEventListener("keydown", handleKeyDown);
+		wrapper?.addEventListener("scroll", removeClone, { passive: true });
+		window.addEventListener("scroll", removeClone, { passive: true });
+	});
 </script>
 
 <style define:vars={{ immediateEventCount: maxImmediateEventCount }}>
-    section {
-        margin-bottom: 2rem;
-    }
+	section {
+		margin-bottom: 2rem;
+	}
 
-    .schedule-wrapper {
-        width: 100%;
-        overflow-x: auto;
-        padding: 1rem 0;
-    }
+	.schedule-wrapper {
+		width: 100%;
+		overflow-x: auto;
+		padding: 1rem 0;
+	}
 
-    .schedule-ticks {
-        width: 100%;
-        height: 1.5rem;
-    }
+	.schedule-ticks {
+		width: 100%;
+		height: 1.5rem;
+	}
 
-    .schedule-tick {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        border-left: 1px solid rgb(from currentColor r g b / 0.2);
-        padding-left: 0.25rem;
-        font-size: 0.75rem;
-    }
+	.schedule-tick {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		border-left: 1px solid rgb(from currentColor r g b / 0.2);
+		padding-left: 0.25rem;
+		font-size: 0.75rem;
+	}
 
-    .schedule-now {
-        position: absolute;
-        top: 1rem;
-        bottom: 0;
-        border-left: 2px solid rgb(from var(--orange-600) r g b / 0.7);
-    }
-    
-    .schedule-tracks {
-        position: relative;
-        min-width: 970px;
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-    }
+	.schedule-now {
+		position: absolute;
+		top: 1rem;
+		bottom: 0;
+		border-left: 2px solid rgb(from var(--orange-600) r g b / 0.7);
+	}
 
-    .schedule-track {
-        position: relative;
-        height: 4.5rem;
-        width: 100%;
-    }
+	.schedule-tracks {
+		position: relative;
+		min-width: 970px;
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
 
-    .schedule-event {
-        &[data-event-type="mandatory"] {
-            background-color: var(--schedule-mandatory);
-            color: white;
+	.schedule-track {
+		position: relative;
+		height: 4.5rem;
+		width: 100%;
+	}
 
-            body:has(input[name="mandatory"]:not(:checked)) & { /* Logic for toggling events on/off see ScheduleLegend.astro for actual inputs */
-                display: none;
-            }
-        }
-        
-        &[data-event-type="food"] {
-            background-color: var(--schedule-food);
-            color: var(--blue-950);
+	.schedule-event {
+		&[data-event-type="mandatory"] {
+			background-color: var(--schedule-mandatory);
+			color: white;
 
-            body:has(input[name="food"]:not(:checked)) & { /* Logic for toggling events on/off see ScheduleLegend.astro for actual inputs */
-                display: none;
-            }
-        }
-        
-        &[data-event-type="workshop"] {
-            background-color: var(--schedule-workshop);
-            color: white;
+			body:has(input[name="mandatory"]:not(:checked)) & {
+				/* Logic for toggling events on/off see ScheduleLegend.astro for actual inputs */
+				display: none;
+			}
+		}
 
-            body:has(input[name="workshop"]:not(:checked)) & { /* Logic for toggling events on/off see ScheduleLegend.astro for actual inputs */
-                display: none;
-            }
-        }
+		&[data-event-type="food"] {
+			background-color: var(--schedule-food);
+			color: var(--blue-950);
 
-        &[data-event-type="event"] {
-            background-color: var(--schedule-event);
-            color: white;
+			body:has(input[name="food"]:not(:checked)) & {
+				/* Logic for toggling events on/off see ScheduleLegend.astro for actual inputs */
+				display: none;
+			}
+		}
 
-            body:has(input[name="event"]:not(:checked)) & { /* Logic for toggling events on/off see ScheduleLegend.astro for actual inputs */
-                display: none;
-            }
-        }
-    }
+		&[data-event-type="workshop"] {
+			background-color: var(--schedule-workshop);
+			color: white;
 
-    .schedule-block {
-        position: absolute;
-        top: 0;
-        height: 100%;
-        border-radius: 4px;
-        padding: 0.25rem 0.5rem;
-        box-sizing: border-box;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        overflow: hidden;
-        border: 1px solid rgba(255,255,255,0.2);
-        gap: 2px;
-    }
+			body:has(input[name="workshop"]:not(:checked)) & {
+				/* Logic for toggling events on/off see ScheduleLegend.astro for actual inputs */
+				display: none;
+			}
+		}
 
-    .schedule-block--touches-left {
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
-    }
+		&[data-event-type="event"] {
+			background-color: var(--schedule-event);
+			color: white;
 
-    .schedule-block--touches-right {
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 0;
-    }
+			body:has(input[name="event"]:not(:checked)) & {
+				/* Logic for toggling events on/off see ScheduleLegend.astro for actual inputs */
+				display: none;
+			}
+		}
+	}
 
-    .event-time {
-        font-size: 0.7rem;
-        font-weight: 500;
-        opacity: 0.9;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;    
-    }
+	.schedule-block {
+		position: absolute;
+		top: 0;
+		height: 100%;
+		border-radius: 4px;
+		padding: 0.25rem 0.5rem;
+		box-sizing: border-box;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		overflow: hidden;
+		border: 1px solid rgba(255, 255, 255, 0.2);
+		gap: 2px;
+	}
 
-    .event-name {
-        font-size: 0.85rem;
-        font-weight: 700;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
+	.schedule-block--touches-left {
+		border-top-left-radius: 0;
+		border-bottom-left-radius: 0;
+	}
 
-    .event-location {
-        font-size: 0.7rem;
-        opacity: 0.8;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        margin-top: auto;
-    }
+	.schedule-block--touches-right {
+		border-top-right-radius: 0;
+		border-bottom-right-radius: 0;
+	}
 
-    .schedule-immediate {
-        width: 100%;
-        height: calc(1.8rem * var(--immediateEventCount));
+	.event-time {
+		font-size: 0.7rem;
+		font-weight: 500;
+		opacity: 0.9;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
 
-    }
+	.event-name {
+		font-size: 0.85rem;
+		font-weight: 700;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
 
-    .schedule-immediate-group {
-        position: absolute;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        gap: 0.25rem;
-        top: 0;
-        bottom: 0;
-        border-left: 1.5px solid var(--yellow);
-        padding-left: 0.25rem;
-        pointer-events: none;
-        touch-action: none;
-    }
+	.event-location {
+		font-size: 0.7rem;
+		opacity: 0.8;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		margin-top: auto;
+	}
 
-    .schedule-immediate-event {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        border-radius: 4px;
-        padding: 0.25rem 0.5rem;
+	.schedule-immediate {
+		width: 100%;
+		height: calc(1.8rem * var(--immediateEventCount));
+	}
 
-        pointer-events: auto;
-        touch-action: auto;
-    }
+	.schedule-immediate-group {
+		position: absolute;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
+		gap: 0.25rem;
+		top: 0;
+		bottom: 0;
+		border-left: 1.5px solid var(--yellow);
+		padding-left: 0.25rem;
+		pointer-events: none;
+		touch-action: none;
+	}
+
+	.schedule-immediate-event {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		border-radius: 4px;
+		padding: 0.25rem 0.5rem;
+
+		pointer-events: auto;
+		touch-action: auto;
+	}
 </style>

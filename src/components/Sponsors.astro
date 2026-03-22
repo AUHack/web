@@ -1,45 +1,51 @@
 <div>
-    {Astro.slots.has("diamond") && (
-        <ul class="diamond">
-            <slot name="diamond" />
-        </ul>
-    )}
-    {Astro.slots.has("gold") && (
-        <ul class="gold">
-            <slot name="gold" />
-        </ul>
-    )}
-    {Astro.slots.has("silver") && (
-        <ul class="silver">
-            <slot name="silver" />
-        </ul>
-    )}
+	{
+		Astro.slots.has("diamond") && (
+			<ul class="diamond">
+				<slot name="diamond" />
+			</ul>
+		)
+	}
+	{
+		Astro.slots.has("gold") && (
+			<ul class="gold">
+				<slot name="gold" />
+			</ul>
+		)
+	}
+	{
+		Astro.slots.has("silver") && (
+			<ul class="silver">
+				<slot name="silver" />
+			</ul>
+		)
+	}
 </div>
 
 <style>
-    div {
-        display: flex;
-        flex-direction: column;
-    }
+	div {
+		display: flex;
+		flex-direction: column;
+	}
 
-    ul {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 2rem;
-        justify-content: space-around;
-        list-style: none;
-        padding: 2rem 0;
+	ul {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 2rem;
+		justify-content: space-around;
+		list-style: none;
+		padding: 2rem 0;
 
-        &:first-of-type {
-            padding-top: 0;
-        }
+		&:first-of-type {
+			padding-top: 0;
+		}
 
-        &:last-of-type {
-            padding-bottom: 0;
-        }
-    }
+		&:last-of-type {
+			padding-bottom: 0;
+		}
+	}
 
-    ul + ul {
-        border-top: 1px solid var(--section-color);
-    }
+	ul + ul {
+		border-top: 1px solid var(--section-color);
+	}
 </style>

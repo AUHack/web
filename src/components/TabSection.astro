@@ -1,27 +1,27 @@
 ---
 interface Props {
-    slot: string;
-    ["as"]?: string;
+	slot: string;
+	["as"]?: string;
 }
 
 const { slot: id, as: Tag = "article" } = Astro.props;
 ---
 
 <Tag
-    {...{
-        id,
-        ["data-tab-section"]: id,
-    }}
+	{...{
+		id,
+		["data-tab-section"]: id,
+	}}
 >
-    <slot />
+	<slot />
 </Tag>
 
 <style>
-    [data-tab-section] {
-        display: none;
-    }
+	[data-tab-section] {
+		display: none;
+	}
 
-    [data-tab-section].active {
-        display: block;
-    }
+	[data-tab-section].active {
+		display: block;
+	}
 </style>

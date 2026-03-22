@@ -1,96 +1,93 @@
 ---
-import type { HTMLAttributes } from 'astro/types';
+import type { HTMLAttributes } from "astro/types";
 
-interface Props extends HTMLAttributes<'section'> {
-    id: string;
-    reverse?: boolean;
-    color: 'orange' | 'yellow' | 'white' | 'blue';
-    ["as"]?: string;
+interface Props extends HTMLAttributes<"section"> {
+	id: string;
+	reverse?: boolean;
+	color: "orange" | "yellow" | "white" | "blue";
+	["as"]?: string;
 }
 
 const { reverse = false, class: cl, color, as = "section", ...rest } = Astro.props;
 const Tag = as;
 ---
 
-<Tag
-    class:list={["section", reverse && "reverse", color]}
-    {...rest}
->
-    <slot name="outer" />
-    <div class:list={["container", cl]} {...rest}>
-        <slot />
-    </div>
+<Tag class:list={["section", reverse && "reverse", color]} {...rest}>
+	<slot name="outer" />
+	<div class:list={["container", cl]} {...rest}>
+		<slot />
+	</div>
 </Tag>
 
 <style>
-    .section.orange {
-        --section-bg-color: var(--orange);
-        --section-color: white;
-        --figure-url: url("/img/figures/orange_bottom_right_triangle.svg");
-        --reverse-figure-url: url("/img/figures/orange_bottom_left_triangle.svg");
-    }
+	.section.orange {
+		--section-bg-color: var(--orange);
+		--section-color: white;
+		--figure-url: url("/img/figures/orange_bottom_right_triangle.svg");
+		--reverse-figure-url: url("/img/figures/orange_bottom_left_triangle.svg");
+	}
 
-    .section.yellow {
-        --section-bg-color: var(--yellow);
-        --section-color: var(--blue-900);
-        --figure-url: url("/img/figures/yellow_bottom_right_triangle.svg");
-        --reverse-figure-url: url("/img/figures/yellow_bottom_left_triangle.svg");
-    }
+	.section.yellow {
+		--section-bg-color: var(--yellow);
+		--section-color: var(--blue-900);
+		--figure-url: url("/img/figures/yellow_bottom_right_triangle.svg");
+		--reverse-figure-url: url("/img/figures/yellow_bottom_left_triangle.svg");
+	}
 
-    .section.white {
-        --section-bg-color: white;
-        --section-color: var(--blue-900);
-        --figure-url: url("/img/figures/white_bottom_right_triangle.svg");
-        --reverse-figure-url: url("/img/figures/white_bottom_left_triangle.svg");
-    }
+	.section.white {
+		--section-bg-color: white;
+		--section-color: var(--blue-900);
+		--figure-url: url("/img/figures/white_bottom_right_triangle.svg");
+		--reverse-figure-url: url("/img/figures/white_bottom_left_triangle.svg");
+	}
 
-    .section.blue {
-        --section-bg-color: var(--blue-600);
-        --section-color: white;
-        --figure-url: url("/img/figures/gray_bottom_right_triangle.svg");
-        --reverse-figure-url: url("/img/figures/gray_bottom_left_triangle.svg");
-    }
-    
-    .section {
-        background-color: var(--section-bg-color);
-        color: var(--section-color);
-        padding-bottom: 8em;
+	.section.blue {
+		--section-bg-color: var(--blue-600);
+		--section-color: white;
+		--figure-url: url("/img/figures/gray_bottom_right_triangle.svg");
+		--reverse-figure-url: url("/img/figures/gray_bottom_left_triangle.svg");
+	}
 
-        @media (max-width: 612px) {
-            padding-bottom: 4em;
-        }
+	.section {
+		background-color: var(--section-bg-color);
+		color: var(--section-color);
+		padding-bottom: 8em;
 
-        &::before {
-            background-image: var(--figure-url);
-            background-repeat: no-repeat;
-            background-size: 100% 100%;
-            display: block;
-            position: relative;
-            width: 100%;
-            content: "";
-            left: 0;
-            top: -4em;
-            height: 4em;
-            z-index: 0;
+		@media (max-width: 612px) {
+			padding-bottom: 4em;
+		}
 
-            @media (max-width: 612px) {
-                height: 2em;
-                top: -2em;
-            }
-        }
+		&::before {
+			background-image: var(--figure-url);
+			background-repeat: no-repeat;
+			background-size: 100% 100%;
+			display: block;
+			position: relative;
+			width: 100%;
+			content: "";
+			left: 0;
+			top: -4em;
+			height: 4em;
+			z-index: 0;
 
-        &.reverse::before {
-            background-image: var(--reverse-figure-url);
-        }
+			@media (max-width: 612px) {
+				height: 2em;
+				top: -2em;
+			}
+		}
 
-        &:target {
-            scroll-margin-top: 160px;
-        }
-    }
+		&.reverse::before {
+			background-image: var(--reverse-figure-url);
+		}
+
+		&:target {
+			scroll-margin-top: 160px;
+		}
+	}
 </style>
 
 <style is:global>
-    .section.reverse > .container header {
-        text-align: left;
-    }
+	.section.reverse > .container header {
+		text-align: left;
+	}
 </style>
