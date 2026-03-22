@@ -1,10 +1,7 @@
 ---
-import Header from "../components/Header.astro";
-import Navbar from "../components/Navbar.astro";
 import Section from "../components/Section.astro";
 import SectionHeader from "../components/SectionHeader.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Footer from "../components/Footer.astro";
 import Tabs from "../components/Tabs.astro";
 import TrainFrontIcon from "../components/Icons/train-front-fill.svg";
 import PinMapIcon from "../components/Icons/pin-map-fill.svg";
@@ -13,99 +10,94 @@ import SendIcon from "../components/Icons/send-fill.svg";
 import TabSection from "../components/TabSection.astro";
 ---
 
-<BaseLayout title="Travel">
-    <Navbar
-        leftItems={[
-            { name: "Location", href: "#location" },
-            { name: "Train", href: "#train" },
-            { name: "Car", href: "#car" },
-            { name: "Plane", href: "#plane" },
-        ]}
-    />
+<BaseLayout
+	pageTitle="Travel"
+	navbar={{
+		leftItems: [
+			{ name: "Location", href: "#location" },
+			{ name: "Train", href: "#train" },
+			{ name: "Car", href: "#car" },
+			{ name: "Plane", href: "#plane" },
+		],
+	}}
+	header={{ title: "AUHack 2026", subtitle: "Travel Information" }}
+>
+	<Section color="white" id="location">
+		<SectionHeader>How to get to AUHack?</SectionHeader>
 
-    <Header title="AUHack 2026" subtitle="Travel Information" />
+		<Tabs
+			tabs={[
+				{ title: "Location", id: "location", icon: PinMapIcon },
+				{ title: "Train", id: "train", icon: TrainFrontIcon },
+				{ title: "Car", id: "car", icon: CarIcon },
+				{ title: "Plane", id: "plane", icon: SendIcon },
+			]}
+		>
+			<TabSection slot="location">
+				<h4>Location</h4>
+				<p>
+					The address of the venue building is: <br />Finlandsgade 21, 8200 Aarhus N, Denmark
+				</p>
+				<p>You will recognize the entrance by AUHack signs outside.</p>
+				<img
+					style="max-width: 100%;"
+					src="img/AUHack-map.jpg"
+					alt="Entrance and parking to AUHack. Helsingforsgade 12, 8200 Aarhus N"
+				/>
+			</TabSection>
+			<TabSection slot="train">
+				<h4>Train</h4>
+				{/* TODO: update train link */}
+				<p>
+					Take the train to <i>Aarhus Hovedbanegård</i>. <br />
+					You can then take a <a
+						href="https://maps.app.goo.gl/?link=https://goo.gl/maps/8paNXkFrkUB2?utm_source%3Dapp-invite%26mt%3D8%26pt%3D9008%26utm_medium%3DSIMPLE%26utm_campaign%3Ds2e-ai%26ct%3Ds2e-ai&apn=com.google.android.apps.maps&amv=703000000&isi=585027354&ibi=com.google.Maps&ius=comgooglemapsurl&utm_source=app-invite&mt=8&pt=9008&utm_medium=SIMPLE&utm_campaign=s2e-ai&ct=s2e-ai&invitation_id=493454522602-04fc0b35-537e-4634-9917-f520fb424ae1"
+						target="_blank">bus</a
+					> or walk to the venue.
+				</p>
+			</TabSection>
+			<TabSection slot="car">
+				<h4>Car</h4>
+				<p>Navigate to Finlandsgade 21, 8200 Aarhus N, Denmark.</p>
+				<p>
+					Park your car somewhere, preferable on the roof of
+					<a href="https://drive.google.com/open?id=1i-oK1c3tjav_m6Jq1w0YTfg8s_M&usp=sharing" target="_blank"
+						>Storcenter Nord</a
+					>.
+				</p>
+			</TabSection>
+			<TabSection slot="plane">
+				<h4>Plane</h4>
+				<p>
+					You have 4 options: Copenhagen, Billund, Tirstrup and Aalborg. Billund and Copenhagen are likely
+					preferred, since they have most connecting flights.
+				</p>
+				<p>
+					If you arrive at <b>Copenhagen Airport</b>, then take the train to Aarhus H and then bus 2A to the
+					venue,
+					<a
+						href="https://maps.app.goo.gl/?link=https://goo.gl/maps/4o2NwHD3Ui12?utm_source%3Dapp-invite%26mt%3D8%26pt%3D9008%26utm_medium%3DSIMPLE%26utm_campaign%3Ds2e-ai%26ct%3Ds2e-ai&apn=com.google.android.apps.maps&amv=703000000&isi=585027354&ibi=com.google.Maps&ius=comgooglemapsurl&utm_source=app-invite&mt=8&pt=9008&utm_medium=SIMPLE&utm_campaign=s2e-ai&ct=s2e-ai&invitation_id=493454522602-882a6870-6ed0-4301-9bb0-725ef9076656"
+						target="_blank">link</a
+					>.
+				</p>
+				<p>
+					If you arrive at <b>Billund Airport</b>, then take the bus 912X til Aarhus then bus 2A to the venue,
+					<a
+						href="https://maps.app.goo.gl/?link=https://goo.gl/maps/VXfa64VSK8G2?utm_source%3Dapp-invite%26mt%3D8%26pt%3D9008%26utm_medium%3DSIMPLE%26utm_campaign%3Ds2e-ai%26ct%3Ds2e-ai&apn=com.google.android.apps.maps&amv=703000000&isi=585027354&ibi=com.google.Maps&ius=comgooglemapsurl&utm_source=app-invite&mt=8&pt=9008&utm_medium=SIMPLE&utm_campaign=s2e-ai&ct=s2e-ai&invitation_id=493454522602-5cbebbcc-6576-441d-9df9-e678269b5b87"
+						target="_blank">link</a
+					>.
+				</p>
+			</TabSection>
+		</Tabs>
 
-    <Section color="white" id="location">
-        <SectionHeader>How to get to AUHack?</SectionHeader>
+		<br />
+		<br />
 
-        <Tabs
-            tabs={[
-                { title: "Location", id: "location", icon: PinMapIcon },
-                { title: "Train", id: "train", icon: TrainFrontIcon },
-                { title: "Car", id: "car", icon: CarIcon },
-                { title: "Plane", id: "plane", icon: SendIcon },
-            ]}
-        >
-            <TabSection slot="location">
-                <h4>Location</h4>
-                <p>
-                    The address of the venue building is: <br />Finlandsgade 21,
-                    8200 Aarhus N, Denmark
-                </p>
-                <p>You will recognize the entrance by AUHack signs outside.</p>
-                <img
-                    style="max-width: 100%;"
-                    src="img/AUHack-map.jpg"
-                    alt="Entrance and parking to AUHack. Helsingforsgade 12, 8200 Aarhus N"
-                />
-            </TabSection>
-            <TabSection slot="train">
-                <h4>Train</h4>
-                {/* TODO: update train link */}
-                <p>
-                    Take the train to <i>Aarhus Hovedbanegård</i>. <br />
-                    You can then take a <a
-                        href="https://maps.app.goo.gl/?link=https://goo.gl/maps/8paNXkFrkUB2?utm_source%3Dapp-invite%26mt%3D8%26pt%3D9008%26utm_medium%3DSIMPLE%26utm_campaign%3Ds2e-ai%26ct%3Ds2e-ai&apn=com.google.android.apps.maps&amv=703000000&isi=585027354&ibi=com.google.Maps&ius=comgooglemapsurl&utm_source=app-invite&mt=8&pt=9008&utm_medium=SIMPLE&utm_campaign=s2e-ai&ct=s2e-ai&invitation_id=493454522602-04fc0b35-537e-4634-9917-f520fb424ae1"
-                        target="_blank">bus</a
-                    > or walk to the venue.
-                </p>
-            </TabSection>
-            <TabSection slot="car">
-                <h4>Car</h4>
-                <p>Navigate to Finlandsgade 21, 8200 Aarhus N, Denmark.</p>
-                <p>
-                    Park your car somewhere, preferable on the roof of
-                    <a
-                        href="https://drive.google.com/open?id=1i-oK1c3tjav_m6Jq1w0YTfg8s_M&usp=sharing"
-                        target="_blank">Storcenter Nord</a
-                    >.
-                </p>
-            </TabSection>
-            <TabSection slot="plane">
-                <h4>Plane</h4>
-                <p>
-                    You have 4 options: Copenhagen, Billund, Tirstrup and
-                    Aalborg. Billund and Copenhagen are likely preferred, since
-                    they have most connecting flights.
-                </p>
-                <p>
-                    If you arrive at <b>Copenhagen Airport</b>, then take the
-                    train to Aarhus H and then bus 2A to the venue,
-                    <a
-                        href="https://maps.app.goo.gl/?link=https://goo.gl/maps/4o2NwHD3Ui12?utm_source%3Dapp-invite%26mt%3D8%26pt%3D9008%26utm_medium%3DSIMPLE%26utm_campaign%3Ds2e-ai%26ct%3Ds2e-ai&apn=com.google.android.apps.maps&amv=703000000&isi=585027354&ibi=com.google.Maps&ius=comgooglemapsurl&utm_source=app-invite&mt=8&pt=9008&utm_medium=SIMPLE&utm_campaign=s2e-ai&ct=s2e-ai&invitation_id=493454522602-882a6870-6ed0-4301-9bb0-725ef9076656"
-                        target="_blank">link</a
-                    >.
-                </p>
-                <p>
-                    If you arrive at <b>Billund Airport</b>, then take the bus
-                    912X til Aarhus then bus 2A to the venue,
-                    <a
-                        href="https://maps.app.goo.gl/?link=https://goo.gl/maps/VXfa64VSK8G2?utm_source%3Dapp-invite%26mt%3D8%26pt%3D9008%26utm_medium%3DSIMPLE%26utm_campaign%3Ds2e-ai%26ct%3Ds2e-ai&apn=com.google.android.apps.maps&amv=703000000&isi=585027354&ibi=com.google.Maps&ius=comgooglemapsurl&utm_source=app-invite&mt=8&pt=9008&utm_medium=SIMPLE&utm_campaign=s2e-ai&ct=s2e-ai&invitation_id=493454522602-5cbebbcc-6576-441d-9df9-e678269b5b87"
-                        target="_blank">link</a
-                    >.
-                </p>
-            </TabSection>
-        </Tabs>
-
-        <br>
-        <br>
-
-        <SectionHeader align="left">Questions?</SectionHeader>
-        <p>
-            If you have any questions regarding travel, then please contact us
-            at <a href="mailto:contact@auhack.org?subject=AUHack: question">contact@auhack.org</a>
-        </p>
-    </Section>
-    
-    <Footer />
+		<SectionHeader align="left">Questions?</SectionHeader>
+		<p>
+			If you have any questions regarding travel, then please contact us at <a
+				href="mailto:contact@auhack.org?subject=AUHack: question">contact@auhack.org</a
+			>
+		</p>
+	</Section>
 </BaseLayout>

@@ -1,223 +1,193 @@
 ---
-import Header from "../components/Header.astro";
-import Navbar from "../components/Navbar.astro";
 import Section from "../components/Section.astro";
 import SectionHeader from "../components/SectionHeader.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Footer from "../components/Footer.astro";
 import Dropdown from "../components/Dropdown.astro";
 
 const YEAR = 2026;
 ---
 
-<BaseLayout title="Sponsor">
-    <Navbar
-        leftItems={[
-            { name: "Info", href: "#info" },
-            { name: "FAQ", href: "#faq" },
-        ]}
-    />
+<BaseLayout
+	pageTitle="Sponsor"
+	navbar={{
+		leftItems: [
+			{ name: "Info", href: "#info" },
+			{ name: "FAQ", href: "#faq" },
+		],
+	}}
+	header={{ title: "AUHack 2026", subtitle: "Sponsor" }}
+>
+	<Section color="white" id="info">
+		<SectionHeader>AUHack {YEAR}</SectionHeader>
 
-    <Header title="AUHack 2026" subtitle="Sponsor" />
+		<p>
+			AUHack focuses on a broad variety of technical computer science and digital prototyping issues, but could
+			also include specialized tracks and challenges proposed by major sponsors/partners. This is an opportunity
+			for your company to get involved.
+		</p>
 
-    <Section color="white" id="info">
-        <SectionHeader>AUHack {YEAR}</SectionHeader>
+		<p>
+			Check out the FAQ below, go through the{" "}
+			<a href="/docs/sponsor_catalog.pdf">sponsor catalog</a>, or{" "}
+			<a href={`mailto:sponsor@auhack.org?subject=Sponsor AUHack ${YEAR}`}> shoot us an email </a>
+			!
+		</p>
 
-        <p>
-            AUHack focuses on a broad variety of technical computer science and
-            digital prototyping issues, but could also include specialized tracks
-            and challenges proposed by major sponsors/partners. This is an
-            opportunity for your company to get involved.
-        </p>
+		<p>
+			Best,
+			<br />
+			AUHack {YEAR} team
+		</p>
+	</Section>
 
-        <p>
-            Check out the FAQ below, go through the{" "}
-            <a href="/docs/sponsor_catalog.pdf">sponsor catalog</a>, or{" "}
-            <a href={`mailto:sponsor@auhack.org?subject=Sponsor AUHack ${YEAR}`}>
-                shoot us an email
-            </a>
-            !
-        </p>
+	<Section color="orange" id="faq">
+		<SectionHeader>Sponsor FAQ</SectionHeader>
 
-        <p>
-            Best,
-            <br />
-            AUHack {YEAR} team
-        </p>
-    </Section>
+		<Dropdown title="What is a hackathon?">
+			<p>
+				A hackathon is an event where people meet up and collaborate with each other to develop prototypes or
+				IT-concepts. The purpose of a hackathon is rarely to produce finished products, but rather to create
+				ideas and "hacks".
+			</p>
+			<p>
+				A hackathon has nothing to do with the evil-intended "hacking" where bank systems or other digital
+				solutions are penetrated and exposed. Instead participants hack technology together to develop
+				prototypes of digital solutions.
+			</p>
+			<p>
+				A hackathon gathers people from many interdisciplinary groups and lets them compete to create the best
+				concept and prototype, typically within 48 hours.
+			</p>
+		</Dropdown>
 
-    <Section color="orange" id="faq">
-        <SectionHeader>Sponsor FAQ</SectionHeader>
+		<Dropdown title="Who participates in AUHack?">
+			<p>
+				AUHack is for students from all around the world. Most of the participants are students from Aarhus
+				University who study Computer Science, IT Product Development, Digital Design, Information Studies, Data
+				science or Engineering.
+			</p>
+			<p>
+				The students that participate in these hackathons are often ambitious and passionate about both IT and
+				their studies. They choose to clear their schedule for three days to spend an entire weekend, some even
+				refrain from sleeping for two nights in a row, in order to develop the best concepts and prototypes.
+			</p>
+			<p>
+				AUHack first started in 2016 and has been growing ever since. In 2019 over 250 students from 10 nations
+				participated.
+			</p>
+		</Dropdown>
 
-            <Dropdown title="What is a hackathon?">
-                <p>
-                    A hackathon is an event where people meet up and collaborate with
-                    each other to develop prototypes or IT-concepts. The purpose of a
-                    hackathon is rarely to produce finished products, but rather to
-                    create ideas and "hacks".
-                </p>
-                <p>
-                    A hackathon has nothing to do with the evil-intended "hacking" where
-                    bank systems or other digital solutions are penetrated and exposed.
-                    Instead participants hack technology together to develop prototypes of
-                    digital solutions.
-                </p>
-                <p>
-                    A hackathon gathers people from many interdisciplinary groups and lets
-                    them compete to create the best concept and prototype, typically
-                    within 48 hours.
-                </p>
-            </Dropdown>
+		<Dropdown title="What's in it for me, as a sponsor of AUHack?">
+			<p>
+				AUHack is the perfect opportunity for you to spread the word about your organization to some of the
+				brightest IT students in Aarhus and beyond. Depending on which sponsor pack you choose, you have the
+				following options:
+			</p>
+			<ul>
+				<li>
+					<p>Show your organization logo on all relevant AUHack PR material.</p>
+				</li>
+				<li>
+					<p>
+						Tell the participants about your organization through events and workshops held exclusively for
+						them.
+					</p>
+				</li>
+				<li>
+					<p>
+						A unique opportunity to see students committed to solving problems and to meet them in their
+						usual surroundings.
+					</p>
+				</li>
+				<li>
+					<p>
+						Represent your organization with mentors that help the participants to solve their problems,
+						creating relations between your organization and the students.
+					</p>
+				</li>
+				<li>
+					<p>
+						Challenge the participants through design cases or encourage them to use your technology or an
+						API of your choosing. At the end of the weekend, you may decide who had the best go at your
+						challenge and reward them with prizes of your choosing.
+					</p>
+				</li>
+			</ul>
+			<p>
+				For a more in-depth description of what the different sponsor packs include, see the{" "}
+				<a href="/docs/sponsor_catalog.pdf">sponsor catalog</a>.
+			</p>
+		</Dropdown>
 
-            <Dropdown title="Who participates in AUHack?">
-                <p>
-                    AUHack is for students from all around the world. Most of the
-                    participants are students from Aarhus University who study Computer
-                    Science, IT Product Development, Digital Design, Information Studies,
-                    Data science or Engineering.
-                </p>
-                <p>
-                    The students that participate in these hackathons are often ambitious
-                    and passionate about both IT and their studies. They choose to clear
-                    their schedule for three days to spend an entire weekend, some even
-                    refrain from sleeping for two nights in a row, in order to develop the
-                    best concepts and prototypes.
-                </p>
-                <p>
-                    AUHack first started in 2016 and has been growing ever since. In 2019
-                    over 250 students from 10 nations participated.
-                </p>
-            </Dropdown>
+		<Dropdown title="What should I do, if I want to sponsor the event?">
+			<ul>
+				<li>
+					<p>
+						Get in touch with us through our mail{" "}
+						<a href={`mailto:sponsor@auhack.org?subject=Sponsor AUHack ${YEAR}`}> sponsor@auhack.org </a>
+						, tell how you want to contribute and which sponsor pack you choose. We are flexible, so if you want
+						to contribute with anything that is not listed in the sponsor packs, we&apos;ll be happy to hear from
+						you.
+					</p>
+				</li>
+				<li>
+					<p>
+						Should you choose one of the major sponsor packs, we suggest you find one or more employees from
+						your organization who would want to participate in the weekend, either to host a workshop or an
+						event, or to mentor the students who take on your case.
+					</p>
+				</li>
+				<li>
+					<p>Pay the agreed upon fee via a bank transfer.</p>
+				</li>
+			</ul>
+		</Dropdown>
 
-            <Dropdown title="What's in it for me, as a sponsor of AUHack?">
-                <p>
-                    AUHack is the perfect opportunity for you to spread the word about
-                    your organization to some of the brightest IT students in Aarhus and
-                    beyond. Depending on which sponsor pack you choose, you have the
-                    following options:
-                </p>
-                <ul>
-                    <li>
-                        <p>Show your organization logo on all relevant AUHack PR material.</p>
-                    </li>
-                    <li>
-                        <p>
-                            Tell the participants about your organization through events and
-                            workshops held exclusively for them.
-                        </p>
-                    </li>
-                    <li>
-                        <p>
-                            A unique opportunity to see students committed to solving problems
-                            and to meet them in their usual surroundings.
-                        </p>
-                    </li>
-                    <li>
-                        <p>
-                            Represent your organization with mentors that help the participants
-                            to solve their problems, creating relations between your organization
-                            and the students.
-                        </p>
-                    </li>
-                    <li>
-                        <p>
-                            Challenge the participants through design cases or encourage them to
-                            use your technology or an API of your choosing. At the end of the
-                            weekend, you may decide who had the best go at your challenge and
-                            reward them with prizes of your choosing.
-                        </p>
-                    </li>
-                </ul>
-                <p>
-                    For a more in-depth description of what the different sponsor packs
-                    include, see the{" "}
-                    <a href="/docs/sponsor_catalog.pdf">sponsor catalog</a>.
-                </p>
-            </Dropdown>
+		<Dropdown title="How are my contributions spent?">
+			<p>
+				Your contribution is spent directly on improving the event for the participants. The contributions
+				mainly go into:
+			</p>
+			<ul>
+				<li>
+					<p>Meals, snacks and drinks for 150 to 170 participants Friday to Sunday.</p>
+				</li>
+				<li>
+					<p>Goodie bags and prizes for the participants.</p>
+				</li>
+				<li>
+					<p>
+						Logistics including renting rooms and spaces at Aarhus University, ensuring a comfortable and
+						fun environment for the participants and providing the necessary prototyping gear and components
+						for the participants to use throughout the event.
+					</p>
+				</li>
+			</ul>
+			<p>
+				All organizers are volunteers, and your contribution will not be spent on salary of any kind. The event
+				is 100% non-profit.
+			</p>
+		</Dropdown>
 
-            <Dropdown title="What should I do, if I want to sponsor the event?">
-                <ul>
-                    <li>
-                        <p>
-                            Get in touch with us through our mail{" "}
-                            <a href={`mailto:sponsor@auhack.org?subject=Sponsor AUHack ${YEAR}`}>
-                                sponsor@auhack.org
-                            </a>
-                            , tell how you want to contribute and which sponsor pack you choose.
-                            We are flexible, so if you want to contribute with anything that is
-                            not listed in the sponsor packs, we&apos;ll be happy to hear from you.
-                        </p>
-                    </li>
-                    <li>
-                        <p>
-                            Should you choose one of the major sponsor packs, we suggest you find
-                            one or more employees from your organization who would want to
-                            participate in the weekend, either to host a workshop or an event, or
-                            to mentor the students who take on your case.
-                        </p>
-                    </li>
-                    <li>
-                        <p>Pay the agreed upon fee via a bank transfer.</p>
-                    </li>
-                </ul>
-            </Dropdown>
+		<Dropdown title="I want to sponsor a specific event throughout the weekend. Is this possible?">
+			<p>
+				You can choose to be a sponsor on one of the specific events throughout the weekend. This means that the
+				event will be organized in your name, as you will be sponsoring the expenses for this event. Please do
+				contact us if you have any questions about our currently planned events or have an idea for a cool
+				event.
+			</p>
+		</Dropdown>
 
-            <Dropdown title="How are my contributions spent?">
-                <p>
-                    Your contribution is spent directly on improving the event for the
-                    participants. The contributions mainly go into:
-                </p>
-                <ul>
-                    <li>
-                        <p>
-                            Meals, snacks and drinks for 150 to 170 participants Friday to
-                            Sunday.
-                        </p>
-                    </li>
-                    <li>
-                        <p>Goodie bags and prizes for the participants.</p>
-                    </li>
-                    <li>
-                        <p>
-                            Logistics including renting rooms and spaces at Aarhus University,
-                            ensuring a comfortable and fun environment for the participants and
-                            providing the necessary prototyping gear and components for the
-                            participants to use throughout the event.
-                        </p>
-                    </li>
-                </ul>
-                <p>
-                    All organizers are volunteers, and your contribution will not be spent
-                    on salary of any kind. The event is 100% non-profit.
-                </p>
-            </Dropdown>
-
-            <Dropdown title="I want to sponsor a specific event throughout the weekend. Is this possible?">
-                <p>
-                    You can choose to be a sponsor on one of the specific events
-                    throughout the weekend. This means that the event will be organized in
-                    your name, as you will be sponsoring the expenses for this event.
-                    Please do contact us if you have any questions about our currently
-                    planned events or have an idea for a cool event.
-                </p>
-            </Dropdown>
-
-            <Dropdown title="Can I be a sponsor, without providing content to the weekend?">
-                <p>
-                    If you wish to support the event but do not want to provide content
-                    for the weekend, you can be a Silver Sponsor. With the Silver Sponsor
-                    pack, we will put your company logo on the website as well as
-                    distribute relevant company material (flyers, stickers, etc.) to the
-                    participants. Should you wish to contribute with a higher amount than
-                    Silver or contribute with tools or other gear, please feel free to
-                    contact us at{" "}
-                    <a href={`mailto:sponsor@auhack.org?subject=Sponsor AUHack ${YEAR}`}>
-                        sponsor@auhack.org
-                    </a>
-                    .
-                </p>
-            </Dropdown>
-    </Section>
-
-    <Footer />
+		<Dropdown title="Can I be a sponsor, without providing content to the weekend?">
+			<p>
+				If you wish to support the event but do not want to provide content for the weekend, you can be a Silver
+				Sponsor. With the Silver Sponsor pack, we will put your company logo on the website as well as
+				distribute relevant company material (flyers, stickers, etc.) to the participants. Should you wish to
+				contribute with a higher amount than Silver or contribute with tools or other gear, please feel free to
+				contact us at{" "}
+				<a href={`mailto:sponsor@auhack.org?subject=Sponsor AUHack ${YEAR}`}> sponsor@auhack.org </a>
+				.
+			</p>
+		</Dropdown>
+	</Section>
 </BaseLayout>

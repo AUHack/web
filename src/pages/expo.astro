@@ -1,253 +1,238 @@
 ---
-import Header from "../components/Header.astro";
-import Navbar from "../components/Navbar.astro";
 import Section from "../components/Section.astro";
 import SectionHeader from "../components/SectionHeader.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Footer from "../components/Footer.astro";
 import Masonry from "../components/Masonry.astro";
 import Card from "../components/Card.astro";
 
 interface Judge {
-    id: string;
-    name: string;
-    description: string;
+	id: string;
+	name: string;
+	description: string;
 }
 
 const judges: Judge[] = [
-    {
-        id: "hana",
-        name: "Hana Spacilova",
-        description:
-            "Hana is currently pursuing her master's in Computer Science at Aarhus University and is one of the dedicated organizers for AUHack.",
-    },
-    {
-        id: "markmoore",
-        name: "Mark Moore",
-        description:
-            "Mark works full time at Aarhus Tech HTX Gymnasium, where he teaches programming, informatics, and digital design, and maintains the school's makerspace. He holds a master's degree in IT product development from Aarhus University.",
-    },
-    {
-        id: "michael",
-        name: "Michael Wessely",
-        description:
-            "Michael is also an associate professor at Aarhus University. He specialises in Human-Computer Interaction with a focus on physical interfaces made out of different materials and the fabrication of these interfaces.",
-    },
+	{
+		id: "hana",
+		name: "Hana Spacilova",
+		description:
+			"Hana is currently pursuing her master's in Computer Science at Aarhus University and is one of the dedicated organizers for AUHack.",
+	},
+	{
+		id: "markmoore",
+		name: "Mark Moore",
+		description:
+			"Mark works full time at Aarhus Tech HTX Gymnasium, where he teaches programming, informatics, and digital design, and maintains the school's makerspace. He holds a master's degree in IT product development from Aarhus University.",
+	},
+	{
+		id: "michael",
+		name: "Michael Wessely",
+		description:
+			"Michael is also an associate professor at Aarhus University. He specialises in Human-Computer Interaction with a focus on physical interfaces made out of different materials and the fabrication of these interfaces.",
+	},
 ];
 
 interface EvalItem {
-    evalnum: string;
-    groupnum: string;
-    groupname: string;
-    evalstart: string;
-    evalend: string;
+	evalnum: string;
+	groupnum: string;
+	groupname: string;
+	evalstart: string;
+	evalend: string;
 }
 
 const evaluationPlan: Record<string, EvalItem[]> = {
-    "AUHack Case": [
-        { evalnum: "1", groupnum: "Group 2", groupname: "Betterfly", evalstart: "12:00", evalend: "12:04", },
-        { evalnum: "2", groupnum: "Group 5", groupname: "The hungry five", evalstart: "12:04", evalend: "12:08", },
-        { evalnum: "3", groupnum: "Group 8", groupname: "Unpolished", evalstart: "12:08", evalend: "12:12", },
-        { evalnum: "4", groupnum: "Group 14", groupname: "Hold da op", evalstart: "12:12", evalend: "12:16", },
-        { evalnum: "5", groupnum: "Group 16", groupname: "Promptimus prime", evalstart: "12:16", evalend: "12:20", },
-        { evalnum: "6", groupnum: "Group 17", groupname: "OCamls Disciple", evalstart: "12:20", evalend: "12:24", },
-        { evalnum: "7", groupnum: "Group 35", groupname: "Brain Fermentation", evalstart: "12:24", evalend: "12:28", },
-    ],
-    "InCommodities Case": [
-        { evalnum: "8", groupnum: "Group 4", groupname: "Jaka", evalstart: "12:32", evalend: "12:36", },
-        { evalnum: "9", groupnum: "Group 6", groupname: "Team Holdet", evalstart: "12:36", evalend: "12:40", },
-        { evalnum: "10", groupnum: "Group 7", groupname: "PearMangoBerries", evalstart: "12:40", evalend: "12:44", },
-        { evalnum: "11", groupnum: "Group 9", groupname: "Grid Wars", evalstart: "12:44", evalend: "12:48", },
-        { evalnum: "12", groupnum: "Group 10", groupname: "Miav", evalstart: "12:48", evalend: "12:52", },
-        { evalnum: "13", groupnum: "Group 12", groupname: "correlation -> consation", evalstart: "12:52", evalend: "12:56", },
-        { evalnum: "14", groupnum: "Group 18", groupname: "Auuuuuuuuuuhack", evalstart: "12:56", evalend: "13:00", },
-        { evalnum: "15", groupnum: "Group 19", groupname: "EatTHEmarket", evalstart: "13:00", evalend: "13:04", },
-        { evalnum: "16", groupnum: "Group 20", groupname: "Quantitative Battalion", evalstart: "13:04", evalend: "13:08", },
-        { evalnum: "", groupnum: "", groupname: "4 min break", evalstart: "", evalend: "", },
-        { evalnum: "17", groupnum: "Group 21", groupname: "My Little Pwnies", evalstart: "13:12", evalend: "13:16", },
-        { evalnum: "18", groupnum: "Group 23", groupname: "KAVICH", evalstart: "13:16", evalend: "13:20", },
-        { evalnum: "19", groupnum: "Group 24", groupname: "", evalstart: "13:20", evalend: "13:24", },
-        { evalnum: "20", groupnum: "Group 25", groupname: "Watt The Helly", evalstart: "13:24", evalend: "13:28", },
-        { evalnum: "21", groupnum: "Group 29", groupname: "Sohail og Ruben", evalstart: "13:28", evalend: "13:32", },
-        { evalnum: "22", groupnum: "Group 31", groupname: "BRO.OP", evalstart: "13:32", evalend: "13:36", },
-        { evalnum: "23", groupnum: "Group 32", groupname: "Germanium", evalstart: "13:36", evalend: "13:40", },
-        { evalnum: "24", groupnum: "Group 33", groupname: "Team TT", evalstart: "13:40", evalend: "13:44", },
-        { evalnum: "25", groupnum: "Group 36", groupname: "Cracktraitors", evalstart: "13:44", evalend: "13:48", },
-        { evalnum: "26", groupnum: "Group 37", groupname: "Løbeklubben", evalstart: "13:48", evalend: "13:52", },
-    ],
-    "Rogue Cases": [
-        { evalnum: "27", groupnum: "Group 27", groupname: "", evalstart: "13:52", evalend: "13:56", },
-    ],
+	"AUHack Case": [
+		{ evalnum: "1", groupnum: "Group 2", groupname: "Betterfly", evalstart: "12:00", evalend: "12:04" },
+		{ evalnum: "2", groupnum: "Group 5", groupname: "The hungry five", evalstart: "12:04", evalend: "12:08" },
+		{ evalnum: "3", groupnum: "Group 8", groupname: "Unpolished", evalstart: "12:08", evalend: "12:12" },
+		{ evalnum: "4", groupnum: "Group 14", groupname: "Hold da op", evalstart: "12:12", evalend: "12:16" },
+		{ evalnum: "5", groupnum: "Group 16", groupname: "Promptimus prime", evalstart: "12:16", evalend: "12:20" },
+		{ evalnum: "6", groupnum: "Group 17", groupname: "OCamls Disciple", evalstart: "12:20", evalend: "12:24" },
+		{ evalnum: "7", groupnum: "Group 35", groupname: "Brain Fermentation", evalstart: "12:24", evalend: "12:28" },
+	],
+	"InCommodities Case": [
+		{ evalnum: "8", groupnum: "Group 4", groupname: "Jaka", evalstart: "12:32", evalend: "12:36" },
+		{ evalnum: "9", groupnum: "Group 6", groupname: "Team Holdet", evalstart: "12:36", evalend: "12:40" },
+		{ evalnum: "10", groupnum: "Group 7", groupname: "PearMangoBerries", evalstart: "12:40", evalend: "12:44" },
+		{ evalnum: "11", groupnum: "Group 9", groupname: "Grid Wars", evalstart: "12:44", evalend: "12:48" },
+		{ evalnum: "12", groupnum: "Group 10", groupname: "Miav", evalstart: "12:48", evalend: "12:52" },
+		{
+			evalnum: "13",
+			groupnum: "Group 12",
+			groupname: "correlation -> consation",
+			evalstart: "12:52",
+			evalend: "12:56",
+		},
+		{ evalnum: "14", groupnum: "Group 18", groupname: "Auuuuuuuuuuhack", evalstart: "12:56", evalend: "13:00" },
+		{ evalnum: "15", groupnum: "Group 19", groupname: "EatTHEmarket", evalstart: "13:00", evalend: "13:04" },
+		{
+			evalnum: "16",
+			groupnum: "Group 20",
+			groupname: "Quantitative Battalion",
+			evalstart: "13:04",
+			evalend: "13:08",
+		},
+		{ evalnum: "", groupnum: "", groupname: "4 min break", evalstart: "", evalend: "" },
+		{ evalnum: "17", groupnum: "Group 21", groupname: "My Little Pwnies", evalstart: "13:12", evalend: "13:16" },
+		{ evalnum: "18", groupnum: "Group 23", groupname: "KAVICH", evalstart: "13:16", evalend: "13:20" },
+		{ evalnum: "19", groupnum: "Group 24", groupname: "", evalstart: "13:20", evalend: "13:24" },
+		{ evalnum: "20", groupnum: "Group 25", groupname: "Watt The Helly", evalstart: "13:24", evalend: "13:28" },
+		{ evalnum: "21", groupnum: "Group 29", groupname: "Sohail og Ruben", evalstart: "13:28", evalend: "13:32" },
+		{ evalnum: "22", groupnum: "Group 31", groupname: "BRO.OP", evalstart: "13:32", evalend: "13:36" },
+		{ evalnum: "23", groupnum: "Group 32", groupname: "Germanium", evalstart: "13:36", evalend: "13:40" },
+		{ evalnum: "24", groupnum: "Group 33", groupname: "Team TT", evalstart: "13:40", evalend: "13:44" },
+		{ evalnum: "25", groupnum: "Group 36", groupname: "Cracktraitors", evalstart: "13:44", evalend: "13:48" },
+		{ evalnum: "26", groupnum: "Group 37", groupname: "Løbeklubben", evalstart: "13:48", evalend: "13:52" },
+	],
+	"Rogue Cases": [{ evalnum: "27", groupnum: "Group 27", groupname: "", evalstart: "13:52", evalend: "13:56" }],
 };
 ---
 
-<BaseLayout title="Expo">
-    <Navbar
-        leftItems={[
-            { name: "Info", href: "#info" },
-            { name: "Criteria", href: "#criteria" },
-            { name: "Judges", href: "#judges" },
-            { name: "Evaluation Plan", href: "#evalplan" },
-        ]}
-    />
+<BaseLayout
+	pageTitle="Expo"
+	navbar={{
+		leftItems: [
+			{ name: "Info", href: "#info" },
+			{ name: "Criteria", href: "#criteria" },
+			{ name: "Judges", href: "#judges" },
+			{ name: "Evaluation Plan", href: "#evalplan" },
+		],
+	}}
+	header={{ title: "AUHack 2026", subtitle: "Expo" }}
+>
+	<Section color="white" id="info">
+		<SectionHeader>Expo</SectionHeader>
 
-    <Header title="AUHack 2026" subtitle="Expo" />
+		<p>
+			After hacking ends all teams will expo their projects. Here judges and fellow students will have time to
+			test each other's projects. The expo will be at your tables where you have worked throughout the weekend.
+		</p>
 
-    <Section color="white" id="info">
-        <SectionHeader>Expo</SectionHeader>
+		<p>
+			Each team will be visited once by our three knowledgeable judges within a time interval of 2 hours. As soon
+			as all groups and their cases have been registered, a plan for when you will be visited by the judges will
+			be made public. Thus you will have some time to eat lunch and watch other hacks when the judges are not at
+			your table. But be sure to be at your table a little before it says on the plan!
+		</p>
+	</Section>
 
-        <p>
-            After hacking ends all teams will expo their projects. Here judges
-            and fellow students will have time to test each other's projects.
-            The expo will be at your tables where you have worked throughout the
-            weekend.
-        </p>
+	<Section color="blue" id="criteria">
+		<SectionHeader>Best Hack Criteria</SectionHeader>
 
-        <p>
-            Each team will be visited once by our three knowledgeable judges
-            within a time interval of 2 hours. As soon as all groups and their
-            cases have been registered, a plan for when you will be visited by
-            the judges will be made public. Thus you will have some time to eat
-            lunch and watch other hacks when the judges are not at your table.
-            But be sure to be at your table a little before it says on the plan!
-        </p>
-    </Section>
+		<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; ">
+			<div>
+				<h4>Technical Difficulty</h4>
+				<p>
+					How technically impressive was the hack? Was the technical problem the team tackled difficult? Did
+					it use a particularly clever technique or did it use many different components? Did the technology
+					involved make you go "Wow"?
+				</p>
+			</div>
+			<div>
+				<h4>Originality</h4>
+				<p>
+					Was the hack unique and interesting? Is it something that has never been seen before? This can range
+					from a new spin on a known idea to completely outlandish ideas.
+				</p>
+			</div>
+			<div>
+				<h4>Polish</h4>
+				<p>
+					Did the hack both look and work beautifully? Have all bugs been squashed? The closer it looks and
+					feels to a professional-grade application, the better.
+				</p>
+			</div>
+			<div>
+				<h4>Usefulness</h4>
+				<p>
+					Was the hack useful? Was it intuitive and easy to use? Doesn't have to be business-ready, but should
+					have the potential to be useful in everyday life.
+				</p>
+			</div>
+			<div>
+				<h4>Bonus: Learning</h4>
+				<p>
+					Did the team stretch themselves? Did they try to learn something new? What kind of projects have
+					they worked on before? If a team which always does virtual reality projects switch up and try doing
+					a mobile app instead, that exploration should be rewarded.
+				</p>
+			</div>
+		</div>
 
-    <Section color="blue" id="criteria">
-        <SectionHeader>Best Hack Criteria</SectionHeader>
+		<SectionHeader>Best Facepalm Criteria</SectionHeader>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; ">
-            <div>
-                <h4>Technical Difficulty</h4>
-                <p>
-                    How technically impressive was the hack? Was the technical
-                    problem the team tackled difficult? Did it use a
-                    particularly clever technique or did it use many different
-                    components? Did the technology involved make you go "Wow"?
-                </p>
-            </div>
-            <div>
-                <h4>Originality</h4>
-                <p>
-                    Was the hack unique and interesting? Is it something that
-                    has never been seen before? This can range from a new spin
-                    on a known idea to completely outlandish ideas.
-                </p>
-            </div>
-            <div>
-                <h4>Polish</h4>
-                <p>
-                    Did the hack both look and work beautifully? Have all bugs
-                    been squashed? The closer it looks and feels to a
-                    professional-grade application, the better.
-                </p>
-            </div>
-            <div>
-                <h4>Usefulness</h4>
-                <p>
-                    Was the hack useful? Was it intuitive and easy to use?
-                    Doesn't have to be business-ready, but should have the
-                    potential to be useful in everyday life.
-                </p>
-            </div>
-            <div>
-                <h4>Bonus: Learning</h4>
-                <p>
-                    Did the team stretch themselves? Did they try to learn
-                    something new? What kind of projects have they worked on
-                    before? If a team which always does virtual reality projects
-                    switch up and try doing a mobile app instead, that
-                    exploration should be rewarded.
-                </p>
-            </div>
-        </div>
+		<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+			<div>
+				<h4>Originality</h4>
+				<p>
+					The hack or the idea behind it should be unique and interesting. This can range from new and crazy
+					spins on known ideas to completely outlandish ideas.
+				</p>
+			</div>
+			<div>
+				<h4>Funny</h4>
+				<p>
+					The hack is obviously a testament to what the human mind can do to make something funny, be it a
+					genius pun or something that just makes you laugh.
+				</p>
+			</div>
+			<div></div>
+			<div>
+				<h4>Unusefulness</h4>
+				<p>The hack doesn't have to be useful or meaningful in any sense.</p>
+			</div>
+		</div>
+	</Section>
 
+	<Section color="white" id="judges">
+		<SectionHeader>Judges</SectionHeader>
 
-        <SectionHeader>Best Facepalm Criteria</SectionHeader>
+		<Masonry>
+			{
+				judges.map((judge) => (
+					<Card key={judge.id}>
+						<img slot="image" src={`/img/judges/${judge.id}.jpg`} alt={judge.name} />
+						<h4>{judge.name}</h4>
+						<p>{judge.description}</p>
+					</Card>
+				))
+			}
+		</Masonry>
+	</Section>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
-            <div>
-                <h4>Originality</h4>
-                <p>
-                    The hack or the idea behind it should be unique and
-                    interesting. This can range from new and crazy spins on
-                    known ideas to completely outlandish ideas.
-                </p>
-            </div>
-            <div>
-                <h4>Funny</h4>
-                <p>
-                    The hack is obviously a testament to what the human mind can
-                    do to make something funny, be it a genius pun or something
-                    that just makes you laugh.
-                </p>
-            </div>    
-            <div></div>
-            <div>
-                <h4>Unusefulness</h4>
-                <p>
-                    The hack doesn't have to be useful or meaningful in any
-                    sense.
-                </p>
-            </div>
-        </div>
-    </Section>
+	<Section color="orange" id="evalplan">
+		<SectionHeader>Evaluation Plan</SectionHeader>
 
-    <Section color="white" id="judges">
-        <SectionHeader>Judges</SectionHeader>
-
-        <Masonry>
-            {
-                judges.map((judge) => (
-                    <Card key={judge.id}>
-                        <img
-                            slot="image"
-                            src={`/img/judges/${judge.id}.jpg`}
-                            alt={judge.name}
-                        />
-                        <h4>{judge.name}</h4>
-                        <p>{judge.description}</p>
-                    </Card>
-                ))
-            }
-        </Masonry>
-    </Section>
-
-    <Section color="orange" id="evalplan">
-        <SectionHeader>Evaluation Plan</SectionHeader>
-
-        {
-            Object.entries(evaluationPlan).map(([caseTitle, rows]) => (
-                <div>
-                    <h4>{caseTitle}</h4>
-                    <div class="overflow-x-scroll">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th style="width: 15%">Evaluation number</th>
-                                    <th style="width: 20%">Group number</th>
-                                    <th style="width: 25%">Group name</th>
-                                    <th style="width: 20%">Evaluation start</th>
-                                    <th style="width: 20%">Evaluation end</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {rows.map((row) => (
-                                    <tr>
-                                        <td>{row.evalnum}</td>
-                                        <td>{row.groupnum}</td>
-                                        <td>{row.groupname}</td>
-                                        <td>{row.evalstart}</td>
-                                        <td>{row.evalend}</td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            ))
-        }
-    </Section>
-
-    <Footer />
+		{
+			Object.entries(evaluationPlan).map(([caseTitle, rows]) => (
+				<div>
+					<h4>{caseTitle}</h4>
+					<div class="overflow-x-scroll">
+						<table>
+							<thead>
+								<tr>
+									<th style="width: 15%">Evaluation number</th>
+									<th style="width: 20%">Group number</th>
+									<th style="width: 25%">Group name</th>
+									<th style="width: 20%">Evaluation start</th>
+									<th style="width: 20%">Evaluation end</th>
+								</tr>
+							</thead>
+							<tbody>
+								{rows.map((row) => (
+									<tr>
+										<td>{row.evalnum}</td>
+										<td>{row.groupnum}</td>
+										<td>{row.groupname}</td>
+										<td>{row.evalstart}</td>
+										<td>{row.evalend}</td>
+									</tr>
+								))}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			))
+		}
+	</Section>
 </BaseLayout>

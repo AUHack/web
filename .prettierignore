@@ -1,7 +1,6 @@
 # Old pug project
 build
 includes
-pages
 static
 
 # Build files
