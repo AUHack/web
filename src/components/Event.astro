@@ -1,0 +1,32 @@
+---
+import Card from "./Card.astro";
+
+interface Props {
+	id: string;
+	name: string;
+	time: string;
+	location: string;
+	signup: string;
+}
+
+const { id, name, time, location, signup }: Props = Astro.props;
+---
+
+<Card key={id}>
+	<img slot="image" src={`/img/events/${id}.jpg`} alt={`${name} Event`} />
+	<h5>{name}</h5>
+
+	<i class="muted">{time}</i>
+	<br />
+	<i class="muted">{location}</i>
+
+	<hr class="muted" />
+
+	<h6>Sign-up specifics!</h6>
+	<p>{signup}</p>
+
+	<h6>Description</h6>
+	<p>
+		<slot />
+	</p>
+</Card>
