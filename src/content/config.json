@@ -1,0 +1,40 @@
+{
+	"date": {
+		"year": "2026",
+		"shortInterval": "March 13th - 15th",
+		"longInterval": "March 13th to 15th",
+		"startTime": "13:00",
+		"endTime": "15:30"
+	},
+	"signUp": {
+		"state": 2,
+		"link": "https://forms.cloud.microsoft/e/57KiaEXG33",
+		"waitingListLink": "https://forms.cloud.microsoft/e/57KiaEXG33",
+		"startDate": null
+	},
+	"sponsors": {
+		"announced": true,
+		"final": false
+	},
+	"expo": {
+		"oneMMFormLink": "https://forms.cloud.microsoft/e/iGhevYcz07",
+		"oneMMDeadline": "10:00 Sunday",
+		"showOneMMSubmission": true,
+		"showExpo": true,
+		"showEvalPlan": true,
+		"showJudges": true
+	},
+	"cases": {
+		"show": true
+	},
+	"events": {
+		"show": true
+	},
+	"workshops": {
+		"show": false
+	},
+	"schedule": {
+		"announced": true,
+		"final": false
+	}
+}

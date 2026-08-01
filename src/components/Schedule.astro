@@ -5,12 +5,13 @@ import {
 	sortIntervalEvents,
 	type IntervalEvent,
 	type ImmediateEvent,
+	type Event,
 } from "../utils/schedule";
 
 interface Props {
 	headline: string;
 	date: Date;
-	items: Array<IntervalEvent | ImmediateEvent>;
+	items: Array<Event>;
 }
 
 const { items = [], date } = Astro.props;

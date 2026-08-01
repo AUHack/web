@@ -5,25 +5,22 @@ export enum EventType {
 	Workshop = "workshop",
 }
 
-export interface IntervalEvent {
+export interface Event {
 	type: EventType;
 	start: string; // hh:mm
-	end: string; // hh:mm
+	end?: string; // hh:mm
 	event: string;
-	location?: string;
+	location: string;
 }
+
+export type IntervalEvent = Event & { end: string };
 
 export interface ProcessedIntervalEvent extends IntervalEvent {
 	startMin: number;
 	endMin: number;
 }
 
-export interface ImmediateEvent {
-	type: EventType;
-	start: string; // hh:mm
-	event: string;
-	location: string;
-}
+export type ImmediateEvent = Omit<IntervalEvent, "end">;
 
 export function timeToMinutes(timeString: string) {
 	if (!timeString) return 0;
